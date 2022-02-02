@@ -1,66 +1,71 @@
-const pageContent = document.getElementById("page-content");
-const startBtn = document.getElementById("start-btn");
+document.addEventListener('DOMContentLoaded', () => {
 
-function clearMain() {
-  pageContent.innerHTML = "";
-  displayFeltView();
-}
+  // Get all "navbar-burger" elements
+  const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
-function renderCard(hand, index) {
-  const card = document.createElement("div");
-  card.classList = "card col s4 m3 center-align";
-  card.id = index;
-  const cardImage = document.createElement("div");
-  cardImage.classList = "card-image";
-  cardImage.innerHTML = `<img src="./assets/images/placeholder.png"/>`;
-  card.appendChild(cardImage);
+  // Check if there are any navbar burgers
+  if ($navbarBurgers.length > 0) {
 
-  const cardAction = document.createElement("div");
-  if (hand.id === "player-hand") {
-    const cardContent = document.createElement("div");
-    cardContent.classList = "card-content";
-    cardContent.innerHTML = `<p>Card Attributes</p>`;
-    card.appendChild(cardContent);
-    cardAction.classList = "card-action";
-    cardAction.innerHTML = `<a href="#">This is your card</a>`;
+    // Add a click event on each of them
+    $navbarBurgers.forEach( el => {
+      el.addEventListener('click', () => {
+
+        // Get the target from the "data-target" attribute
+        const target = el.dataset.target;
+        const $target = document.getElementById(target);
+
+        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+        el.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+
+      });
+    });
   }
 
-  card.appendChild(cardAction);
-  hand.appendChild(card);
-}
+});
 
-function displayFeltView() {
-  pageContent.innerHTML = `<section id="felt-view"></section>`;
-  const feltView = document.getElementById("felt-view");
-  const gameContainer = document.createElement("div");
-  gameContainer.classList = "container";
+document.addEventListener('DOMContentLoaded', () => {
+  // Functions to open and close a modal
+  function openModal($el) {
+    $el.classList.add('is-active');
+  }
 
-  const enemyHand = document.createElement("div");
-  enemyHand.classList = "row col s12 m12";
-  enemyHand.id = "enemy-hand";
-  enemyHand.setAttribute("style", "display:flex;");
+  function closeModal($el) {
+    $el.classList.remove('is-active');
+  }
 
-  const playerHand = document.createElement("div");
-  playerHand.classList = "row col s12 m12";
-  playerHand.id = "player-hand";
-  playerHand.setAttribute("style", "display:flex;");
+  function closeAllModals() {
+    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+      closeModal($modal);
+    });
+  }
 
-  for (let i = 0; i < 6; i++) {
-    if (i < 3) {
-      renderCard(enemyHand, i);
-    } else {
-      renderCard(playerHand, i);
+  // Add a click event on buttons to open a specific modal
+  (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+    const modal = $trigger.dataset.target;
+    const $target = document.getElementById(modal);
+    console.log($target);
+
+    $trigger.addEventListener('click', () => {
+      openModal($target);
+    });
+  });
+
+  // Add a click event on various child elements to close the parent modal
+  (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+    const $target = $close.closest('.modal');
+
+    $close.addEventListener('click', () => {
+      closeModal($target);
+    });
+  });
+
+  // Add a keyboard event to close all modals
+  document.addEventListener('keydown', (event) => {
+    const e = event || window.event;
+
+    if (e.keyCode === 27) { // Escape key
+      closeAllModals();
     }
-  }
-
-  const battlefield = document.createElement("div");
-  battlefield.id = "battlefield";
-
-  gameContainer.appendChild(enemyHand);
-  gameContainer.appendChild(battlefield);
-  gameContainer.appendChild(playerHand);
-
-  feltView.appendChild(gameContainer);
-}
-
-startBtn.addEventListener("click", clearMain);
+  });
+});
