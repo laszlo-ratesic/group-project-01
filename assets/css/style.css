@@ -10,3 +10,11 @@
 .hero {
     background-image: url(../images/nazgul_by_fell418_deyyz5f-414w-2x.jpg);
 }
+
+.hero.is-dark .tabs.is-boxed a:hover, .hero.is-dark .tabs.is-toggle a:hover {
+    background-color:white;
+}
+
+.hero.is-dark a:not(.button):not(.dropdown-item):not(.tag):not(.pagination-link.is-current):hover {
+    color: black;
+}
