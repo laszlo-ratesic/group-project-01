@@ -82,7 +82,7 @@
           </p>
           <button class="button is-medium is-success js-modal-trigger" data-target="player-modal">
             New Game
-          </p>
+          </button>
         </div>
       </div>
 
@@ -91,11 +91,11 @@
         <nav class="tabs is-boxed is-fullwidth">
           <div class="container">
             <ul>
-              <li><a>Rules</a></li>
-              <li><a>Cards</a></li>
-              <li><a>Leaderboard</a></li>
-              <li><a>Lore</a></li>
-              <li><a>Settings</a></li>
+              <li><a class="button is-medium is-ghost js-modal-trigger" data-target="rules-modal">Rules</a></li>
+              <li><a class="button is-medium is-ghost js-modal-trigger" data-target="cards-modal">Cards</a></li>
+              <li><a class="button is-medium is-ghost js-modal-trigger" data-target="leaderboard-modal">Leaderboard</a></li>
+              <li><a class="button is-medium is-ghost js-modal-trigger" data-target="lore-modal">Lore</a></li>
+              <li><a class="button is-medium is-ghost js-modal-trigger" data-target="settings-modal">Settings</a></li>
             </ul>
           </div>
         </nav>
@@ -201,7 +201,61 @@
               </div>
             </div>
           </footer>
-
+          <!-- Rules Modal -->
+          <div id="rules-modal" class="modal">
+            <div class="modal-background"></div>
+      
+            <div class="modal-content">
+              <div class="box">
+              <h3>Rules</h3>
+              <p>stuff and things etc</p>
+              </div>
+            </div>
+          </div>
+          <!-- Cards Modal -->
+          <div id="cards-modal" class="modal">
+            <div class="modal-background"></div>
+      
+            <div class="modal-content">
+              <div class="box">
+              <h3>Cards</h3>
+              <p>filler</p>
+              </div>
+            </div>
+          </div>
+          <!-- Leaderboard Modal -->
+          <div id="leaderboard-modal" class="modal">
+            <div class="modal-background"></div>
+      
+            <div class="modal-content">
+              <div class="box">
+              <h3>Leaderboard</h3>
+              <p>You are a winner!</p>
+              </div>
+            </div>
+          </div>
+          <!-- Lore Modal -->
+          <div id="lore-modal" class="modal">
+            <div class="modal-background"></div>
+      
+            <div class="modal-content">
+              <div class="box">
+              <h3>Lore</h3>
+              <p>Some stuff happened so we fight!</p>
+              </div>
+            </div>
+          </div>
+          <!-- Settings Modal -->
+          <div id="settingss-modal" class="modal">
+            <div class="modal-background"></div>
+      
+            <div class="modal-content">
+              <div class="box">
+              <h3>Settings</h3>
+              <p>filler</p>
+              </div>
+            </div>
+          </div>
           <!-- End of Modal Content -->
         </div>
       </div>
