@@ -22,9 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-});
-
-document.addEventListener('DOMContentLoaded', () => {
   // Functions to open and close a modal
   function openModal($el) {
     $el.classList.add('is-active');
@@ -52,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Add a click event on various child elements to close the parent modal
-  (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+  (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot button') || []).forEach(($close) => {
     const $target = $close.closest('.modal');
 
     $close.addEventListener('click', () => {
@@ -69,3 +66,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+function doStuff(event) {
+  event.preventDefault();
+  modal.classList.remove('is-active');
+  console.log("it worked!");
+}
+
+const formEl = document.getElementById("form-el");
+const modal = document.querySelector('.modal');
+
+formEl.addEventListener("submit", doStuff);
