@@ -28,14 +28,21 @@
     border-radius: 5px;
 }
 
-.rulesBox {
+#lore-background {
+    background-image: url(../images/end_of_elder_days_by_sandara_desqmuu-350t-2x.jpg);
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+}
+
+.modalBox {
     margin: 5%;
     background-color: rgba(55, 55, 55,0.5);
     border-radius: 5px;
     color:white;  
 }
 
-.rulesBox h2 {
+.modalBox h2 {
     color:white;
     text-align: center;
 }
