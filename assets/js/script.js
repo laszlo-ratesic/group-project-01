@@ -67,17 +67,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-function doStuff(event) {
+function displayFelt(event) {
   event.preventDefault();
   modal.classList.remove('is-active');
-  console.log("it worked!");
-  heroEl.style.backgroundImage = "url(./assets/images/red-felt.jpeg)";
-  landingMsg.classList.add('is-hidden');
-}
+  console.log(event.target);
+  // Prevents cancel from returning felt view
+    heroEl.style.backgroundImage = "url(./assets/images/red-felt.jpeg)";
+    landingMsg.classList.add('is-hidden');
+  };
+
 
 const formEl = document.getElementById("form-el");
 const modal = document.querySelector('.modal');
 const heroEl = document.querySelector('.hero');
 const landingMsg = document.getElementById('landing-msg');
 
-formEl.addEventListener("submit", doStuff);
+formEl.addEventListener("submit", displayFelt);
