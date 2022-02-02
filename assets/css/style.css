@@ -6,3 +6,7 @@
     --fifth-color: #f26419ff;
     --sixth-color: #f9e900ff
 }
+
+.hero {
+    background-image: url(../images/nazgul_by_fell418_deyyz5f-414w-2x.jpg);
+}
