@@ -40,6 +40,21 @@
   border: solid 3px black;
 }
 
+#enemy-health {
+  width: 100%;
+  border-radius: 0px;
+  position: relative;
+  top: 3rem;
+  margin-bottom: 1rem;
+}
+#enemy-power {
+  width: 100%;
+  border-radius: 0px;
+  position: relative;
+  top: 2.5rem;
+  margin-bottom: 0;
+}
+
 #enemy-deck {
   border: solid 3px black;
   border-radius: 15px;
@@ -73,6 +88,22 @@
   height: 10rem;
   border-radius: 50%;
   border: solid 3px black;
+}
+
+#player-health {
+  width: 100%;
+  border-radius: 0px;
+  position: relative;
+  bottom: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+#player-power {
+  width: 100%;
+  border-radius: 0px;
+  position: relative;
+  bottom: 3rem;
+  margin-bottom: 0;
 }
 
 #player-deck {
@@ -152,9 +183,21 @@
     width: 7rem;
     height: 7rem;
   }
+  #enemy-health {
+    height: 0.5rem;
+  }
+  #enemy-power {
+    height: 0.5rem;
+  }
   #player-avatar {
     width: 7rem;
     height: 7rem;
+  }
+  #player-health {
+    height: 0.5rem;
+  }
+  #player-power {
+    height: 0.5rem;
   }
   #enemy-deck {
     height: 8.5rem;
@@ -207,10 +250,6 @@
   .enemy-card {
     height: 7rem;
     width: 5rem;
-  }
-
-  #no-mans-land {
-    height: 2rem;
   }
 
   #player-row {

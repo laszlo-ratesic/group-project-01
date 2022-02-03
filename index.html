@@ -90,7 +90,10 @@
         <!-- FELT VIEW -->
         <div id="felt-view" class="container is-fluid is-flex is-flex-direction-column is-justify-content-space-between is-hidden mx-0">
           <div id="enemy-row">
-            <div id="enemy-avatar"></div>
+            <div id="enemy-avatar" class="is-flex is-flex-direction-column is-justify-content-flex-end">
+              <progress id="enemy-health" class="progress is-small is-danger" value="50" max="100">15%</progress>
+              <progress id="enemy-power" class="progress is-small is-link" value="50" max="100">15%</progress>
+            </div>
             <div id="enemy-hand" class="is-flex">
               <div class="enemy-card"></div>
               <div class="enemy-card"></div>
@@ -102,7 +105,6 @@
 
           <div id="no-mans-land" class="is-flex is-flex-direction-column">
             <div id="enemy-field" class="cards-in-play is-flex is-justify-content-space-around">
-
             </div>
             <div id="player-field" class="cards-in-play is-flex is-justify-content-space-around">
 
@@ -110,7 +112,10 @@
           </div>
 
           <div id="player-row">
-            <div id="player-avatar"></div>
+            <div id="player-avatar" class="is-flex is-flex-direction-column is-justify-content-flex-start">
+              <progress id="player-health" class="progress is-small is-danger" value="50" max="100">15%</progress>
+              <progress id="player-power" class="progress is-small is-link" value="50" max="100">15%</progress>
+            </div>
             <div id="player-hand" class="is-flex">
               <div id="card-1" class="player-card"></div>
               <div id="card-2" class="player-card"></div>
