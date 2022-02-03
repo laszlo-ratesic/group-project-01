@@ -51,4 +51,16 @@
     .hero {
         background-position: 63%;
     }
+    #enemy-deck {
+        height: 10rem;
+        width: 5rem;
+    }
+    #player-deck {
+        height: 10rem;
+        width: 5rem;
+    }
+}
+
+.hero-body {
+    padding: 0;
 }
