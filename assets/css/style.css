@@ -43,6 +43,7 @@
 
 #enemy-health {
   width: 100%;
+  border: solid 3px black;
   border-radius: 0px;
   position: relative;
   top: 3rem;
@@ -50,6 +51,7 @@
 }
 #enemy-power {
   width: 100%;
+  border: solid 3px black;
   border-radius: 0px;
   position: relative;
   top: 2.5rem;
@@ -95,6 +97,7 @@
 
 #player-health {
   width: 100%;
+  border: solid 3px black;
   border-radius: 0px;
   position: relative;
   bottom: 2.5rem;
@@ -103,6 +106,7 @@
 
 #player-power {
   width: 100%;
+  border: solid 3px black;
   border-radius: 0px;
   position: relative;
   bottom: 3rem;

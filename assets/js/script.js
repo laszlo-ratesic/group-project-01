@@ -80,6 +80,69 @@ function unhover(event) {
 }
 const feltView = document.getElementById("felt-view");
 
+function enemyPlayCard() {
+  setTimeout(function() {
+    enemyCard2.style.transform = null;
+    enemyField.appendChild(enemyCard2);
+  }, 1000)
+  setTimeout(function() {
+    alert("Your turn!");
+    // This should add event listeners to the elements based on
+    // state (in hand, or in play)
+    // newPlayerTurn()
+  }, 2000)
+}
+
+function enemyThinking() {
+  setTimeout(function() {
+    enemyCard1.style.transition = "transform 200ms";
+    enemyCard1.style.transform = "translateY(5rem)";
+  }, 200)
+  setTimeout(function() {
+    enemyCard1.style.transition = "transform 200ms";
+    enemyCard1.style.transform = "translateY(0rem)";
+  }, 400)
+  setTimeout(function() {
+    enemyCard2.style.transition = "transform 200ms";
+    enemyCard2.style.transform = "translateY(5rem)";
+  }, 500)
+  setTimeout(function() {
+    enemyCard2.style.transition = "transform 200ms";
+    enemyCard2.style.transform = "translateY(0rem)";
+  }, 700)
+  setTimeout(function() {
+    enemyCard3.style.transition = "transform 200ms";
+    enemyCard3.style.transform = "translateY(5rem)";
+  }, 800)
+  setTimeout(function() {
+    enemyCard3.style.transition = "transform 200ms";
+    enemyCard3.style.transform = "translateY(0rem)";
+  }, 1000)
+  setTimeout(function() {
+    enemyCard2.style.transition = "transform 200ms";
+    enemyCard2.style.transform = "translateY(5rem)";
+  }, 1100)
+  setTimeout(function() {
+    alert("I'm ready!");
+    enemyPlayCard();
+  }, 2000)
+}
+
+function enemyTurn() {
+  enemyThinking();
+}
+
+function endPlayerTurn() {
+  playerCard1.removeEventListener("click", playCard);
+  playerCard2.removeEventListener("click", playCard);
+  playerCard3.removeEventListener("click", playCard);
+  playerCard4.removeEventListener("click", playCard);
+  setTimeout(function() {
+    alert("My turn!");
+    enemyTurn();
+  }, 1000);
+}
+
 function playCard(event) {
   const chosenCard = event.target;
   console.log(chosenCard);
@@ -87,6 +150,7 @@ function playCard(event) {
   chosenCard.classList.add("played-card");
   chosenCard.removeEventListener("click", playCard);
   playerField.appendChild(chosenCard);
+  endPlayerTurn();
 }
 
 function displayFelt() {
@@ -178,9 +242,14 @@ const noMansLand = document.getElementById("no-mans-land");
 const enemyField = document.getElementById("enemy-field");
 const playerField = document.getElementById("player-field");
 
-const playerCard1 = document.getElementById("card-1");
-const playerCard2 = document.getElementById("card-2");
-const playerCard3 = document.getElementById("card-3");
-const playerCard4 = document.getElementById("card-4");
+const playerCard1 = document.getElementById("player-card-1");
+const playerCard2 = document.getElementById("player-card-2");
+const playerCard3 = document.getElementById("player-card-3");
+const playerCard4 = document.getElementById("player-card-4");
+
+const enemyCard1 = document.getElementById("enemy-card-1");
+const enemyCard2 = document.getElementById("enemy-card-2");
+const enemyCard3 = document.getElementById("enemy-card-3");
+const enemyCard4 = document.getElementById("enemy-card-4");
 
 formEl.addEventListener("submit", startGame);
