@@ -41,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
   (document.querySelectorAll(".js-modal-trigger") || []).forEach(($trigger) => {
     const modal = $trigger.dataset.target;
     const $target = document.getElementById(modal);
-    console.log($target);
 
     $trigger.addEventListener("click", () => {
       openModal($target);
@@ -73,17 +72,28 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function hover(event) {
-  event.target.style.transform = "translateY(-4rem)";
+  event.target.style.border = "solid 4px yellow";
 }
 
 function unhover(event) {
-  event.target.style.transform = "translateY(0rem)";
+  event.target.style.border = "solid 3px black";
 }
 const feltView = document.getElementById("felt-view");
 
-function createRows() {
-  console.log(feltView);
+function playCard(event) {
+  const chosenCard = event.target;
+  console.log(chosenCard);
+  chosenCard.classList.remove("player-card");
+  chosenCard.classList.add("played-card");
+  playerField.appendChild(chosenCard);
+}
+
+function displayFelt() {
   feltView.classList.remove("is-hidden");
+  playerCard1.addEventListener("click", playCard);
+  playerCard2.addEventListener("click", playCard);
+  playerCard3.addEventListener("click", playCard);
+  playerCard4.addEventListener("click", playCard);
 }
 
 function chooseCard(event) {
@@ -99,7 +109,7 @@ function chooseCard(event) {
   heroBody.classList.add("p0");
   heroBody.style.flexDirection = "column";
   heroBody.style.justifyContent = "space-between";
-  createRows();
+  displayFelt();
 }
 
 function createCard(cardId) {
@@ -129,10 +139,9 @@ function displayChoice() {
  * It removes the is-active class from the modal and adds the is-hidden class to the landing message.
  * @param event - The event object that was triggered.
  */
-function displayFelt(event) {
+function startGame(event) {
   event.preventDefault();
   modal.classList.remove("is-active");
-  console.log(event.target);
   // Prevents cancel from returning felt view
   heroEl.style.backgroundImage = "url(./assets/images/red-felt.jpeg)";
   landingMsg.classList.add("is-hidden");
@@ -149,12 +158,22 @@ const heroHead = document.querySelector(".hero-head");
 const heroBody = document.querySelector(".hero-body");
 const heroFoot = document.querySelector(".hero-foot");
 const footer = document.querySelector(".footer");
+
 const enemyAvatar = document.getElementById("enemy-avatar");
 const playerAvatar = document.getElementById("player-avatar");
+
 const enemyDeck = document.querySelector("#enemy-deck");
 const playerDeck = document.querySelector("#player-deck");
 
 const enemyHand = document.getElementById("enemy-hand");
 const playerHand = document.getElementById("player-hand");
 
-formEl.addEventListener("submit", displayFelt);
+const enemyField = document.getElementById("enemy-field");
+const playerField = document.getElementById("player-field");
+
+const playerCard1 = document.getElementById("card-1");
+const playerCard2 = document.getElementById("card-2");
+const playerCard3 = document.getElementById("card-3");
+const playerCard4 = document.getElementById("card-4");
+
+formEl.addEventListener("submit", startGame);
