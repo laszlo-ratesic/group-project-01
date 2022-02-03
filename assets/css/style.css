@@ -115,7 +115,7 @@
 
 #no-mans-land {
   width: 100%;
-  height: 10rem;
+  height: 6rem;
 }
 
 @media screen and (max-width: 980px) {
@@ -138,6 +138,11 @@
     height: 8.5rem;
     width: 6.5rem;
   }
+
+  #no-mans-land {
+    height: 15rem;
+  }
+
   #player-deck {
     height: 8.5rem;
     width: 6.5rem;
@@ -162,10 +167,6 @@
     width: 5rem;
     height: 5rem;
   }
-  #player-avatar {
-    width: 5rem;
-    height: 5rem;
-  }
   #enemy-deck {
     height: 7rem;
     width: 5rem;
@@ -174,8 +175,17 @@
     height: 7rem;
     width: 5rem;
   }
+
+  #no-mans-land {
+    height: 2rem;
+  }
+
   #player-row {
     padding-top: 3em;
+  }
+  #player-avatar {
+    width: 5rem;
+    height: 5rem;
   }
   #player-deck {
     height: 7rem;
@@ -187,9 +197,5 @@
   }
   .player-card:hover {
     transform: translateY(-6rem);
-  }
-  #no-mans-land {
-    width: 100%;
-    height: 2rem;
   }
 }
