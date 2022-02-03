@@ -1,16 +1,282 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Group Project 01</title>
-</head>
-<body>
-    <header></header>
-    <main></main>
-    <footer></footer>
+  </head>
+  <body>
+    <section class="hero is-dark is-fullheight">
+      <!-- Hero head: will stick at the top -->
+      <div class="hero-head">
+        <header class="navbar">
+          <div class="container">
+            <div class="navbar-brand">
+              <a class="navbar-item">
+                <h1 class="title">Logo</h1>
+              </a>
+              <span class="navbar-burger" data-target="navbarMenuHeroC">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+            </div>
+            <div id="navbarMenuHeroC" class="navbar-menu">
+              <div class="navbar-end">
+                <span class="navbar-item">
+                  <div class="dropdown is-hoverable">
+                    <div class="dropdown-trigger">
+                      <button class="button is-dark" aria-haspopup="true" aria-controls="dropdown-menu4">
+                        <span>Difficulty</span>
+                        <span class="icon is-small">
+                          <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                      </button>
+                    </div>
+                    <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                      <div class="dropdown-content has-background-dark">
+                        <a href="#" class="dropdown-item has-text-info">
+                          Easy
+                        </a>
+                        <a href="#" class="dropdown-item has-text-success">
+                          Medium
+                        </a>
+                        <a href="#" class="dropdown-item has-text-warning-dark">
+                          Hard
+                        </a>
+                        <a href="#" class="dropdown-item has-text-danger">
+                          Diabolical
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </span>
+                <span class="navbar-item">
+                  <a
+                    class="button is-dark is-inverted"
+                    href="https://github.com/laszlo-ratesic/group-project-01/archive/refs/heads/main.zip"
+                  >
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Download</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+
+      <!-- Hero content: will be in the middle -->
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <p class="title">
+            Epic Card Game
+          </p>
+          <button class="button is-large is-danger is-outlined js-modal-trigger" data-target="player-modal">
+            New Game
+          </button>
+        </div>
+      </div>
+
+      <!-- Hero footer: will stick at the bottom -->
+      <div class="hero-foot is-hidden-mobile">
+        <nav class="tabs is-boxed is-fullwidth">
+          <div class="container">
+            <ul>
+              <li><a class="button is-medium is-ghost js-modal-trigger" data-target="rules-modal">Rules</a></li>
+              <li><a class="button is-medium is-ghost js-modal-trigger" data-target="cards-modal">Cards</a></li>
+              <li><a class="button is-medium is-ghost js-modal-trigger" data-target="leaderboard-modal">Leaderboard</a></li>
+              <li><a class="button is-medium is-ghost js-modal-trigger" data-target="lore-modal">Lore</a></li>
+              <li><a class="button is-medium is-ghost js-modal-trigger" data-target="settings-modal">Settings</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          &copy;
+          <strong>Epic Game</strong>
+          made with love by
+          <a href="https://github.com/AndyMcAlpin">Andy</a>
+          ,
+          <a href="https://github.com/xJaimeGx">Jaime</a>
+          ,
+          <a href="https://github.com/laszlo-ratesic">Keenan</a>
+          , &
+          <a href="https://github.com/PeauxBoi">William</a>
+          . The source code is licensed
+          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>
+          . The website content is licensed
+          <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+            CC BY NC SA 4.0
+          </a>
+          .
+        </p>
+      </div>
+    </footer>
+
+    <!-- MODALS -->
+    <!-- Player Info Modal -->
+    <div id="player-modal" class="modal">
+      <div class="modal-background"></div>
+
+      <div class="modal-content">
+        <div class="box">
+          <div class="title">Start a New Game</div>
+          <!-- Modal Content -->
+          <!-- NAME -->
+          <div class="field">
+            <label class="label">Character Name</label>
+            <div class="control">
+              <input type="text" class="input" placeholder="Kingslayer">
+            </div>
+          </div>
+
+          <!-- CLASS -->
+          <div class="field">
+            <label class="label">Class</label>
+            <div class="control">
+              <div class="select">
+                <select>
+                  <option>Warrior</option>
+                  <option>Mage</option>
+                  <option>Rogue</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- DIFFICULTY -->
+          <div class="field">
+            <div class="control">
+              <label class="label">Difficulty Level</label>
+              <label class="radio">
+                <input type="radio" name="question">
+                Easy
+              </label>
+              <label class="radio">
+                <input type="radio" name="question">
+                Medium
+              </label>
+              <label class="radio">
+                <input type="radio" name="question">
+                Hard
+              </label>
+              <label class="radio">
+                <input type="radio" name="question">
+                Diabolical
+              </label>
+            </div>
+          </div>
+
+          <!-- TRASHTALK -->
+          <div class="field">
+            <div class="control">
+              <label class="label">Profanity</label>
+              <label class="checkbox">
+                <input type="checkbox">
+                Enable <a target="_blank" href="https://twitter.com/foaas">Trash Talk</a>?
+              </label>
+            </div>
+          </div>
+
+          <footer class="modal-card-foot">
+            <!-- SUBMIT/CANCEL -->
+            <div class="field is-grouped">
+              <div class="control">
+                <button class="button is-success">Submit</button>
+              </div>
+              <div class="control">
+                <button class="button is-success is-light">Cancel</button>
+              </div>
+            </div>
+          </footer>
+        </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
+          <!-- Rules Modal -->
+          <div id="rules-modal" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+              <section id="rules-background" class="modal-card-body">
+                <div class="content modalBox">
+                  <h2 class="title">Rules</h2>
+                <p>the rules go here </br></br></br></br></br></br></br></br>
+                </br></br></br></br></br></br></br></br></br></br></br></br>
+              </br></br></br></br></br></br></br></br></br></br></br> 1</p>
+                </div>
+              </section>
+              
+            </div>
+          </div>
+          <!-- Cards Modal -->
+          <div id="cards-modal" class="modal">
+            <div class="modal-background"></div>
+      
+            <div class="modal-content">
+              <div class="box">
+              <h3>Cards</h3>
+              <p>filler</p>
+              </div>
+            </div>
+          </div>
+          <!-- Leaderboard Modal -->
+          <div id="leaderboard-modal" class="modal">
+            <div class="modal-background"></div>
+      
+            <div class="modal-content">
+              <div class="box">
+              <h3>Leaderboard</h3>
+              <p>You are a winner!</p>
+              </div>
+            </div>
+          </div>
+          <!-- Lore Modal -->
+          <div id="lore-modal" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+              <section id="lore-background" class="modal-card-body">
+                <div class="content modalBox">
+                  <h2 class="title">Lore</h2>
+                <p>Some stuff happened</br></br></br></br></br></br></br></br>
+                </br></br></br></br></br></br></br></br></br></br></br></br>
+              </br></br></br></br></br></br></br></br></br></br></br> So we fight!</p>
+                </div>
+              </section>
+              
+            </div>
+          </div>
+          <!-- Settings Modal -->
+          <div id="settings-modal" class="modal">
+            <div class="modal-background"></div>
+      
+            <div class="modal-content">
+              <div class="box">
+              <h3>Settings</h3>
+              <p>filler</p>
+              </div>
+            </div>
+          </div>
+          <!-- End of Modal Content -->
+       
+
+     
+    <!-- END OF MODALS -->
     <script src="./assets/js/script.js"></script>
-</body>
+    <script
+      src="https://kit.fontawesome.com/8933e0b13d.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
