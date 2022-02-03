@@ -89,7 +89,12 @@ function createRows() {
 function chooseCard(event) {
   const chosenCard = event.target;
   console.log(chosenCard);
-  heroBody.innerHTML = "";
+    const card1 = document.getElementById("0");
+    const card2 = document.getElementById("1");
+    const card3 = document.getElementById("2");
+    card1.classList.add("is-hidden");
+    card2.classList.add("is-hidden");
+    card3.classList.add("is-hidden");
   heroBody.style.width = "100%";
   heroBody.classList.add("p0");
   heroBody.style.flexDirection = "column";
@@ -118,7 +123,6 @@ function displayChoice() {
     card.addEventListener("click", chooseCard);
     heroBody.style.justifyContent = "space-around";
   }
-
 }
 
 /**
@@ -132,6 +136,7 @@ function displayFelt(event) {
   // Prevents cancel from returning felt view
   heroEl.style.backgroundImage = "url(./assets/images/red-felt.jpeg)";
   landingMsg.classList.add("is-hidden");
+  heroFoot.classList.add("is-hidden");
   displayChoice();
 }
 
@@ -139,7 +144,8 @@ const formEl = document.getElementById("form-el");
 const modal = document.querySelector(".modal");
 const heroEl = document.querySelector(".hero");
 const landingMsg = document.getElementById("landing-msg");
-const heroBody = document.querySelector(".hero-body");
 const heroHead = document.querySelector(".hero-head");
+const heroBody = document.querySelector(".hero-body");
+const heroFoot = document.querySelector(".hero-foot");
 
 formEl.addEventListener("submit", displayFelt);

@@ -16,7 +16,7 @@
       <!-- Hero head: will stick at the top -->
       <div class="hero-head">
         <header class="navbar">
-          <div class="container">
+          <div class="container is-fluid">
             <div class="navbar-brand">
               <a class="navbar-item is-hidden-mobile">
                 <h1 class="title">Logo</h1>
@@ -88,15 +88,17 @@
         </div>
 
         <!-- FELT VIEW -->
-        <div id="felt-view" class="container is-hidden">
-          <div id="enemy-row" style="width:95vw; display:flex; justify-content: space-between;">
-            <div id="enemy-avatar" style="width:10rem; height: 10rem; border-radius: 50%; border: solid 3px black;"></div>
-            <div id="enemy-deck" style="border: solid 3px black; border-radius: 15px; height: 15rem; width: 10rem;"></div>
+        <div id="felt-view" class="container is-fluid is-flex is-flex-direction-column is-justify-content-space-between is-hidden mx-0">
+          <div id="enemy-row">
+            <div id="enemy-avatar"></div>
+            <div id="enemy-deck"></div>
           </div>
 
-          <div id="player-row" style="width:95vw; display:flex; justify-content: space-between;">
-            <div id="player-avatar" style="width:10rem; height: 10rem; border-radius: 50%; border: solid 3px black;"></div>
-            <div id="player-deck" style="border: solid 3px black; border-radius: 15px; height: 15rem; width: 10rem;"></div>
+          <div id="no-mans-land"></div>
+
+          <div id="player-row">
+            <div id="player-avatar"></div>
+            <div id="player-deck"></div>
           </div>
         </div>
 
