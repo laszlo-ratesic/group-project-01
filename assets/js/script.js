@@ -85,6 +85,7 @@ function playCard(event) {
   console.log(chosenCard);
   chosenCard.classList.remove("player-card");
   chosenCard.classList.add("played-card");
+  chosenCard.removeEventListener("click", playCard);
   playerField.appendChild(chosenCard);
 }
 
@@ -115,11 +116,14 @@ function chooseCard(event) {
 function createCard(cardId) {
   const cardEl = document.createElement("div");
   cardEl.id = cardId;
+  cardEl.textContent = "?";
+  cardEl.classList.add("is-size-1")
   cardEl.style.backgroundColor = "grey";
   cardEl.style.border = "solid 3px black";
   cardEl.style.borderRadius = "15px";
   cardEl.style.height = "15rem";
   cardEl.style.width = "10rem";
+  cardEl.style.textAlign = "center";
   cardEl.addEventListener("mouseenter", hover);
   cardEl.addEventListener("mouseleave", unhover);
   return cardEl;
