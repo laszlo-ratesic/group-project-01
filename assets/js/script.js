@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function hover(event) {
-  event.target.style.transform = "translateY(-2rem)";
+  event.target.style.transform = "translateY(-4rem)";
 }
 
 function unhover(event) {
@@ -89,12 +89,12 @@ function createRows() {
 function chooseCard(event) {
   const chosenCard = event.target;
   console.log(chosenCard);
-    const card1 = document.getElementById("0");
-    const card2 = document.getElementById("1");
-    const card3 = document.getElementById("2");
-    card1.classList.add("is-hidden");
-    card2.classList.add("is-hidden");
-    card3.classList.add("is-hidden");
+  const card1 = document.getElementById("0");
+  const card2 = document.getElementById("1");
+  const card3 = document.getElementById("2");
+  card1.classList.add("is-hidden");
+  card2.classList.add("is-hidden");
+  card3.classList.add("is-hidden");
   heroBody.style.width = "100%";
   heroBody.classList.add("p0");
   heroBody.style.flexDirection = "column";
@@ -137,6 +137,7 @@ function displayFelt(event) {
   heroEl.style.backgroundImage = "url(./assets/images/red-felt.jpeg)";
   landingMsg.classList.add("is-hidden");
   heroFoot.classList.add("is-hidden");
+  footer.classList.add("is-hidden");
   displayChoice();
 }
 
@@ -147,5 +148,13 @@ const landingMsg = document.getElementById("landing-msg");
 const heroHead = document.querySelector(".hero-head");
 const heroBody = document.querySelector(".hero-body");
 const heroFoot = document.querySelector(".hero-foot");
+const footer = document.querySelector(".footer");
+const enemyAvatar = document.getElementById("enemy-avatar");
+const playerAvatar = document.getElementById("player-avatar");
+const enemyDeck = document.querySelector("#enemy-deck");
+const playerDeck = document.querySelector("#player-deck");
+
+const enemyHand = document.getElementById("enemy-hand");
+const playerHand = document.getElementById("player-hand");
 
 formEl.addEventListener("submit", displayFelt);
