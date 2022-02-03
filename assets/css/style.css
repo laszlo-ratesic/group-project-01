@@ -81,7 +81,7 @@
   justify-content: space-between;
   align-items: flex-end;
   padding-bottom: 1em;
-  padding-top: 7em;
+  padding-top: 13em;
   overflow: hidden;
 }
 
@@ -184,6 +184,9 @@
 }
 
 @media screen and (max-width: 980px) {
+  #player-row{
+    padding-top: 15em;
+  }
   #enemy-avatar {
     width: 7rem;
     height: 7rem;

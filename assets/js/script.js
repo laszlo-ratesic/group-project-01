@@ -173,6 +173,8 @@ const playerDeck = document.querySelector("#player-deck");
 const enemyHand = document.getElementById("enemy-hand");
 const playerHand = document.getElementById("player-hand");
 
+const noMansLand = document.getElementById("no-mans-land");
+
 const enemyField = document.getElementById("enemy-field");
 const playerField = document.getElementById("player-field");
 
