@@ -115,6 +115,7 @@ function chooseCard(event) {
 function createCard(cardId) {
   const cardEl = document.createElement("div");
   cardEl.id = cardId;
+  cardEl.style.backgroundColor = "grey";
   cardEl.style.border = "solid 3px black";
   cardEl.style.borderRadius = "15px";
   cardEl.style.height = "15rem";

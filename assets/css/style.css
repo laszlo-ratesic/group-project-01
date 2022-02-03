@@ -34,6 +34,7 @@
 }
 
 #enemy-avatar {
+  background-color: red;
   width: 10rem;
   height: 10rem;
   border-radius: 50%;
@@ -67,6 +68,7 @@
 }
 
 .enemy-card {
+  background-color: red;
   border: solid 3px black;
   border-radius: 15px;
   height: 15rem;
@@ -84,6 +86,7 @@
 }
 
 #player-avatar {
+  background-color: blue;
   width: 10rem;
   height: 10rem;
   border-radius: 50%;
@@ -118,6 +121,7 @@
 }
 
 .player-card {
+  background-color: blue;
   border: solid 3px black;
   border-radius: 15px;
   height: 15rem;
@@ -128,7 +132,8 @@
 }
 
 .played-card {
-  border: solid 3px black;
+  background-color: blue;
+  border: solid 3px yellow;
   border-radius: 15px;
   height: 15rem;
   width: 10rem;
@@ -148,6 +153,7 @@
 
 .player-card:hover {
   transform: translateY(-14rem);
+  border: 3px solid yellow;
 }
 
 .player-card:hover::before {
