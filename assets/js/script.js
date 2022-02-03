@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function openModal($el) {
     $el.classList.add("is-active");
   }
-  
+
   function closeModal($el) {
     $el.classList.remove("is-active");
   }
@@ -72,6 +72,55 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+function hover(event) {
+  event.target.style.transform = "translateY(-2rem)";
+}
+
+function unhover(event) {
+  event.target.style.transform = "translateY(0rem)";
+}
+const feltView = document.getElementById("felt-view");
+
+function createRows() {
+  console.log(feltView);
+  feltView.classList.remove("is-hidden");
+}
+
+function chooseCard(event) {
+  const chosenCard = event.target;
+  console.log(chosenCard);
+  heroBody.innerHTML = "";
+  heroBody.style.width = "100%";
+  heroBody.classList.add("p0");
+  heroBody.style.flexDirection = "column";
+  heroBody.style.justifyContent = "space-between";
+  createRows();
+}
+
+function createCard(cardId) {
+  const cardEl = document.createElement("div");
+  cardEl.id = cardId;
+  cardEl.style.border = "solid 3px black";
+  cardEl.style.borderRadius = "15px";
+  cardEl.style.height = "15rem";
+  cardEl.style.width = "10rem";
+  cardEl.addEventListener("mouseenter", hover);
+  cardEl.addEventListener("mouseleave", unhover);
+  return cardEl;
+}
+
+function displayChoice() {
+  heroBody.style.width = "75%";
+  heroBody.classList.add("is-align-self-center");
+  for (let i = 0; i < 3; i++) {
+    heroBody.appendChild(createCard(i));
+    const card = document.getElementById(`${i}`);
+    card.addEventListener("click", chooseCard);
+    heroBody.style.justifyContent = "space-around";
+  }
+
+}
+
 /**
  * It removes the is-active class from the modal and adds the is-hidden class to the landing message.
  * @param event - The event object that was triggered.
@@ -83,11 +132,14 @@ function displayFelt(event) {
   // Prevents cancel from returning felt view
   heroEl.style.backgroundImage = "url(./assets/images/red-felt.jpeg)";
   landingMsg.classList.add("is-hidden");
+  displayChoice();
 }
 
 const formEl = document.getElementById("form-el");
 const modal = document.querySelector(".modal");
 const heroEl = document.querySelector(".hero");
 const landingMsg = document.getElementById("landing-msg");
+const heroBody = document.querySelector(".hero-body");
+const heroHead = document.querySelector(".hero-head");
 
 formEl.addEventListener("submit", displayFelt);
