@@ -108,10 +108,43 @@ function notification(message) {
   }, 2000);
 }
 
+const redGlow = "red 15px 15px 10px, red 15px -15px 10px, red -15px -15px 10px, red -15px 15px 10px";
+
+function cardReady(cardEl) {
+  cardEl.style.transition = "all 1200ms";
+  cardEl.style.transform = "translateY(-15px)";
+  cardEl.style.boxShadow = redGlow;
+  cardEl.style.animation = "3s ease 1200ms infinite alternate bounce";
+}
+
+function startPlayerTurn() {
+  if (playerField.children) {
+    for (let i = 0; i < playerField.children.length; i++) {
+      cardReady(playerField.children[i])
+    }
+  };
+  if (deck) {
+    // IF STILL CARDS IN DECK THEN DRAW CARD
+    // AND ADD TO HAND
+  }
+}
+
+function endEnemyTurn() {
+  turnCounter++;
+  startPlayerTurn();
+}
+
 function enemyPlayCard() {
   setTimeout(function () {
     enemyCard2.style.transform = null;
     enemyField.appendChild(enemyCard2);
+
+    const placeholder = document.createElement("img");
+    placeholder.src = "./assets/images/placeholder-card.png";
+    placeholder.style.transform = "scale(1.2)";
+    enemyCard2.appendChild(placeholder);
+    setTimeout(card3down(), 1000);
+    endEnemyTurn();
   }, 3000);
 }
 
@@ -166,6 +199,7 @@ function enemyTurn() {
 }
 
 function endPlayerTurn() {
+  turnCounter++;
   playerCard1.removeEventListener("click", playCard);
   playerCard2.removeEventListener("click", playCard);
   playerCard3.removeEventListener("click", playCard);
@@ -192,6 +226,7 @@ function drawCard() {
 
 function displayFelt() {
   feltView.classList.remove("is-hidden");
+  turnCounter++;
   playerCard1.addEventListener("click", playCard);
   playerCard1.setAttribute("data-state", "in-hand");
   playerCard1.setAttribute("data-power", drawCard());
@@ -263,6 +298,8 @@ function startGame(event) {
   footer.classList.add("is-hidden");
   displayChoice();
 }
+
+let turnCounter = 0;
 
 const formEl = document.getElementById("form-el");
 const modal = document.querySelector(".modal");

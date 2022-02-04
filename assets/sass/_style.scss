@@ -143,20 +143,48 @@
   color: black;
   /* border: solid 3px black; */
   border-radius: 15px;
-  height: 15rem;
+  height: 14rem;
   width: 10rem;
   position: relative;
-  transition: transform 200ms;
+  transition: transform 400ms;
   touch-action: pan-x;
 }
 
 .played-card {
   border-radius: 15px;
-  height: 15rem;
+  height: 14rem;
   width: 10rem;
   position: relative;
-  transition: transform 200ms;
   touch-action: pan-x;
+}
+
+.played-card::before {
+  content: '';
+  position:absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-shadow: gold 15px 15px 15px, gold 15px -15px 15px, gold -15px -15px 15px, gold -15px 15px 15px;
+  opacity: 0;
+  transition: opacity 500ms;
+  animation: 3s ease 1200ms infinite alternate shadowBounce;
+}
+
+.played-card:hover::before {
+  opacity: 1;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(-15px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(-15px);
+  }
 }
 
 .player-card:before {
@@ -170,8 +198,8 @@
 
 .player-card:hover {
   transform: translateY(-14rem);
+  box-shadow: gold -15px -15px 10px, gold 15px -15px 10px, gold 15px 15px 10px, gold -15px 15px 10px;
 }
-
 .player-card:hover::before {
   height: calc(100% + 10em);
 }
