@@ -219,9 +219,21 @@ function targetCard(cardEl) {
   cardEl.style.boxShadow = goldGlow;
   cardEl.addEventListener("mouseenter", attackTargetHover);
   cardEl.addEventListener("mouseleave", attackTargetUnhover);
+  cardEl.addEventListener("click", attackTarget);
+}
+
+function attackTarget(event) {
+  const target = event.currentTarget;
+  target.style.animation = "wobble 1s";
 }
 
 function AtkMsg() {
+  for (let i = 0; i < playerField.children.length; i++) {
+    if (playerField.children[i] !== this) {
+      playerField.children[i].style.animation = null;
+      playerField.children[i].style.boxShadow = "none";
+    }
+  }
   this.style.animation = null;
   this.style.boxShadow = blueGlow;
   this.classList.remove("played-card");
@@ -231,6 +243,7 @@ function AtkMsg() {
   enemyAvatar.style.boxShadow = goldGlow;
   enemyAvatar.addEventListener("mouseenter", attackTargetHover);
   enemyAvatar.addEventListener("mouseleave", attackTargetUnhover);
+  enemyAvatar.addEventListener("click", attackTarget);
   if (enemyField.children) {
     for (let i = 0; i < enemyField.children.length; i++) {
       targetCard(enemyField.children[i]);
