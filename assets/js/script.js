@@ -89,44 +89,44 @@ const angel = {
   name: "angel",
   cost: 1,
   atk: 1,
-  def: 2
-}
+  def: 2,
+};
 const demon = {
   name: "demon",
   cost: 1,
   atk: 2,
-  def: 1
-}
+  def: 1,
+};
 const knight = {
   name: "knight",
   cost: 2,
   atk: 2,
-  def: 3
-}
+  def: 3,
+};
 const inferno = {
   name: "inferno",
   cost: 3,
   atk: 5,
-  def: 0
-}
+  def: 0,
+};
 const warlock = {
   name: "warlock",
   cost: 6,
   atk: 7,
-  def: 3
-}
+  def: 3,
+};
 const centurion = {
   name: "centurion",
   cost: 5,
   atk: 4,
-  def: 6
-}
+  def: 6,
+};
 const dragon = {
   name: "dragon",
   cost: 8,
   atk: 10,
-  def: 10
-}
+  def: 10,
+};
 
 const deck = [angel, demon, knight, inferno, warlock, centurion, dragon];
 
@@ -204,8 +204,10 @@ function notification(message) {
 
 const redGlow =
   "red 15px 15px 10px, red 15px -15px 10px, red -15px -15px 10px, red -15px 15px 10px";
-const blueGlow = "blue 15px 15px 10px, blue 15px -15px 10px, blue -15px -15px 10px, blue -15px 15px 10px";
-const goldGlow = "gold -15px -15px 10px, gold 15px -15px 10px, gold 15px 15px 10px, gold -15px 15px 10px";
+const blueGlow =
+  "blue 15px 15px 10px, blue 15px -15px 10px, blue -15px -15px 10px, blue -15px 15px 10px";
+const goldGlow =
+  "gold -15px -15px 10px, gold 15px -15px 10px, gold 15px 15px 10px, gold -15px 15px 10px";
 
 function cardReady(cardEl) {
   cardEl.style.transition = "all 1200ms";
@@ -223,21 +225,35 @@ function targetCard(cardEl) {
 }
 
 function attackTarget(event) {
+  const readyToAttack = document.querySelector(".ready-to-attack");
   const target = event.currentTarget;
   target.style.animation = "wobble 1s";
+  readyToAttack.style.boxShadow = "none";
+  readyToAttack.style.transform = "translateY(15px)";
+  readyToAttack.dataset.state = "exhausted"
+  readyToAttack.classList.add("card-inactive");
+  readyToAttack.classList.remove("ready-to-attack");
+  console.log(playerField.children[0]);
+  for (let i = 0; i < playerField.children.length; i++) {
+    if (playerField.children[i].dataset.state === "in-play") {
+      cardReady(playerField.children[i]);
+      playerField.children[i].addEventListener("click", AtkMsg);
+    }
+  }
 }
 
 function AtkMsg() {
+  const attacker = this;
   for (let i = 0; i < playerField.children.length; i++) {
-    if (playerField.children[i] !== this) {
+    if (playerField.children[i] !== attacker) {
       playerField.children[i].style.animation = null;
       playerField.children[i].style.boxShadow = "none";
     }
   }
-  this.style.animation = null;
-  this.style.boxShadow = blueGlow;
-  this.classList.remove("played-card");
-  this.classList.add("ready-to-attack");
+  attacker.style.animation = null;
+  attacker.style.boxShadow = blueGlow;
+  attacker.classList.remove("played-card");
+  attacker.classList.add("ready-to-attack");
   console.log("What do you want to attack?");
   enemyAvatar.style.transition = "all 300ms";
   enemyAvatar.style.boxShadow = goldGlow;
@@ -337,6 +353,7 @@ function enemyTurn() {
 
 function endPlayerTurn() {
   turnCounter++;
+  endTurnBtn.removeEventListener("click", endPlayerTurn);
   playerCard1.removeEventListener("click", playCard);
   playerCard2.removeEventListener("click", playCard);
   playerCard3.removeEventListener("click", playCard);
@@ -359,7 +376,6 @@ function drawCard() {
   const randomIndex = Math.floor(Math.random() * deck.length);
   return deck[randomIndex];
 }
-
 
 function setCardProps(cardEl) {
   const cardProps = Object.entries(drawCard());

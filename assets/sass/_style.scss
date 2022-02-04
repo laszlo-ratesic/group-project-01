@@ -225,13 +225,11 @@
 }
 
 #enemy-field {
-  border: solid 1px red;
   height: 50%;
   margin: 0 15vw;
 }
 
 #player-field {
-  border: solid 1px blue;
   height: 50%;
   margin: 0 15vw;
 }
@@ -243,7 +241,19 @@
   45% { transform: translateX(-15%) rotate(-3deg); }
   60% { transform: translateX(10%) rotate(2deg); }
   75% { transform: translateX(-5%) rotate(-1deg); }
-  100% { transform: translateX(0%) scale(1.2); }
+  100% { transform: translateX(0%) scale(1.2)
+    ; }
+}
+
+.card-inactive {
+  border-radius: 15px;
+  height: 14rem;
+  width: 10rem;
+  position: relative;
+  touch-action: pan-x;
+  transform: translateY(15px);
+  box-shadow: none;
+  animation: none;
 }
 
 @media screen and (max-width: 980px) {
