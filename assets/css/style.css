@@ -75,6 +75,7 @@
   border-radius: 15px;
   height: 15rem;
   width: 10rem;
+  transition: transform 200ms;
 }
 
 #player-row {
@@ -125,8 +126,8 @@
 }
 
 .player-card {
-  background-color: blue;
-  border: solid 3px black;
+  color: black;
+  /* border: solid 3px black; */
   border-radius: 15px;
   height: 15rem;
   width: 10rem;
@@ -135,9 +136,10 @@
   touch-action: pan-x;
 }
 
+.player-card {
+}
+
 .played-card {
-  background-color: blue;
-  border: solid 3px yellow;
   border-radius: 15px;
   height: 15rem;
   width: 10rem;
@@ -157,7 +159,6 @@
 
 .player-card:hover {
   transform: translateY(-14rem);
-  border: 3px solid yellow;
 }
 
 .player-card:hover::before {
@@ -165,10 +166,10 @@
 }
 
 #no-mans-land {
-  position:absolute;
-  width:100vw;
-  top:20%;
-  left:0;
+  position: absolute;
+  width: 100vw;
+  top: 20%;
+  left: 0;
   right: 0;
   bottom: 0;
   height: 50%;
@@ -177,18 +178,18 @@
 
 #enemy-field {
   border: solid 1px red;
-  height:50%;
+  height: 50%;
   margin: 0 15vw;
 }
 
 #player-field {
   border: solid 1px blue;
-  height:50%;
+  height: 50%;
   margin: 0 15vw;
 }
 
 @media screen and (max-width: 980px) {
-  #player-row{
+  #player-row {
     padding-top: 15em;
   }
   #enemy-avatar {
