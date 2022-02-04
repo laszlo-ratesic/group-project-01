@@ -171,7 +171,7 @@ function cardReady(cardEl) {
 }
 
 function targetCard(cardEl) {
-  cardEl.style.transition = "all 600ms";
+  cardEl.style.transition = "all 300ms";
   cardEl.style.boxShadow = goldGlow;
   cardEl.addEventListener("mouseenter", attackTargetHover);
   cardEl.addEventListener("mouseleave", attackTargetUnhover);
@@ -183,7 +183,7 @@ function AtkMsg() {
   this.classList.remove("played-card");
   this.classList.add("ready-to-attack");
   console.log("What do you want to attack?");
-  enemyAvatar.style.transition = "all 600ms";
+  enemyAvatar.style.transition = "all 300ms";
   enemyAvatar.style.boxShadow = goldGlow;
   enemyAvatar.addEventListener("mouseenter", attackTargetHover);
   enemyAvatar.addEventListener("mouseleave", attackTargetUnhover);
