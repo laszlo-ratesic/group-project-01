@@ -165,23 +165,28 @@ const enemyCard2 = document.getElementById("enemy-card-2");
 const enemyCard3 = document.getElementById("enemy-card-3");
 const enemyCard4 = document.getElementById("enemy-card-4");
 
-const insetGoldGlow =
-  "inset gold -15px -15px 10px, inset gold 15px -15px 10px, inset gold 15px 15px 10px, inset gold -15px 15px 10px";
-
 const endTurnBtn = document.getElementById("end-turn-btn");
 
-const redGlow =
+$insetGoldGlow =
+  "inset gold -15px -15px 10px, inset gold 15px -15px 10px, inset gold 15px 15px 10px, inset gold -15px 15px 10px";
+$insetRedGlow =
+  "inset red 15px 15px 10px, inset red 15px -15px 10px, inset red -15px -15px 10px, inset red -15px 15px 10px";
+$redGlow =
   "red 15px 15px 10px, red 15px -15px 10px, red -15px -15px 10px, red -15px 15px 10px";
-const blueGlow =
+$blueGlow =
   "blue 15px 15px 10px, blue 15px -15px 10px, blue -15px -15px 10px, blue -15px 15px 10px";
-const goldGlow =
+$goldGlow =
   "gold -15px -15px 10px, gold 15px -15px 10px, gold 15px 15px 10px, gold -15px 15px 10px";
 
 const feltView = document.getElementById("felt-view");
 
 function hover(event) {
   event.target.style.transform = "scale(1.3)";
-  event.target.style.boxShadow = insetGoldGlow;
+  if (event.target.style.boxShadow === $insetRedGlow) {
+    return;
+  } else {
+    event.target.style.boxShadow = $insetGoldGlow;
+  }
 }
 
 function unhover(event) {
@@ -190,10 +195,10 @@ function unhover(event) {
 }
 
 function attackTargetHover(event) {
-  event.target.style.boxShadow = redGlow;
+  event.target.style.boxShadow = $redGlow;
 }
 function attackTargetUnhover(event) {
-  event.target.style.boxShadow = goldGlow;
+  event.target.style.boxShadow = $goldGlow;
 }
 
 // Opponent Trash Talk Window
@@ -215,7 +220,7 @@ function notification(message) {
 function cardReady(cardEl) {
   cardEl.style.transition = "all 1200ms";
   cardEl.style.transform = "translateY(-15px)";
-  cardEl.style.boxShadow = redGlow;
+  cardEl.style.boxShadow = $redGlow;
   cardEl.style.animation = "3s ease 1200ms infinite alternate bounce";
 }
 
@@ -223,7 +228,7 @@ function cardReady(cardEl) {
 // *Use this to show which enemy card the player is targeting for attack
 function targetCard(cardEl) {
   cardEl.style.transition = "all 300ms";
-  cardEl.style.boxShadow = goldGlow;
+  cardEl.style.boxShadow = $goldGlow;
   cardEl.addEventListener("mouseenter", attackTargetHover);
   cardEl.addEventListener("mouseleave", attackTargetUnhover);
   cardEl.addEventListener("click", attackTarget);
@@ -260,12 +265,12 @@ function AtkMsg() {
     }
   }
   attacker.style.animation = null;
-  attacker.style.boxShadow = blueGlow;
+  attacker.style.boxShadow = $blueGlow;
   attacker.classList.remove("played-card");
   attacker.classList.add("ready-to-attack");
   console.log("What do you want to attack?");
   enemyAvatar.style.transition = "all 300ms";
-  enemyAvatar.style.boxShadow = goldGlow;
+  enemyAvatar.style.boxShadow = $goldGlow;
   enemyAvatar.addEventListener("mouseenter", attackTargetHover);
   enemyAvatar.addEventListener("mouseleave", attackTargetUnhover);
   enemyAvatar.addEventListener("click", attackTarget);
@@ -402,6 +407,17 @@ function setCardProps(cardEl) {
 }
 
 function displayFelt() {
+  const card1 = document.getElementById("0");
+  const card2 = document.getElementById("1");
+  const card3 = document.getElementById("2");
+  card1.classList.add("is-hidden");
+  card2.classList.add("is-hidden");
+  card3.classList.add("is-hidden");
+  heroBody.style.width = "100%";
+  heroBody.classList.add("p0");
+  heroBody.style.flexDirection = "column";
+  heroBody.style.justifyContent = "space-between";
+
   feltView.classList.remove("is-hidden");
   turnCounter++;
   playerCard1.addEventListener("click", playCard);
@@ -425,19 +441,9 @@ function displayFelt() {
 
 function chooseCard(event) {
   const chosenCard = event.target;
+  chosenCard.style.boxShadow = $insetRedGlow;
   console.log(chosenCard);
-
-  const card1 = document.getElementById("0");
-  const card2 = document.getElementById("1");
-  const card3 = document.getElementById("2");
-  card1.classList.add("is-hidden");
-  card2.classList.add("is-hidden");
-  card3.classList.add("is-hidden");
-  heroBody.style.width = "100%";
-  heroBody.classList.add("p0");
-  heroBody.style.flexDirection = "column";
-  heroBody.style.justifyContent = "space-between";
-  displayFelt();
+  // displayFelt();
 }
 
 function createCard(cardId) {
