@@ -16,7 +16,7 @@
       <!-- Hero head: will stick at the top -->
       <div class="hero-head">
         <header class="navbar">
-          <div class="container">
+          <div class="container is-fluid">
             <div class="navbar-brand">
               <a class="navbar-item is-hidden-mobile">
                 <h1 class="title">Logo</h1>
@@ -88,15 +88,49 @@
         </div>
 
         <!-- FELT VIEW -->
-        <div id="felt-view" class="container is-hidden">
-          <div id="enemy-row" style="width:95vw; display:flex; justify-content: space-between;">
-            <div id="enemy-avatar" style="width:10rem; height: 10rem; border-radius: 50%; border: solid 3px black;"></div>
-            <div id="enemy-deck" style="border: solid 3px black; border-radius: 15px; height: 15rem; width: 10rem;"></div>
+        <div id="felt-view" class="container is-fluid is-flex is-flex-direction-column is-justify-content-space-between is-hidden mx-0">
+          <div id="enemy-row">
+            <div id="enemy-avatar" class="is-flex is-flex-direction-column is-justify-content-flex-end">
+              <progress id="enemy-health" class="progress is-small is-danger" value="100" max="100">15%</progress>
+              <progress id="enemy-power" class="progress is-small is-link" value="100" max="100">15%</progress>
+            </div>
+            <div id="enemy-hand" class="is-flex">
+              <div id="enemy-card-1" class="enemy-card"></div>
+              <div id="enemy-card-2" class="enemy-card"></div>
+              <div id="enemy-card-3" class="enemy-card"></div>
+              <div id="enemy-card-4" class="enemy-card"></div>
+            </div>
+            <div id="enemy-deck"></div>
           </div>
 
-          <div id="player-row" style="width:95vw; display:flex; justify-content: space-between;">
-            <div id="player-avatar" style="width:10rem; height: 10rem; border-radius: 50%; border: solid 3px black;"></div>
-            <div id="player-deck" style="border: solid 3px black; border-radius: 15px; height: 15rem; width: 10rem;"></div>
+          <div id="no-mans-land" class="is-flex is-flex-direction-column">
+            <div id="enemy-field" class="cards-in-play is-flex is-align-items-flex-end is-justify-content-space-around">
+            </div>
+            <div id="player-field" class="cards-in-play is-flex is-justify-content-space-around">
+
+            </div>
+          </div>
+
+          <div id="player-row">
+            <div id="player-avatar" class="is-flex is-flex-direction-column is-justify-content-flex-start">
+              <progress id="player-health" class="progress is-small is-danger" value="100" max="100">15%</progress>
+              <progress id="player-power" class="progress is-small is-link" value="100" max="100">15%</progress>
+            </div>
+            <div id="player-hand" class="is-flex">
+              <div id="player-card-1" class="player-card is-size-1" style="text-align: center;">
+                <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
+              </div>
+              <div id="player-card-2" class="player-card is-size-1" style="text-align: center;">
+                <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
+              </div>
+              <div id="player-card-3" class="player-card is-size-1" style="text-align: center;">
+                <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
+              </div>
+              <div id="player-card-4" class="player-card is-size-1" style="text-align: center;">
+                <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
+              </div>
+            </div>
+            <div id="player-deck"></div>
           </div>
         </div>
 
@@ -293,11 +327,12 @@
 
 
     <!-- END OF MODALS -->
-    <script src="./assets/js/script.js"></script>
     <script
-      src="https://kit.fontawesome.com/8933e0b13d.js"
-      crossorigin="anonymous"
+    src="https://kit.fontawesome.com/8933e0b13d.js"
+    crossorigin="anonymous"
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/Draggable.min.js"></script>
+    <script src="./assets/js/script.js"></script>
   </body>
 </html>
