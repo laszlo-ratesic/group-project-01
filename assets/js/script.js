@@ -73,8 +73,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* For each element in the array returned by document.querySelectorAll('.notification .delete'), add a
- click event listener to the delete element that will remove the parent notification element from
- the DOM. */
+  click event listener to the delete element that will remove the parent notification element from
+  the DOM. */
   (document.querySelectorAll(".notification .delete") || []).forEach(
     ($delete) => {
       const $notification = $delete.parentNode;
@@ -86,18 +86,63 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 });
 
-const goldGlow =  "inset gold -15px -15px 10px, inset gold 15px -15px 10px, inset gold 15px 15px 10px, inset gold -15px 15px 10px";
+let turnCounter = 0;
 
+const formEl = document.getElementById("form-el");
+const modal = document.querySelector(".modal");
+const heroEl = document.querySelector(".hero");
+const landingMsg = document.getElementById("landing-msg");
+const heroHead = document.querySelector(".hero-head");
+const heroBody = document.querySelector(".hero-body");
+const heroFoot = document.querySelector(".hero-foot");
+const footer = document.querySelector(".footer");
+
+const enemyAvatar = document.getElementById("enemy-avatar");
+const playerAvatar = document.getElementById("player-avatar");
+
+const enemyDeck = document.querySelector("#enemy-deck");
+const playerDeck = document.querySelector("#player-deck");
+
+const enemyHand = document.getElementById("enemy-hand");
+const playerHand = document.getElementById("player-hand");
+
+const noMansLand = document.getElementById("no-mans-land");
+
+const enemyField = document.getElementById("enemy-field");
+const playerField = document.getElementById("player-field");
+
+const playerCard1 = document.getElementById("player-card-1");
+const playerCard2 = document.getElementById("player-card-2");
+const playerCard3 = document.getElementById("player-card-3");
+const playerCard4 = document.getElementById("player-card-4");
+
+const enemyCard1 = document.getElementById("enemy-card-1");
+const enemyCard2 = document.getElementById("enemy-card-2");
+const enemyCard3 = document.getElementById("enemy-card-3");
+const enemyCard4 = document.getElementById("enemy-card-4");
+
+const insetGoldGlow =
+  "inset gold -15px -15px 10px, inset gold 15px -15px 10px, inset gold 15px 15px 10px, inset gold -15px 15px 10px";
+
+const endTurnBtn = document.getElementById("end-turn-btn");
 
 function hover(event) {
   event.target.style.transform = "scale(1.3)";
-  event.target.style.boxShadow =  goldGlow;
+  event.target.style.boxShadow = insetGoldGlow;
 }
 
 function unhover(event) {
   event.target.style.transform = "scale(1)";
-  event.target.style.boxShadow =  "none";
+  event.target.style.boxShadow = "none";
 }
+
+function attackTargetHover(event) {
+  event.target.style.boxShadow = redGlow;
+}
+function attackTargetUnhover(event) {
+  event.target.style.boxShadow = goldGlow;
+}
+
 const feltView = document.getElementById("felt-view");
 
 function notification(message) {
@@ -113,7 +158,10 @@ function notification(message) {
   }, 2000);
 }
 
-const redGlow = "red 15px 15px 10px, red 15px -15px 10px, red -15px -15px 10px, red -15px 15px 10px";
+const redGlow =
+  "red 15px 15px 10px, red 15px -15px 10px, red -15px -15px 10px, red -15px 15px 10px";
+const blueGlow = "blue 15px 15px 10px, blue 15px -15px 10px, blue -15px -15px 10px, blue -15px 15px 10px";
+const goldGlow = "gold -15px -15px 10px, gold 15px -15px 10px, gold 15px 15px 10px, gold -15px 15px 10px";
 
 function cardReady(cardEl) {
   cardEl.style.transition = "all 1200ms";
@@ -122,12 +170,37 @@ function cardReady(cardEl) {
   cardEl.style.animation = "3s ease 1200ms infinite alternate bounce";
 }
 
+function targetCard(cardEl) {
+  cardEl.style.transition = "all 600ms";
+  cardEl.style.boxShadow = goldGlow;
+  cardEl.addEventListener("mouseenter", attackTargetHover);
+  cardEl.addEventListener("mouseleave", attackTargetUnhover);
+}
+
+function AtkMsg() {
+  this.style.animation = null;
+  this.style.boxShadow = blueGlow;
+  this.classList.remove("played-card");
+  this.classList.add("ready-to-attack");
+  console.log("What do you want to attack?");
+  enemyAvatar.style.transition = "all 600ms";
+  enemyAvatar.style.boxShadow = goldGlow;
+  enemyAvatar.addEventListener("mouseenter", attackTargetHover);
+  enemyAvatar.addEventListener("mouseleave", attackTargetUnhover);
+  if (enemyField.children) {
+    for (let i = 0; i < enemyField.children.length; i++) {
+      targetCard(enemyField.children[i]);
+    }
+  }
+}
+
 function startPlayerTurn() {
   if (playerField.children) {
     for (let i = 0; i < playerField.children.length; i++) {
-      cardReady(playerField.children[i])
+      cardReady(playerField.children[i]);
+      playerField.children[i].addEventListener("click", AtkMsg);
     }
-  };
+  }
   if (deck) {
     // IF STILL CARDS IN DECK THEN DRAW CARD
     // AND ADD TO HAND
@@ -142,6 +215,8 @@ function endEnemyTurn() {
 function enemyPlayCard() {
   setTimeout(function () {
     enemyCard2.style.transform = null;
+    enemyCard2.style.border = "none";
+    enemyCard2.style.backgroundColor = "transparent";
     enemyField.appendChild(enemyCard2);
 
     const placeholder = document.createElement("img");
@@ -221,7 +296,6 @@ function playCard(event) {
   chosenCard.setAttribute("data-state", "in-play");
   chosenCard.removeEventListener("click", playCard);
   playerField.appendChild(chosenCard);
-  endPlayerTurn();
 }
 
 function drawCard() {
@@ -247,6 +321,8 @@ function displayFelt() {
   playerCard4.addEventListener("click", playCard);
   playerCard4.setAttribute("data-state", "in-hand");
   playerCard4.setAttribute("data-power", drawCard());
+
+  endTurnBtn.addEventListener("click", endPlayerTurn);
 }
 
 function chooseCard(event) {
@@ -303,40 +379,5 @@ function startGame(event) {
   footer.classList.add("is-hidden");
   displayChoice();
 }
-
-let turnCounter = 0;
-
-const formEl = document.getElementById("form-el");
-const modal = document.querySelector(".modal");
-const heroEl = document.querySelector(".hero");
-const landingMsg = document.getElementById("landing-msg");
-const heroHead = document.querySelector(".hero-head");
-const heroBody = document.querySelector(".hero-body");
-const heroFoot = document.querySelector(".hero-foot");
-const footer = document.querySelector(".footer");
-
-const enemyAvatar = document.getElementById("enemy-avatar");
-const playerAvatar = document.getElementById("player-avatar");
-
-const enemyDeck = document.querySelector("#enemy-deck");
-const playerDeck = document.querySelector("#player-deck");
-
-const enemyHand = document.getElementById("enemy-hand");
-const playerHand = document.getElementById("player-hand");
-
-const noMansLand = document.getElementById("no-mans-land");
-
-const enemyField = document.getElementById("enemy-field");
-const playerField = document.getElementById("player-field");
-
-const playerCard1 = document.getElementById("player-card-1");
-const playerCard2 = document.getElementById("player-card-2");
-const playerCard3 = document.getElementById("player-card-3");
-const playerCard4 = document.getElementById("player-card-4");
-
-const enemyCard1 = document.getElementById("enemy-card-1");
-const enemyCard2 = document.getElementById("enemy-card-2");
-const enemyCard3 = document.getElementById("enemy-card-3");
-const enemyCard4 = document.getElementById("enemy-card-4");
 
 formEl.addEventListener("submit", startGame);
