@@ -86,12 +86,17 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 });
 
+const goldGlow =  "inset gold -15px -15px 10px, inset gold 15px -15px 10px, inset gold 15px 15px 10px, inset gold -15px 15px 10px";
+
+
 function hover(event) {
   event.target.style.transform = "scale(1.3)";
+  event.target.style.boxShadow =  goldGlow;
 }
 
 function unhover(event) {
   event.target.style.transform = "scale(1)";
+  event.target.style.boxShadow =  "none";
 }
 const feltView = document.getElementById("felt-view");
 
