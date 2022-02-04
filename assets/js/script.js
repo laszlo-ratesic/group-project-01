@@ -1,5 +1,3 @@
-const deck = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
 /* When a user clicks on a button, an element with the `.modal` class is opened. */
 document.addEventListener("DOMContentLoaded", () => {
   // Get all "navbar-burger" elements
@@ -85,6 +83,52 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   );
 });
+// END OF BULMA JS
+
+const angel = {
+  name: "angel",
+  cost: 1,
+  atk: 1,
+  def: 2
+}
+const demon = {
+  name: "demon",
+  cost: 1,
+  atk: 2,
+  def: 1
+}
+const knight = {
+  name: "knight",
+  cost: 2,
+  atk: 2,
+  def: 3
+}
+const inferno = {
+  name: "inferno",
+  cost: 3,
+  atk: 5,
+  def: 0
+}
+const warlock = {
+  name: "warlock",
+  cost: 6,
+  atk: 7,
+  def: 3
+}
+const centurion = {
+  name: "centurion",
+  cost: 5,
+  atk: 4,
+  def: 6
+}
+const dragon = {
+  name: "dragon",
+  cost: 8,
+  atk: 10,
+  def: 10
+}
+
+const deck = [angel, demon, knight, inferno, warlock, centurion, dragon];
 
 let turnCounter = 0;
 
@@ -299,8 +343,24 @@ function playCard(event) {
 }
 
 function drawCard() {
-  const randomCardFromDeck = Math.floor(Math.random() * deck.length);
-  return randomCardFromDeck;
+  const randomIndex = Math.floor(Math.random() * deck.length);
+  return deck[randomIndex];
+}
+
+
+function setCardProps(cardEl) {
+  const cardProps = Object.entries(drawCard());
+  for (let i = 0; i < cardProps.length; i++) {
+    if (i === 0) {
+      cardEl.setAttribute("data-name", cardProps[i][1]);
+    } else if (i === 1) {
+      cardEl.setAttribute("data-cost", cardProps[i][1]);
+    } else if (i === 2) {
+      cardEl.setAttribute("data-atk", cardProps[i][1]);
+    } else {
+      cardEl.setAttribute("data-def", cardProps[i][1]);
+    }
+  }
 }
 
 function displayFelt() {
@@ -308,19 +368,19 @@ function displayFelt() {
   turnCounter++;
   playerCard1.addEventListener("click", playCard);
   playerCard1.setAttribute("data-state", "in-hand");
-  playerCard1.setAttribute("data-power", drawCard());
+  setCardProps(playerCard1);
 
   playerCard2.addEventListener("click", playCard);
   playerCard2.setAttribute("data-state", "in-hand");
-  playerCard2.setAttribute("data-power", drawCard());
+  setCardProps(playerCard2);
 
   playerCard3.addEventListener("click", playCard);
   playerCard3.setAttribute("data-state", "in-hand");
-  playerCard3.setAttribute("data-power", drawCard());
+  setCardProps(playerCard3);
 
   playerCard4.addEventListener("click", playCard);
   playerCard4.setAttribute("data-state", "in-hand");
-  playerCard4.setAttribute("data-power", drawCard());
+  setCardProps(playerCard4);
 
   endTurnBtn.addEventListener("click", endPlayerTurn);
 }
