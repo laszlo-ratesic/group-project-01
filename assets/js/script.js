@@ -170,6 +170,15 @@ const insetGoldGlow =
 
 const endTurnBtn = document.getElementById("end-turn-btn");
 
+const redGlow =
+  "red 15px 15px 10px, red 15px -15px 10px, red -15px -15px 10px, red -15px 15px 10px";
+const blueGlow =
+  "blue 15px 15px 10px, blue 15px -15px 10px, blue -15px -15px 10px, blue -15px 15px 10px";
+const goldGlow =
+  "gold -15px -15px 10px, gold 15px -15px 10px, gold 15px 15px 10px, gold -15px 15px 10px";
+
+const feltView = document.getElementById("felt-view");
+
 function hover(event) {
   event.target.style.transform = "scale(1.3)";
   event.target.style.boxShadow = insetGoldGlow;
@@ -187,8 +196,7 @@ function attackTargetUnhover(event) {
   event.target.style.boxShadow = goldGlow;
 }
 
-const feltView = document.getElementById("felt-view");
-
+// Opponent Trash Talk Window
 function notification(message) {
   const notification = document.createElement("div");
   notification.classList.add("notification", "is-warning");
@@ -202,13 +210,8 @@ function notification(message) {
   }, 2000);
 }
 
-const redGlow =
-  "red 15px 15px 10px, red 15px -15px 10px, red -15px -15px 10px, red -15px 15px 10px";
-const blueGlow =
-  "blue 15px 15px 10px, blue 15px -15px 10px, blue -15px -15px 10px, blue -15px 15px 10px";
-const goldGlow =
-  "gold -15px -15px 10px, gold 15px -15px 10px, gold 15px 15px 10px, gold -15px 15px 10px";
-
+// {Player's} card floats with red shadow
+// *We use this to show which cards are in play on player's turn
 function cardReady(cardEl) {
   cardEl.style.transition = "all 1200ms";
   cardEl.style.transform = "translateY(-15px)";
@@ -216,6 +219,8 @@ function cardReady(cardEl) {
   cardEl.style.animation = "3s ease 1200ms infinite alternate bounce";
 }
 
+// {Enemy's} card is highlighted by a gold shadow
+// *Use this to show which enemy card the player is targeting for attack
 function targetCard(cardEl) {
   cardEl.style.transition = "all 300ms";
   cardEl.style.boxShadow = goldGlow;
@@ -224,13 +229,17 @@ function targetCard(cardEl) {
   cardEl.addEventListener("click", attackTarget);
 }
 
+
 function attackTarget(event) {
-  const readyToAttack = document.querySelector(".ready-to-attack");
+  // The (parent) event (<--double-check this)
   const target = event.currentTarget;
+  // Player's currently attacking card
+  const readyToAttack = document.querySelector(".ready-to-attack");
+
   target.style.animation = "wobble 1s";
   readyToAttack.style.boxShadow = "none";
   readyToAttack.style.transform = "translateY(15px)";
-  readyToAttack.dataset.state = "exhausted"
+  readyToAttack.dataset.state = "exhausted";
   readyToAttack.classList.add("card-inactive");
   readyToAttack.classList.remove("ready-to-attack");
   console.log(playerField.children[0]);
@@ -417,6 +426,7 @@ function displayFelt() {
 function chooseCard(event) {
   const chosenCard = event.target;
   console.log(chosenCard);
+
   const card1 = document.getElementById("0");
   const card2 = document.getElementById("1");
   const card3 = document.getElementById("2");
@@ -462,7 +472,7 @@ function startGame(event) {
   event.preventDefault();
   modal.classList.remove("is-active");
   // Prevents cancel from returning felt view
-  heroEl.style.backgroundImage = "url(./assets/images/red-felt.jpeg)";
+  heroEl.style.backgroundImage = "url(./assets/images/black-felt.jpg)";
   landingMsg.classList.add("is-hidden");
   heroFoot.classList.add("is-hidden");
   footer.classList.add("is-hidden");
