@@ -16,9 +16,9 @@
       <!-- Hero head: will stick at the top -->
       <div class="hero-head">
         <header class="navbar">
-          <div class="container">
+          <div class="container is-fluid">
             <div class="navbar-brand">
-              <a class="navbar-item">
+              <a class="navbar-item is-hidden-mobile">
                 <h1 class="title">Logo</h1>
               </a>
               <span class="navbar-burger" data-target="navbarMenuHeroC">
@@ -60,23 +60,25 @@
                 <span class="navbar-item">
                   <a
                     class="button is-dark is-inverted"
-                    href="https://github.com/laszlo-ratesic/group-project-01/archive/refs/heads/main.zip"
+                    href="https://github.com/laszlo-ratesic/group-project-01"
                   >
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
-                    <span>Download</span>
+                    <span>Docs</span>
                   </a>
                 </span>
               </div>
             </div>
+
           </div>
         </header>
       </div>
 
       <!-- Hero content: will be in the middle -->
       <div class="hero-body">
-        <div class="container has-text-centered">
+        <!-- HOME SCREEN -->
+        <div id="landing-msg" class="container has-text-centered">
           <p class="title">
             Epic Card Game
           </p>
@@ -84,6 +86,54 @@
             New Game
           </button>
         </div>
+
+        <!-- FELT VIEW -->
+        <div id="felt-view" class="container is-fluid is-flex is-flex-direction-column is-justify-content-space-between is-hidden mx-0">
+          <div id="enemy-row">
+            <div id="enemy-avatar" class="is-flex is-flex-direction-column is-justify-content-flex-end">
+              <progress id="enemy-health" class="progress is-small is-danger" value="100" max="100">15%</progress>
+              <progress id="enemy-power" class="progress is-small is-link" value="100" max="100">15%</progress>
+            </div>
+            <div id="enemy-hand" class="is-flex">
+              <div id="enemy-card-1" class="enemy-card"></div>
+              <div id="enemy-card-2" class="enemy-card"></div>
+              <div id="enemy-card-3" class="enemy-card"></div>
+              <div id="enemy-card-4" class="enemy-card"></div>
+            </div>
+            <div id="enemy-deck"></div>
+          </div>
+
+          <div id="no-mans-land" class="is-flex is-flex-direction-column">
+            <div id="enemy-field" class="cards-in-play is-flex is-align-items-flex-end is-justify-content-space-around">
+            </div>
+            <div id="player-field" class="cards-in-play is-flex is-justify-content-space-around">
+
+            </div>
+          </div>
+
+          <div id="player-row">
+            <div id="player-avatar" class="is-flex is-flex-direction-column is-justify-content-flex-start">
+              <progress id="player-health" class="progress is-small is-danger" value="100" max="100">15%</progress>
+              <progress id="player-power" class="progress is-small is-link" value="100" max="100">15%</progress>
+            </div>
+            <div id="player-hand" class="is-flex">
+              <div id="player-card-1" class="player-card is-size-1" style="text-align: center;">
+                <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
+              </div>
+              <div id="player-card-2" class="player-card is-size-1" style="text-align: center;">
+                <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
+              </div>
+              <div id="player-card-3" class="player-card is-size-1" style="text-align: center;">
+                <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
+              </div>
+              <div id="player-card-4" class="player-card is-size-1" style="text-align: center;">
+                <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
+              </div>
+            </div>
+            <div id="player-deck"></div>
+          </div>
+        </div>
+
       </div>
 
       <!-- Hero footer: will stick at the bottom -->
@@ -135,72 +185,76 @@
           <div class="title">Start a New Game</div>
           <!-- Modal Content -->
           <!-- NAME -->
-          <div class="field">
-            <label class="label">Character Name</label>
-            <div class="control">
-              <input type="text" class="input" placeholder="Kingslayer">
-            </div>
-          </div>
-
-          <!-- CLASS -->
-          <div class="field">
-            <label class="label">Class</label>
-            <div class="control">
-              <div class="select">
-                <select>
-                  <option>Warrior</option>
-                  <option>Mage</option>
-                  <option>Rogue</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <!-- DIFFICULTY -->
-          <div class="field">
-            <div class="control">
-              <label class="label">Difficulty Level</label>
-              <label class="radio">
-                <input type="radio" name="question">
-                Easy
-              </label>
-              <label class="radio">
-                <input type="radio" name="question">
-                Medium
-              </label>
-              <label class="radio">
-                <input type="radio" name="question">
-                Hard
-              </label>
-              <label class="radio">
-                <input type="radio" name="question">
-                Diabolical
-              </label>
-            </div>
-          </div>
-
-          <!-- TRASHTALK -->
-          <div class="field">
-            <div class="control">
-              <label class="label">Profanity</label>
-              <label class="checkbox">
-                <input type="checkbox">
-                Enable <a target="_blank" href="https://twitter.com/foaas">Trash Talk</a>?
-              </label>
-            </div>
-          </div>
-
-          <footer class="modal-card-foot">
-            <!-- SUBMIT/CANCEL -->
-            <div class="field is-grouped">
+          <form id="form-el">
+            <div class="field">
+              <label class="label">Character Name</label>
               <div class="control">
-                <button class="button is-success">Submit</button>
-              </div>
-              <div class="control">
-                <button class="button is-success is-light">Cancel</button>
+                <input type="text" class="input" placeholder="Kingslayer" required="required">
               </div>
             </div>
-          </footer>
+
+            <!-- CLASS -->
+            <div class="field">
+              <label class="label">Class</label>
+              <div class="control">
+                <div class="select">
+                  <select>
+                    <option>Warrior</option>
+                    <option>Mage</option>
+                    <option>Rogue</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- DIFFICULTY -->
+            <div class="field">
+              <div class="control">
+                <label class="label">Difficulty Level</label>
+                <label class="radio">
+                  <input type="radio" name="question" required="required">
+                  Easy
+                </label>
+                <label class="radio">
+                  <input type="radio" name="question">
+                  Medium
+                </label>
+                <label class="radio">
+                  <input type="radio" name="question">
+                  Hard
+                </label>
+                <label class="radio">
+                  <input type="radio" name="question">
+                  Diabolical
+                </label>
+              </div>
+            </div>
+
+            <!-- TRASHTALK -->
+            <div class="field">
+              <div class="control">
+                <label class="label">Profanity</label>
+                <label class="checkbox">
+                  <input type="checkbox">
+                  Enable <a target="_blank" href="https://twitter.com/foaas">Trash Talk</a>?
+                </label>
+              </div>
+            </div>
+
+            <footer class="modal-card-foot">
+              <!-- SUBMIT/CANCEL -->
+              <div class="field is-grouped">
+                <div class="control">
+                  <input id="submit-btn" type="submit" value="Submit" class="button is-success"></input>
+                </div>
+                <div class="control">
+                  <input type="reset" value="Cancel" class="button is-success is-light"></input>
+                </div>
+              </div>
+            </footer>
+          </form>
+
+          <!-- End of Modal Content -->
         </div>
         </div>
         <button class="modal-close is-large" aria-label="close"></button>
@@ -217,13 +271,13 @@
               </br></br></br></br></br></br></br></br></br></br></br> 1</p>
                 </div>
               </section>
-              
+
             </div>
           </div>
           <!-- Cards Modal -->
           <div id="cards-modal" class="modal">
             <div class="modal-background"></div>
-      
+
             <div class="modal-content">
               <div class="box">
               <h3>Cards</h3>
@@ -234,7 +288,7 @@
           <!-- Leaderboard Modal -->
           <div id="leaderboard-modal" class="modal">
             <div class="modal-background"></div>
-      
+
             <div class="modal-content">
               <div class="box">
               <h3>Leaderboard</h3>
@@ -254,13 +308,13 @@
               </br></br></br></br></br></br></br></br></br></br></br> So we fight!</p>
                 </div>
               </section>
-              
+
             </div>
           </div>
           <!-- Settings Modal -->
           <div id="settings-modal" class="modal">
             <div class="modal-background"></div>
-      
+
             <div class="modal-content">
               <div class="box">
               <h3>Settings</h3>
@@ -269,14 +323,16 @@
             </div>
           </div>
           <!-- End of Modal Content -->
-       
 
-     
+
+
     <!-- END OF MODALS -->
-    <script src="./assets/js/script.js"></script>
     <script
-      src="https://kit.fontawesome.com/8933e0b13d.js"
-      crossorigin="anonymous"
+    src="https://kit.fontawesome.com/8933e0b13d.js"
+    crossorigin="anonymous"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/Draggable.min.js"></script>
+    <script src="./assets/js/script.js"></script>
   </body>
 </html>
