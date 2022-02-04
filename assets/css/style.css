@@ -16,6 +16,8 @@
 .hero.is-dark .tabs.is-boxed a:hover,
 .hero.is-dark .tabs.is-toggle a:hover {
   background-color: white;
+  color: black;
+  text-decoration: none;
 }
 
 .hero.is-dark a:not(.button):not(.dropdown-item):not(.tag):not(.pagination-link.is-current):hover {
