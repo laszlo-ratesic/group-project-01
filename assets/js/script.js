@@ -112,7 +112,7 @@ function enemyPlayCard() {
   setTimeout(function () {
     enemyCard2.style.transform = null;
     enemyField.appendChild(enemyCard2);
-  }, 4000);
+  }, 3000);
 }
 
 function card1up() {
