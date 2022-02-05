@@ -171,6 +171,7 @@ $insetGoldGlow =
   "inset gold -15px -15px 10px, inset gold 15px -15px 10px, inset gold 15px 15px 10px, inset gold -15px 15px 10px";
 $insetRedGlow =
   "inset red 15px 15px 10px, inset red 15px -15px 10px, inset red -15px -15px 10px, inset red -15px 15px 10px";
+
 $redGlow =
   "red 15px 15px 10px, red 15px -15px 10px, red -15px -15px 10px, red -15px 15px 10px";
 $blueGlow =
@@ -182,16 +183,10 @@ const feltView = document.getElementById("felt-view");
 
 function hover(event) {
   event.target.style.transform = "scale(1.3)";
-  if (event.target.style.boxShadow === $insetRedGlow) {
-    return;
-  } else {
-    event.target.style.boxShadow = $insetGoldGlow;
-  }
 }
 
 function unhover(event) {
   event.target.style.transform = "scale(1)";
-  event.target.style.boxShadow = "none";
 }
 
 function attackTargetHover(event) {
@@ -301,9 +296,7 @@ function endEnemyTurn() {
 
 function enemyPlayCard() {
   setTimeout(function () {
-    enemyCard2.style.transform = null;
-    enemyCard2.style.border = "none";
-    enemyCard2.style.backgroundColor = "transparent";
+    enemyCard2.classList.add("played-enemy-card");
     enemyField.appendChild(enemyCard2);
 
     const placeholder = document.createElement("img");
@@ -441,9 +434,8 @@ function displayFelt() {
 
 function chooseCard(event) {
   const chosenCard = event.target;
-  chosenCard.style.boxShadow = $insetRedGlow;
   console.log(chosenCard);
-  // displayFelt();
+  displayFelt();
 }
 
 function createCard(cardId) {
