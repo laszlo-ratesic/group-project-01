@@ -184,13 +184,15 @@ function attackTarget(event) {
     playerField.children[i].removeEventListener("click", AtkMsg);
   }
   const target = event.currentTarget;
-  const readyToAttack = document.querySelector(".ready-to-attack");
 
   if (target.id === "enemy-avatar") {
     enemy.health -= readyToAttack.dataset.atk;
     enemyHealth.value = enemy.health;
+  } else if (target.dataset.state === "in-play") {
+    console.log(`You attacked a card!`);
   }
 
+  console.dir(target);
 
   target.style.animation = "wobble 1s";
   enemyAvatar.style.boxShadow = "none";
@@ -204,6 +206,7 @@ function attackTarget(event) {
     }
   }
 
+  const readyToAttack = document.querySelector(".ready-to-attack");
   readyToAttack.style.boxShadow = "none";
   readyToAttack.style.transform = "translateY(15px)";
   readyToAttack.dataset.state = "exhausted";
@@ -217,18 +220,57 @@ function attackTarget(event) {
   }
 }
 
+function removeAtkMsg() {
+  // debugger;
+  const readyToAttack = document.querySelector(".ready-to-attack");
+  readyToAttack.style.boxShadow = "none";
+  readyToAttack.style.transform = "translateY(15px)";
+  readyToAttack.classList.add("played-card");
+  for (let i = 0; i < playerField.children.length; i++) {
+    if (playerField.children[i].dataset.state !== "exhausted" && playerField.children[i].dataset.state !== "in-play") {
+      cardReady(playerField.children[i]);
+      playerField.children[i].dataset.state = "on-guard";
+      playerField.children[i].addEventListener("click", AtkMsg);
+    };
+  }
+  readyToAttack.classList.remove("ready-to-attack");
+
+  enemyAvatar.style.boxShadow = "none";
+  enemyAvatar.removeEventListener("mouseenter", attackTargetHover);
+  enemyAvatar.removeEventListener("mouseleave", attackTargetUnhover);
+  enemyAvatar.removeEventListener("click", attackTarget);
+  if (enemyField.children) {
+    for (let i = 0; i < enemyField.children.length; i++) {
+      removeTarget(enemyField.children[i]);
+    }
+  }
+}
+
 function AtkMsg() {
+  // debugger;
   const attacker = this;
+  if (attacker.dataset.state === "ready-to-attack") {
+    removeAtkMsg();
+    return;
+  };
+  /* For each card in the player's field, if it is not the attacker, set its animation to null, set its
+  box shadow to none, and set its transform to translateY(15px). If the card is not exhausted or in
+  play, set its state to on-guard. */
   for (let i = 0; i < playerField.children.length; i++) {
     if (playerField.children[i] !== attacker) {
       playerField.children[i].style.animation = null;
       playerField.children[i].style.boxShadow = "none";
+      playerField.children[i].style.transform = "translateY(15px)";
+      if (playerField.children[i].dataset.state !== "exhausted" && playerField.children[i].dataset.state !== "in-play") {
+        playerField.children[i].dataset.state = "on-guard";
+      }
     }
   }
   attacker.style.animation = null;
   attacker.style.boxShadow = $blueGlow;
   attacker.classList.remove("played-card");
   attacker.classList.add("ready-to-attack");
+  attacker.dataset.state = "ready-to-attack";
   console.log("What do you want to attack?");
   enemyAvatar.style.transition = "all 300ms";
   enemyAvatar.style.boxShadow = $goldGlow;
@@ -254,10 +296,15 @@ function startPlayerTurn() {
     playerHand.appendChild(newCard);
     setCardProps(newCard, player.deck);
   }
+
   console.log(playerHand.children);
+
+  // Make cards in hand clickable to play
   for (let i = 0; i < playerHand.children.length; i++) {
     playerHand.children[i].addEventListener("click", playCard);
   }
+
+  // Initiates cards for attack
   if (playerField.children) {
     for (let i = 0; i < playerField.children.length; i++) {
       cardReady(playerField.children[i]);
@@ -286,6 +333,7 @@ function enemyPlayCard() {
       const card = enemyHand.children[i];
       if (card.dataset.cost <= enemy.power) {
         card.classList.add("played-enemy-card");
+        card.dataset.state = "in-play";
         enemyField.appendChild(card);
         const placeholder = document.createElement("img");
         placeholder.src = "./assets/images/placeholder-card.png";
