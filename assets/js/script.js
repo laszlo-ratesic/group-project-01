@@ -96,7 +96,7 @@ let dragon = {
 };
 
 let turnCounter = 0;
-let starterDeck = [angel, demon, knight, inferno, warlock, centurion, dragon];
+let starterDeck = [angel, demon, knight, inferno, angel, inferno, demon];
 
 let player = {
   name: "",
@@ -208,20 +208,37 @@ function AtkMsg() {
 }
 
 function startPlayerTurn() {
+  // draws a card
+  if (player.deck.length > 0) {
+    const newCard = document.createElement("div");
+    newCard.classList.add("player-card", "is-size-1");
+    const cardImg = document.createElement("img");
+    cardImg.src = "./assets/images/placeholder-card.png";
+    cardImg.style.transform = "scale(1.2)";
+    newCard.appendChild(cardImg);
+    playerHand.appendChild(newCard);
+    setCardProps(newCard);
+  }
+  console.log(playerHand.children);
+  for (let i = 0; i < playerHand.children.length; i++) {
+    playerHand.children[i].addEventListener("click", playCard);
+  };
   if (playerField.children) {
     for (let i = 0; i < playerField.children.length; i++) {
       cardReady(playerField.children[i]);
       playerField.children[i].addEventListener("click", AtkMsg);
     }
   }
-  if (deck) {
-    // IF STILL CARDS IN DECK THEN DRAW CARD
-    // AND ADD TO HAND
-  }
 }
 
 function endEnemyTurn() {
   turnCounter++;
+  if (player.class === "mage") {
+    player.power = turnCounter + 2;
+  } else {
+    player.power = turnCounter;
+  }
+  console.log(`You now have ${player.power} power.`);
   startPlayerTurn();
 }
 
@@ -301,20 +318,27 @@ function endPlayerTurn() {
 
 function playCard(event) {
   const chosenCard = event.currentTarget;
-  console.log(chosenCard);
-  chosenCard.classList.remove("player-card");
-  chosenCard.classList.add("played-card");
-  chosenCard.setAttribute("data-state", "in-play");
-  chosenCard.removeEventListener("click", playCard);
-  playerField.appendChild(chosenCard);
+  if (player.power >= chosenCard.dataset.cost ) {
+    console.log(chosenCard);
+    player.power -= chosenCard.dataset.cost;
+    console.log(`You have ${player.power} power left`);
+    chosenCard.classList.remove("player-card");
+    chosenCard.classList.add("played-card");
+    chosenCard.setAttribute("data-state", "in-play");
+    chosenCard.removeEventListener("click", playCard);
+    playerField.appendChild(chosenCard);
+  }
 }
 
 function drawCard(deck) {
   const randomIndex = Math.floor(Math.random() * deck.length);
-  return deck[randomIndex];
+  const drawnCard = deck[randomIndex];
+  deck.splice(randomIndex, 1);
+  return drawnCard;
 }
 
 function setCardProps(cardEl) {
+  cardEl.setAttribute("data-state", "in-hand");
   const cardProps = Object.entries(drawCard(player.deck));
   for (let i = 0; i < cardProps.length; i++) {
     if (i === 0) {
@@ -348,19 +372,12 @@ function displayFelt() {
   console.log(player);
 
   playerCard1.addEventListener("click", playCard);
-  playerCard1.setAttribute("data-state", "in-hand");
   setCardProps(playerCard1);
-
   playerCard2.addEventListener("click", playCard);
-  playerCard2.setAttribute("data-state", "in-hand");
   setCardProps(playerCard2);
-
   playerCard3.addEventListener("click", playCard);
-  playerCard3.setAttribute("data-state", "in-hand");
   setCardProps(playerCard3);
-
   playerCard4.addEventListener("click", playCard);
-  playerCard4.setAttribute("data-state", "in-hand");
   setCardProps(playerCard4);
 
   const cardData1 = playerCard1.dataset;
