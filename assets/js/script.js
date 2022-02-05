@@ -159,15 +159,35 @@ function targetCard(cardEl) {
   cardEl.addEventListener("mouseleave", attackTargetUnhover);
   cardEl.addEventListener("click", attackTarget);
 }
+function removeTarget(cardEl) {
+  cardEl.style.boxShadow = "none";
+  cardEl.removeEventListener("mouseenter", attackTargetHover);
+  cardEl.removeEventListener("mouseleave", attackTargetUnhover);
+  cardEl.removeEventListener("click", attackTarget);
+}
 
 
 function attackTarget(event) {
+  for (let i = 0; i < playerField.children.length; i++) {
+    playerField.children[i].removeEventListener("click", AtkMsg);
+  }
   // The (parent) event (<--double-check this)
   const target = event.currentTarget;
   // Player's currently attacking card
   const readyToAttack = document.querySelector(".ready-to-attack");
 
   target.style.animation = "wobble 1s";
+  enemyAvatar.style.boxShadow = "none";
+  enemyAvatar.removeEventListener("mouseenter", attackTargetHover);
+  enemyAvatar.removeEventListener("mouseleave", attackTargetUnhover);
+  enemyAvatar.removeEventListener("click", attackTarget);
+
+  if (enemyField.children) {
+    for (let i = 0; i < enemyField.children.length; i++) {
+      removeTarget(enemyField.children[i]);
+    }
+  }
+
   readyToAttack.style.boxShadow = "none";
   readyToAttack.style.transform = "translateY(15px)";
   readyToAttack.dataset.state = "exhausted";
@@ -175,7 +195,7 @@ function attackTarget(event) {
   readyToAttack.classList.remove("ready-to-attack");
   console.log(playerField.children[0]);
   for (let i = 0; i < playerField.children.length; i++) {
-    if (playerField.children[i].dataset.state === "in-play") {
+    if (playerField.children[i].dataset.state === "on-guard") {
       cardReady(playerField.children[i]);
       playerField.children[i].addEventListener("click", AtkMsg);
     }
@@ -226,6 +246,7 @@ function startPlayerTurn() {
   if (playerField.children) {
     for (let i = 0; i < playerField.children.length; i++) {
       cardReady(playerField.children[i]);
+      playerField.children[i].dataset.state = "on-guard";
       playerField.children[i].addEventListener("click", AtkMsg);
     }
   }
