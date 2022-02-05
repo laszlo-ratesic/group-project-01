@@ -1,138 +1,9 @@
-/* When a user clicks on a button, an element with the `.modal` class is opened. */
-document.addEventListener("DOMContentLoaded", () => {
-  // Get all "navbar-burger" elements
-  const $navbarBurgers = Array.prototype.slice.call(
-    document.querySelectorAll(".navbar-burger"),
-    0
-  );
-
-  // Check if there are any navbar burgers
-  if ($navbarBurgers.length > 0) {
-    // Add a click event on each of them
-    $navbarBurgers.forEach((el) => {
-      el.addEventListener("click", () => {
-        // Get the target from the "data-target" attribute
-        const target = el.dataset.target;
-        const $target = document.getElementById(target);
-
-        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-        el.classList.toggle("is-active");
-        $target.classList.toggle("is-active");
-      });
-    });
-  }
-
-  // Functions to open and close a modal
-  function openModal($el) {
-    $el.classList.add("is-active");
-  }
-
-  function closeModal($el) {
-    $el.classList.remove("is-active");
-  }
-
-  function closeAllModals() {
-    (document.querySelectorAll(".modal") || []).forEach(($modal) => {
-      closeModal($modal);
-    });
-  }
-
-  // Add a click event on buttons to open a specific modal
-  (document.querySelectorAll(".js-modal-trigger") || []).forEach(($trigger) => {
-    const modal = $trigger.dataset.target;
-    const $target = document.getElementById(modal);
-
-    $trigger.addEventListener("click", () => {
-      openModal($target);
-    });
-  });
-
-  // Add a click event on various child elements to close the parent modal
-  (
-    document.querySelectorAll(
-      ".modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot button"
-    ) || []
-  ).forEach(($close) => {
-    const $target = $close.closest(".modal");
-
-    $close.addEventListener("click", () => {
-      closeModal($target);
-    });
-  });
-
-  // Add a keyboard event to close all modals
-  document.addEventListener("keydown", (event) => {
-    const e = event || window.event;
-
-    if (e.keyCode === 27) {
-      // Escape key
-      closeAllModals();
-    }
-  });
-
-  /* For each element in the array returned by document.querySelectorAll('.notification .delete'), add a
-  click event listener to the delete element that will remove the parent notification element from
-  the DOM. */
-  (document.querySelectorAll(".notification .delete") || []).forEach(
-    ($delete) => {
-      const $notification = $delete.parentNode;
-
-      $delete.addEventListener("click", () => {
-        $notification.parentNode.removeChild($notification);
-      });
-    }
-  );
-});
-// END OF BULMA JS
-
-const angel = {
-  name: "angel",
-  cost: 1,
-  atk: 1,
-  def: 2,
-};
-const demon = {
-  name: "demon",
-  cost: 1,
-  atk: 2,
-  def: 1,
-};
-const knight = {
-  name: "knight",
-  cost: 2,
-  atk: 2,
-  def: 3,
-};
-const inferno = {
-  name: "inferno",
-  cost: 3,
-  atk: 5,
-  def: 0,
-};
-const warlock = {
-  name: "warlock",
-  cost: 6,
-  atk: 7,
-  def: 3,
-};
-const centurion = {
-  name: "centurion",
-  cost: 5,
-  atk: 4,
-  def: 6,
-};
-const dragon = {
-  name: "dragon",
-  cost: 8,
-  atk: 10,
-  def: 10,
-};
-
-const deck = [angel, demon, knight, inferno, warlock, centurion, dragon];
-
-let turnCounter = 0;
-
+const feltView = document.getElementById("felt-view");
 const formEl = document.getElementById("form-el");
+const nameInput = document.getElementById("name-input");
+const classSelect = document.getElementById("class-select");
+const difficultyInput = document.getElementsByName("difficulty");
+const profanityInput = document.getElementById("profanity-input");
 const modal = document.querySelector(".modal");
 const heroEl = document.querySelector(".hero");
 const landingMsg = document.getElementById("landing-msg");
@@ -179,7 +50,67 @@ $blueGlow =
 $goldGlow =
   "gold -15px -15px 10px, gold 15px -15px 10px, gold 15px 15px 10px, gold -15px 15px 10px";
 
-const feltView = document.getElementById("felt-view");
+
+  // TEST CARD OBJECTS
+  let angel = {
+    name: "angel",
+  cost: 1,
+  atk: 1,
+  def: 2,
+};
+let demon = {
+  name: "demon",
+  cost: 1,
+  atk: 2,
+  def: 1,
+};
+let knight = {
+  name: "knight",
+  cost: 2,
+  atk: 2,
+  def: 3,
+};
+let inferno = {
+  name: "inferno",
+  cost: 3,
+  atk: 5,
+  def: 0,
+};
+let warlock = {
+  name: "warlock",
+  cost: 6,
+  atk: 7,
+  def: 3,
+};
+let centurion = {
+  name: "centurion",
+  cost: 5,
+  atk: 4,
+  def: 6,
+};
+let dragon = {
+  name: "dragon",
+  cost: 8,
+  atk: 10,
+  def: 10,
+};
+
+let turnCounter = 0;
+let starterDeck = [angel, demon, knight, inferno, warlock, centurion, dragon];
+
+let player = {
+  name: "",
+  class: "",
+  power: 0,
+  health: 100,
+  deck: starterDeck
+};
+
+let settings = {
+  difficulty: 0,
+  profanity: false
+}
+
 
 function hover(event) {
   event.target.style.transform = "scale(1.3)";
@@ -359,7 +290,6 @@ function enemyTurn() {
 }
 
 function endPlayerTurn() {
-  turnCounter++;
   endTurnBtn.removeEventListener("click", endPlayerTurn);
   playerCard1.removeEventListener("click", playCard);
   playerCard2.removeEventListener("click", playCard);
@@ -379,13 +309,13 @@ function playCard(event) {
   playerField.appendChild(chosenCard);
 }
 
-function drawCard() {
+function drawCard(deck) {
   const randomIndex = Math.floor(Math.random() * deck.length);
   return deck[randomIndex];
 }
 
 function setCardProps(cardEl) {
-  const cardProps = Object.entries(drawCard());
+  const cardProps = Object.entries(drawCard(player.deck));
   for (let i = 0; i < cardProps.length; i++) {
     if (i === 0) {
       cardEl.setAttribute("data-name", cardProps[i][1]);
@@ -412,7 +342,11 @@ function displayFelt() {
   heroBody.style.justifyContent = "space-between";
 
   feltView.classList.remove("is-hidden");
+
   turnCounter++;
+  player.power++;
+  console.log(player);
+
   playerCard1.addEventListener("click", playCard);
   playerCard1.setAttribute("data-state", "in-hand");
   setCardProps(playerCard1);
@@ -428,6 +362,13 @@ function displayFelt() {
   playerCard4.addEventListener("click", playCard);
   playerCard4.setAttribute("data-state", "in-hand");
   setCardProps(playerCard4);
+
+  const cardData1 = playerCard1.dataset;
+  const cardData2 = playerCard2.dataset;
+  const cardData3 = playerCard3.dataset;
+  const cardData4 = playerCard4.dataset;
+
+  console.log(`Your hand: ${cardData1.name} cost=${cardData1.cost}, ${cardData2.name} cost=${cardData2.cost}, ${cardData3.name} cost=${cardData3.cost}, ${cardData4.name} cost=${cardData4.cost}`);
 
   endTurnBtn.addEventListener("click", endPlayerTurn);
 }
@@ -468,6 +409,21 @@ function displayChoice() {
  */
 function startGame(event) {
   event.preventDefault();
+  player.name = nameInput.value.trim();
+  player.class = classSelect.value;
+  if (classSelect.value === "mage") {
+    player.power = 2;
+  }
+  console.log(player);
+
+  for (i = 0; i < difficultyInput.length; i++) {
+    if (difficultyInput[i].checked) {
+      settings.difficulty = difficultyInput[i].value;
+    }
+  }
+  settings.profanity = profanityInput.checked;
+  console.log(settings);
+
   modal.classList.remove("is-active");
   // Prevents cancel from returning felt view
   heroEl.style.backgroundImage = "url(./assets/images/black-felt.jpg)";
@@ -478,3 +434,90 @@ function startGame(event) {
 }
 
 formEl.addEventListener("submit", startGame);
+
+/* When a user clicks on a button, an element with the `.modal` class is opened. */
+document.addEventListener("DOMContentLoaded", () => {
+  // Get all "navbar-burger" elements
+  const $navbarBurgers = Array.prototype.slice.call(
+    document.querySelectorAll(".navbar-burger"),
+    0
+  );
+
+  // Check if there are any navbar burgers
+  if ($navbarBurgers.length > 0) {
+    // Add a click event on each of them
+    $navbarBurgers.forEach((el) => {
+      el.addEventListener("click", () => {
+        // Get the target from the "data-target" attribute
+        const target = el.dataset.target;
+        const $target = document.getElementById(target);
+
+        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+        el.classList.toggle("is-active");
+        $target.classList.toggle("is-active");
+      });
+    });
+  }
+
+  // Functions to open and close a modal
+  function openModal($el) {
+    $el.classList.add("is-active");
+  }
+
+  function closeModal($el) {
+    $el.classList.remove("is-active");
+  }
+
+  function closeAllModals() {
+    (document.querySelectorAll(".modal") || []).forEach(($modal) => {
+      closeModal($modal);
+    });
+  }
+
+  // Add a click event on buttons to open a specific modal
+  (document.querySelectorAll(".js-modal-trigger") || []).forEach(($trigger) => {
+    const modal = $trigger.dataset.target;
+    const $target = document.getElementById(modal);
+
+    $trigger.addEventListener("click", () => {
+      openModal($target);
+    });
+  });
+
+  // Add a click event on various child elements to close the parent modal
+  (
+    document.querySelectorAll(
+      ".modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot button"
+    ) || []
+  ).forEach(($close) => {
+    const $target = $close.closest(".modal");
+
+    $close.addEventListener("click", () => {
+      closeModal($target);
+    });
+  });
+
+  // Add a keyboard event to close all modals
+  document.addEventListener("keydown", (event) => {
+    const e = event || window.event;
+
+    if (e.keyCode === 27) {
+      // Escape key
+      closeAllModals();
+    }
+  });
+
+  /* For each element in the array returned by document.querySelectorAll('.notification .delete'), add a
+  click event listener to the delete element that will remove the parent notification element from
+  the DOM. */
+  (document.querySelectorAll(".notification .delete") || []).forEach(
+    ($delete) => {
+      const $notification = $delete.parentNode;
+
+      $delete.addEventListener("click", () => {
+        $notification.parentNode.removeChild($notification);
+      });
+    }
+  );
+});
+// END OF BULMA JS

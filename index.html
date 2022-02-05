@@ -190,19 +190,20 @@
             <div class="field">
               <label class="label">Character Name</label>
               <div class="control">
-                <input type="text" class="input" placeholder="Kingslayer" required="required">
+                <input id="name-input" type="text" class="input" placeholder="Kingslayer" required="required">
               </div>
             </div>
 
             <!-- CLASS -->
             <div class="field">
-              <label class="label">Class</label>
+              <label for="class-select" class="label">Class</label>
               <div class="control">
                 <div class="select">
-                  <select>
-                    <option>Warrior</option>
-                    <option>Mage</option>
-                    <option>Rogue</option>
+                  <select name="class-select" id="class-select" required="required">
+                    <option value="">--Please choose a class--</option>
+                    <option value="warrior">Warrior</option>
+                    <option value="mage">Mage</option>
+                    <option value="rogue">Rogue</option>
                   </select>
                 </div>
               </div>
@@ -211,21 +212,21 @@
             <!-- DIFFICULTY -->
             <div class="field">
               <div class="control">
-                <label class="label">Difficulty Level</label>
-                <label class="radio">
-                  <input type="radio" name="question" required="required">
+                <label id="difficulty-level" for="difficulty" class="label">Difficulty Level</label>
+                <label for="easy" class="radio">
+                  <input id="easy" value="easy" type="radio" name="difficulty" required="required">
                   Easy
                 </label>
-                <label class="radio">
-                  <input type="radio" name="question">
+                <label for="medium" class="radio">
+                  <input id="medium" value="medium" type="radio" name="difficulty">
                   Medium
                 </label>
-                <label class="radio">
-                  <input type="radio" name="question">
+                <label for="hard" class="radio">
+                  <input id="hard" value="hard" type="radio" name="difficulty">
                   Hard
                 </label>
-                <label class="radio">
-                  <input type="radio" name="question">
+                <label for="diabolical" class="radio">
+                  <input id="diabolical" value="diabolical" type="radio" name="difficulty" disabled>
                   Diabolical
                 </label>
               </div>
@@ -236,7 +237,7 @@
               <div class="control">
                 <label class="label">Profanity</label>
                 <label class="checkbox">
-                  <input type="checkbox">
+                  <input id="profanity-input" type="checkbox">
                   Enable <a target="_blank" href="https://twitter.com/foaas">Trash Talk</a>?
                 </label>
               </div>
