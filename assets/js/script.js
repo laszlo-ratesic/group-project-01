@@ -38,6 +38,11 @@ const enemyCard4 = document.getElementById("enemy-card-4");
 
 const endTurnBtn = document.getElementById("end-turn-btn");
 
+const enemyHealth = document.getElementById("enemy-health");
+const enemyPower = document.getElementById("enemy-power");
+const playerHealth = document.getElementById("player-health");
+const playerPower = document.getElementById("player-power");
+
 $insetGoldGlow =
   "inset gold -15px -15px 10px, inset gold 15px -15px 10px, inset gold 15px 15px 10px, inset gold -15px 15px 10px";
 $insetRedGlow =
@@ -178,10 +183,14 @@ function attackTarget(event) {
   for (let i = 0; i < playerField.children.length; i++) {
     playerField.children[i].removeEventListener("click", AtkMsg);
   }
-  // The (parent) event (<--double-check this)
   const target = event.currentTarget;
-  // Player's currently attacking card
   const readyToAttack = document.querySelector(".ready-to-attack");
+
+  if (target.id === "enemy-avatar") {
+    enemy.health -= readyToAttack.dataset.atk;
+    enemyHealth.value = enemy.health;
+  }
+
 
   target.style.animation = "wobble 1s";
   enemyAvatar.style.boxShadow = "none";
@@ -200,7 +209,6 @@ function attackTarget(event) {
   readyToAttack.dataset.state = "exhausted";
   readyToAttack.classList.add("card-inactive");
   readyToAttack.classList.remove("ready-to-attack");
-  console.log(playerField.children[0]);
   for (let i = 0; i < playerField.children.length; i++) {
     if (playerField.children[i].dataset.state === "on-guard") {
       cardReady(playerField.children[i]);
@@ -407,6 +415,8 @@ function displayFelt() {
   enemy.power++;
   console.log(player);
 
+  playerHealth.value = player.health;
+
   playerCard1.addEventListener("click", playCard);
   setCardProps(playerCard1, player.deck);
   playerCard2.addEventListener("click", playCard);
@@ -433,6 +443,8 @@ function displayFelt() {
   const enemyCardData4 = enemyCard4.dataset;
 
   console.log(enemy);
+  enemyHealth.value = enemy.health;
+
   console.log(
     `You are battling ${enemy.name}, with a deck containing: ${enemyCardData1.name} cost=${enemyCardData1.cost}, ${enemyCardData2.name} cost=${enemyCardData2.cost}, ${enemyCardData3.name} cost=${enemyCardData3.cost}, ${enemyCardData4.name} cost=${enemyCardData4.cost}`
   );
