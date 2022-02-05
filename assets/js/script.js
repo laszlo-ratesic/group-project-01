@@ -15,8 +15,8 @@ const footer = document.querySelector(".footer");
 const enemyAvatar = document.getElementById("enemy-avatar");
 const playerAvatar = document.getElementById("player-avatar");
 
-const enemyDeck = document.querySelector("#enemy-deck");
-const playerDeck = document.querySelector("#player-deck");
+// const enemyDeck = document.querySelector("#enemy-deck");
+// const playerDeck = document.querySelector("#player-deck");
 
 const enemyHand = document.getElementById("enemy-hand");
 const playerHand = document.getElementById("player-hand");
@@ -50,10 +50,9 @@ $blueGlow =
 $goldGlow =
   "gold -15px -15px 10px, gold 15px -15px 10px, gold 15px 15px 10px, gold -15px 15px 10px";
 
-
-  // TEST CARD OBJECTS
-  let angel = {
-    name: "angel",
+// TEST CARD OBJECTS
+let angel = {
+  name: "angel",
   cost: 1,
   atk: 1,
   def: 2,
@@ -96,21 +95,30 @@ let dragon = {
 };
 
 let turnCounter = 0;
+
 let starterDeck = [angel, demon, knight, inferno, angel, inferno, demon];
+
+let enemyDeck = [angel, demon, knight, inferno, angel, inferno, demon];
 
 let player = {
   name: "",
   class: "",
   power: 0,
   health: 100,
-  deck: starterDeck
+  deck: starterDeck,
 };
 
 let settings = {
   difficulty: 0,
-  profanity: false
-}
+  profanity: false,
+};
 
+let enemy = {
+  name: "testBot",
+  power: 0,
+  health: 100,
+  deck: enemyDeck,
+};
 
 function hover(event) {
   event.target.style.transform = "scale(1.3)";
@@ -165,7 +173,6 @@ function removeTarget(cardEl) {
   cardEl.removeEventListener("mouseleave", attackTargetUnhover);
   cardEl.removeEventListener("click", attackTarget);
 }
-
 
 function attackTarget(event) {
   for (let i = 0; i < playerField.children.length; i++) {
@@ -237,12 +244,12 @@ function startPlayerTurn() {
     cardImg.style.transform = "scale(1.2)";
     newCard.appendChild(cardImg);
     playerHand.appendChild(newCard);
-    setCardProps(newCard);
+    setCardProps(newCard, player.deck);
   }
   console.log(playerHand.children);
   for (let i = 0; i < playerHand.children.length; i++) {
     playerHand.children[i].addEventListener("click", playCard);
-  };
+  }
   if (playerField.children) {
     for (let i = 0; i < playerField.children.length; i++) {
       cardReady(playerField.children[i]);
@@ -258,6 +265,7 @@ function endEnemyTurn() {
     player.power = turnCounter + 2;
   } else {
     player.power = turnCounter;
+    enemy.power = turnCounter;
   }
   console.log(`You now have ${player.power} power.`);
   startPlayerTurn();
@@ -265,13 +273,19 @@ function endEnemyTurn() {
 
 function enemyPlayCard() {
   setTimeout(function () {
-    enemyCard2.classList.add("played-enemy-card");
-    enemyField.appendChild(enemyCard2);
-
-    const placeholder = document.createElement("img");
-    placeholder.src = "./assets/images/placeholder-card.png";
-    placeholder.style.transform = "scale(1.2)";
-    enemyCard2.appendChild(placeholder);
+    // Should select a card from the hand that has <= cost than power
+    for (let i = 0; i < enemyHand.children.length; i++) {
+      const card = enemyHand.children[i];
+      if (card.dataset.cost <= enemy.power) {
+        card.classList.add("played-enemy-card");
+        enemyField.appendChild(card);
+        const placeholder = document.createElement("img");
+        placeholder.src = "./assets/images/placeholder-card.png";
+        placeholder.style.transform = "scale(1.2)";
+        card.appendChild(placeholder);
+        console.log(`Enemy played ${card.dataset.name}`);
+      }
+    }
     setTimeout(card3down(), 1000);
     endEnemyTurn();
   }, 3000);
@@ -339,7 +353,7 @@ function endPlayerTurn() {
 
 function playCard(event) {
   const chosenCard = event.currentTarget;
-  if (player.power >= chosenCard.dataset.cost ) {
+  if (player.power >= chosenCard.dataset.cost) {
     console.log(chosenCard);
     player.power -= chosenCard.dataset.cost;
     console.log(`You have ${player.power} power left`);
@@ -358,9 +372,9 @@ function drawCard(deck) {
   return drawnCard;
 }
 
-function setCardProps(cardEl) {
+function setCardProps(cardEl, fromDeck) {
   cardEl.setAttribute("data-state", "in-hand");
-  const cardProps = Object.entries(drawCard(player.deck));
+  const cardProps = Object.entries(drawCard(fromDeck));
   for (let i = 0; i < cardProps.length; i++) {
     if (i === 0) {
       cardEl.setAttribute("data-name", cardProps[i][1]);
@@ -390,23 +404,38 @@ function displayFelt() {
 
   turnCounter++;
   player.power++;
+  enemy.power++;
   console.log(player);
 
   playerCard1.addEventListener("click", playCard);
-  setCardProps(playerCard1);
+  setCardProps(playerCard1, player.deck);
   playerCard2.addEventListener("click", playCard);
-  setCardProps(playerCard2);
+  setCardProps(playerCard2, player.deck);
   playerCard3.addEventListener("click", playCard);
-  setCardProps(playerCard3);
+  setCardProps(playerCard3, player.deck);
   playerCard4.addEventListener("click", playCard);
-  setCardProps(playerCard4);
-
+  setCardProps(playerCard4, player.deck);
   const cardData1 = playerCard1.dataset;
   const cardData2 = playerCard2.dataset;
   const cardData3 = playerCard3.dataset;
   const cardData4 = playerCard4.dataset;
+  console.log(
+    `Your hand: ${cardData1.name} cost=${cardData1.cost}, ${cardData2.name} cost=${cardData2.cost}, ${cardData3.name} cost=${cardData3.cost}, ${cardData4.name} cost=${cardData4.cost}`
+  );
 
-  console.log(`Your hand: ${cardData1.name} cost=${cardData1.cost}, ${cardData2.name} cost=${cardData2.cost}, ${cardData3.name} cost=${cardData3.cost}, ${cardData4.name} cost=${cardData4.cost}`);
+  setCardProps(enemyCard1, enemy.deck);
+  setCardProps(enemyCard2, enemy.deck);
+  setCardProps(enemyCard3, enemy.deck);
+  setCardProps(enemyCard4, enemy.deck);
+  const enemyCardData1 = enemyCard1.dataset;
+  const enemyCardData2 = enemyCard2.dataset;
+  const enemyCardData3 = enemyCard3.dataset;
+  const enemyCardData4 = enemyCard4.dataset;
+
+  console.log(enemy);
+  console.log(
+    `You are battling ${enemy.name}, with a deck containing: ${enemyCardData1.name} cost=${enemyCardData1.cost}, ${enemyCardData2.name} cost=${enemyCardData2.cost}, ${enemyCardData3.name} cost=${enemyCardData3.cost}, ${enemyCardData4.name} cost=${enemyCardData4.cost}`
+  );
 
   endTurnBtn.addEventListener("click", endPlayerTurn);
 }
