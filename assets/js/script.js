@@ -1,6 +1,7 @@
+const accountForm = document.getElementById("account-form");
+const newGameForm = document.getElementById("new-game-form");
 const feltView = document.getElementById("felt-view");
 const gameOver = document.getElementById("game-over");
-const formEl = document.getElementById("form-el");
 const nameInput = document.getElementById("name-input");
 const classSelect = document.getElementById("class-select");
 const difficultyInput = document.getElementsByName("difficulty");
@@ -696,7 +697,8 @@ function startGame(event) {
   displayChoice();
 }
 
-formEl.addEventListener("submit", startGame);
+newGameForm.addEventListener("submit", startGame);
+
 
 // BULMA CODE
 /* When a user clicks on a button, an element with the `.modal` class is opened. */
