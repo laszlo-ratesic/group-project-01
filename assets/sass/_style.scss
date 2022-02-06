@@ -1,0 +1,368 @@
+:root {
+  --primary-color: #324376;
+  --secondary-color: #8fb8deff;
+  --third-color: #3f6c51ff;
+  --fourth-color: #d7263dff;
+  --fifth-color: #f26419ff;
+  --sixth-color: #f9e900ff;
+}
+
+.hero {
+  background-image: url(../images/Nazgul-by-Fell418.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.hero.is-dark .tabs.is-boxed a:hover,
+.hero.is-dark .tabs.is-toggle a:hover {
+  background-color: white;
+  color: black;
+  text-decoration: none;
+}
+
+.hero.is-dark
+  a:not(.button):not(.dropdown-item):not(.tag):not(.pagination-link.is-current):hover {
+  color: black;
+}
+
+#rules-background {
+  background-image: url(../images/fantasy-art-by-Millikodea.jpeg);
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px;
+}
+
+#lore-background {
+  background-image: url(../images/End-of-Elder-Days-by-Sandara.jpeg);
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px;
+}
+
+.hero-body {
+  padding: 0;
+}
+
+#enemy-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#enemy-avatar {
+  background-color: red;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  border: solid 3px black;
+}
+
+#enemy-health {
+  width: 100%;
+  border: solid 3px black;
+  border-radius: 0px;
+  position: relative;
+  top: 3rem;
+  margin-bottom: 1rem;
+}
+#enemy-power {
+  width: 100%;
+  border: solid 3px black;
+  border-radius: 0px;
+  position: relative;
+  top: 2.5rem;
+  margin-bottom: 0;
+}
+
+#enemy-deck {
+  border: solid 3px black;
+  border-radius: 15px;
+  height: 15rem;
+  width: 10rem;
+}
+
+#enemy-hand {
+  transform: translateY(-14rem);
+}
+
+.enemy-card {
+  background-color: red;
+  border: solid 3px black;
+  border-radius: 10px;
+  height: 14rem;
+  width: 10rem;
+  transition: transform 200ms;
+}
+
+.played-enemy-card {
+  margin: 0 1.8rem;
+  transform: none;
+  border: none;
+  background-color: transparent;
+}
+
+#player-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 1em;
+  padding-top: 13em;
+  overflow: hidden;
+}
+
+#player-avatar {
+  background-color: blue;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  border: solid 3px black;
+}
+
+#player-health {
+  width: 100%;
+  border: solid 3px black;
+  border-radius: 0px;
+  position: relative;
+  bottom: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+#player-power {
+  width: 100%;
+  border: solid 3px black;
+  border-radius: 0px;
+  position: relative;
+  bottom: 3rem;
+  margin-bottom: 0;
+}
+
+#player-deck {
+  border: solid 3px black;
+  border-radius: 15px;
+  height: 15rem;
+  width: 10rem;
+}
+
+#player-hand {
+  transform: translateY(7rem);
+}
+
+.player-card {
+  color: black;
+  /* border: solid 3px black; */
+  border-radius: 15px;
+  height: 14rem;
+  width: 10rem;
+  position: relative;
+  transition: transform 400ms;
+  touch-action: pan-x;
+}
+
+.played-card {
+  margin: 0 1.8rem;
+  border-radius: 15px;
+  height: 14rem;
+  width: 10rem;
+  position: relative;
+  touch-action: pan-x;
+}
+
+.played-card::before {
+  content: '';
+  position:absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-shadow: gold 15px 15px 15px, gold 15px -15px 15px, gold -15px -15px 15px, gold -15px 15px 15px;
+  opacity: 0;
+  transition: opacity 500ms;
+  animation: 3s ease 1200ms infinite alternate shadowBounce;
+}
+
+.played-card:hover::before {
+  opacity: 1;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(-15px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(-15px);
+  }
+}
+
+.player-card:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+}
+
+.player-card:hover {
+  transform: translateY(-14rem);
+  box-shadow: gold -15px -15px 10px, gold 15px -15px 10px, gold 15px 15px 10px, gold -15px 15px 10px;
+}
+
+.player-card:hover::before {
+  height: calc(100% + 10em);
+}
+
+.ready-to-attack {
+  border-radius: 15px;
+  height: 14rem;
+  width: 10rem;
+  position: relative;
+  touch-action: pan-x;
+}
+
+#no-mans-land {
+  position: absolute;
+  width: 100vw;
+  top: 20%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 50%;
+  justify-content: center;
+}
+
+#enemy-field {
+  height: 50%;
+  margin: 0 15vw;
+}
+
+#player-field {
+  height: 50%;
+  margin: 0 15vw;
+}
+
+@keyframes wobble {
+  0% { transform: translateX(0%) scale(1.2); }
+  15% { transform: translateX(-25%) rotate(-5deg); }
+  30% { transform: translateX(20%) rotate(3deg); }
+  45% { transform: translateX(-15%) rotate(-3deg); }
+  60% { transform: translateX(10%) rotate(2deg); }
+  75% { transform: translateX(-5%) rotate(-1deg); }
+  100% { transform: translateX(0%) scale(1.2)
+    ; }
+}
+
+.card-inactive {
+  border-radius: 15px;
+  height: 14rem;
+  width: 10rem;
+  position: relative;
+  touch-action: pan-x;
+  transform: translateY(15px);
+  box-shadow: none;
+  animation: none;
+}
+
+@media screen and (max-width: 980px) {
+  #player-row {
+    padding-top: 15em;
+  }
+  #enemy-avatar {
+    width: 7rem;
+    height: 7rem;
+  }
+  #enemy-health {
+    height: 0.5rem;
+  }
+  #enemy-power {
+    height: 0.5rem;
+  }
+  #player-avatar {
+    width: 7rem;
+    height: 7rem;
+  }
+  #player-health {
+    height: 0.5rem;
+  }
+  #player-power {
+    height: 0.5rem;
+  }
+  #enemy-deck {
+    height: 8.5rem;
+    width: 6.5rem;
+  }
+  #enemy-hand {
+    transform: translateY(-7rem);
+  }
+  .enemy-card {
+    height: 8.5rem;
+    width: 6.5rem;
+  }
+
+  #no-mans-land {
+    height: 15rem;
+  }
+
+  #player-deck {
+    height: 8.5rem;
+    width: 6.5rem;
+  }
+  #player-hand {
+    transform: translateY(3rem);
+  }
+  .player-card {
+    height: 8.5rem;
+    width: 6.5rem;
+  }
+  .played-card {
+    height: 8.5rem;
+    width: 6.5rem;
+  }
+  .player-card:hover {
+    transform: translateY(-10rem);
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .hero {
+    background-position: 63%;
+  }
+  #enemy-avatar {
+    width: 5rem;
+    height: 5rem;
+  }
+  #enemy-deck {
+    height: 7rem;
+    width: 5rem;
+  }
+  .enemy-card {
+    height: 7rem;
+    width: 5rem;
+  }
+
+  #player-row {
+    padding-top: 3em;
+  }
+  #player-avatar {
+    width: 5rem;
+    height: 5rem;
+  }
+  #player-deck {
+    height: 7rem;
+    width: 5rem;
+  }
+  .player-card {
+    height: 7rem;
+    width: 5rem;
+  }
+  .played-card {
+    height: 7rem;
+    width: 5rem;
+  }
+  .player-card:hover {
+    transform: translateY(-6rem);
+  }
+}

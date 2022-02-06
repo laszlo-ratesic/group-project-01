@@ -8,7 +8,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/sass/combined.css" />
     <title>Group Project 01</title>
   </head>
   <body>
@@ -16,10 +16,10 @@
       <!-- Hero head: will stick at the top -->
       <div class="hero-head">
         <header class="navbar">
-          <div class="container">
+          <div class="container is-fluid">
             <div class="navbar-brand">
-              <a class="navbar-item">
-                <h1 class="title">Logo</h1>
+              <a class="navbar-item is-size-1 is-size-5-mobile js-modal-trigger" data-target="create-account-modal">
+                <h1>Create Account</h1>
               </a>
               <span class="navbar-burger" data-target="navbarMenuHeroC">
                 <span></span>
@@ -60,30 +60,96 @@
                 <span class="navbar-item">
                   <a
                     class="button is-dark is-inverted"
-                    href="https://github.com/laszlo-ratesic/group-project-01/archive/refs/heads/main.zip"
+                    href="https://github.com/laszlo-ratesic/group-project-01"
                   >
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
-                    <span>Download</span>
+                    <span>Docs</span>
                   </a>
                 </span>
               </div>
             </div>
+
           </div>
         </header>
       </div>
 
       <!-- Hero content: will be in the middle -->
       <div class="hero-body">
-        <div class="container has-text-centered">
+        <!-- HOME SCREEN -->
+        <div id="landing-msg" class="container has-text-centered">
           <p class="title">
             Epic Card Game
           </p>
-          <button class="button is-large is-danger is-outlined js-modal-trigger" data-target="player-modal">
+          <button class="button is-large is-success is-outlined js-modal-trigger" data-target="new-game-modal">
             New Game
           </button>
         </div>
+
+        <!-- FELT VIEW -->
+        <div id="felt-view" class="container is-fluid is-flex is-flex-direction-column is-justify-content-space-between is-hidden mx-0">
+          <div id="enemy-row">
+            <div id="enemy-avatar" class="is-flex is-flex-direction-column is-justify-content-flex-end">
+              <progress id="enemy-health" class="progress is-small is-danger" value="30" max="30">15%</progress>
+              <progress id="enemy-power" class="progress is-small is-link" value="100" max="100">15%</progress>
+            </div>
+            <div id="enemy-hand" class="is-flex">
+              <div id="enemy-card-1" class="enemy-card"></div>
+              <div id="enemy-card-2" class="enemy-card"></div>
+              <div id="enemy-card-3" class="enemy-card"></div>
+            </div>
+            <div id="enemy-deck"></div>
+          </div>
+
+          <div id="no-mans-land" class="is-flex is-flex-direction-column">
+            <div id="enemy-field" class="cards-in-play is-flex is-align-items-flex-end is-justify-content-flex-start">
+            </div>
+            <div id="player-field" class="cards-in-play is-flex is-justify-content-flex-end">
+
+            </div>
+          </div>
+
+          <div id="player-row">
+            <div id="player-avatar" class="is-flex is-flex-direction-column is-justify-content-flex-start">
+              <progress id="player-health" class="progress is-small is-danger" value="30" max="30">15%</progress>
+              <progress id="player-power" class="progress is-small is-link" value="100" max="100">15%</progress>
+            </div>
+            <div id="player-hand" class="is-flex">
+              <div id="player-card-1" class="player-card is-size-1" style="text-align: center;">
+                <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
+              </div>
+              <div id="player-card-2" class="player-card is-size-1" style="text-align: center;">
+                <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
+              </div>
+              <div id="player-card-3" class="player-card is-size-1" style="text-align: center;">
+                <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
+              </div>
+              <div id="player-card-4" class="player-card is-size-1" style="text-align: center;">
+                <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
+              </div>
+            </div>
+            <div id="end-turn-btn" class="button is-danger">End Turn</div>
+            <div id="player-deck""></div>
+          </div>
+        </div>
+
+        <div id="game-over" class="container is-hidden">
+          <article id="game-over-msg" class="message is-success is-large">
+            <div class="message-header">
+              <p class="is-size-1">Game Over</p>
+              <button class="delete is-large" aria-label="delete"></button>
+            </div>
+            <div id="you-won" class="is-hidden message-body">
+              You won the war!
+            </div>
+            <div id="you-lost" class="is-hidden message-body">
+              You lost the war!
+            </div>
+          </article>
+
+        </div>
+
       </div>
 
       <!-- Hero footer: will stick at the bottom -->
@@ -126,8 +192,9 @@
     </footer>
 
     <!-- MODALS -->
-    <!-- Player Info Modal -->
-    <div id="player-modal" class="modal">
+
+    <!-- New Game Modal -->
+    <div id="new-game-modal" class="modal">
       <div class="modal-background"></div>
 
       <div class="modal-content">
@@ -135,95 +202,208 @@
           <div class="title">Start a New Game</div>
           <!-- Modal Content -->
           <!-- NAME -->
-          <div class="field">
-            <label class="label">Character Name</label>
-            <div class="control">
-              <input type="text" class="input" placeholder="Kingslayer">
-            </div>
-          </div>
-
-          <!-- CLASS -->
-          <div class="field">
-            <label class="label">Class</label>
-            <div class="control">
-              <div class="select">
-                <select>
-                  <option>Warrior</option>
-                  <option>Mage</option>
-                  <option>Rogue</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <!-- DIFFICULTY -->
-          <div class="field">
-            <div class="control">
-              <label class="label">Difficulty Level</label>
-              <label class="radio">
-                <input type="radio" name="question">
-                Easy
-              </label>
-              <label class="radio">
-                <input type="radio" name="question">
-                Medium
-              </label>
-              <label class="radio">
-                <input type="radio" name="question">
-                Hard
-              </label>
-              <label class="radio">
-                <input type="radio" name="question">
-                Diabolical
-              </label>
-            </div>
-          </div>
-
-          <!-- TRASHTALK -->
-          <div class="field">
-            <div class="control">
-              <label class="label">Profanity</label>
-              <label class="checkbox">
-                <input type="checkbox">
-                Enable <a target="_blank" href="https://twitter.com/foaas">Trash Talk</a>?
-              </label>
-            </div>
-          </div>
-
-          <footer class="modal-card-foot">
-            <!-- SUBMIT/CANCEL -->
-            <div class="field is-grouped">
+          <form id="new-game-form">
+            <div class="field">
+              <label class="label">Character Name</label>
               <div class="control">
-                <button class="button is-success">Submit</button>
-              </div>
-              <div class="control">
-                <button class="button is-success is-light">Cancel</button>
+                <input id="name-input" type="text" class="input" placeholder="Kingslayer" required="required">
               </div>
             </div>
-          </footer>
+
+            <!-- CLASS -->
+            <div class="field">
+              <label for="class-select" class="label">Class</label>
+              <div class="control">
+                <div class="select">
+                  <select name="class-select" id="class-select" required="required">
+                    <option value="">--Please choose a class--</option>
+                    <option value="warrior">Warrior</option>
+                    <option value="mage">Mage</option>
+                    <option value="rogue">Rogue</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- DIFFICULTY -->
+            <div class="field">
+              <div class="control">
+                <label id="difficulty-level" for="difficulty" class="label">Difficulty Level</label>
+                <label for="easy" class="radio">
+                  <input id="easy" value="easy" type="radio" name="difficulty" required="required">
+                  Easy
+                </label>
+                <label for="medium" class="radio">
+                  <input id="medium" value="medium" type="radio" name="difficulty" disabled>
+                  Medium
+                </label>
+                <label for="hard" class="radio">
+                  <input id="hard" value="hard" type="radio" name="difficulty" disabled>
+                  Hard
+                </label>
+                <label for="diabolical" class="radio">
+                  <input id="diabolical" value="diabolical" type="radio" name="difficulty" disabled>
+                  Diabolical
+                </label>
+              </div>
+            </div>
+
+            <!-- TRASHTALK -->
+            <div class="field">
+              <div class="control">
+                <label class="label">Profanity</label>
+                <label class="checkbox">
+                  <input id="profanity-input" type="checkbox">
+                  Enable <a target="_blank" href="https://twitter.com/foaas">Trash Talk</a>?
+                </label>
+              </div>
+            </div>
+
+            <footer class="modal-card-foot">
+              <!-- SUBMIT/CANCEL -->
+              <div class="field is-grouped">
+                <div class="control">
+                  <input id="submit-btn" type="submit" value="Submit" class="button is-success"></input>
+                </div>
+                <div class="control">
+                  <input type="reset" value="Cancel" class="button is-success is-light"></input>
+                </div>
+              </div>
+            </footer>
+          </form>
+
+          <!-- End of Modal Content -->
         </div>
         </div>
         <button class="modal-close is-large" aria-label="close"></button>
-      </div>
-          <!-- Rules Modal -->
-          <div id="rules-modal" class="modal">
-            <div class="modal-background"></div>
-            <div class="modal-content">
-              <section id="rules-background" class="modal-card-body">
-                <div class="content modalBox">
-                  <h2 class="title">Rules</h2>
-                <p>the rules go here </br></br></br></br></br></br></br></br>
-                </br></br></br></br></br></br></br></br></br></br></br></br>
-              </br></br></br></br></br></br></br></br></br></br></br> 1</p>
-                </div>
-              </section>
-              
+    </div>
+
+
+
+    <!-- Create Account Modal -->
+    <div id="create-account-modal" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="box">
+          <div class="title">Create an Account</div>
+
+          <!-- Modal Content -->
+          <form id="account-form">
+          <!-- USERNAME -->
+            <div class="field">
+              <label class="label">New Username</label>
+              <div class="control">
+                <input id="username-input" type="text" class="input" placeholder="TyrionLannister420" required="required">
+              </div>
             </div>
-          </div>
+
+            <!-- CLASS -->
+            <div class="field">
+              <label for="deck-select" class="label">Choose a starter deck</label>
+              <div class="control">
+                <div class="select">
+                  <select name="deck-select" id="deck-select" required="required">
+                    <option value="">--Please choose a starting deck--</option>
+                    <option value="warrior">Dragon's wrath</option>
+                    <option value="mage">Bloodfury Dominion</option>
+                    <option value="rogue">Legion of the Forest</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- EXPERIENCE -->
+            <div class="field">
+              <div class="control">
+                <label id="experience-level" for="experience" class="label">Level of Experience</label>
+                <label for="novice" class="radio">
+                  <input id="novice" value="novice" type="radio" name="experience" required="required">
+                  I'm a total n00b
+                </label>
+                <label for="beginner" class="radio">
+                  <input id="beginner" value="beginner" type="radio" name="experience">
+                  I've played a trading card game once or twice
+                </label>
+                <label for="intermediate" class="radio">
+                  <input id="intermediate" value="intermediate" type="radio" name="experience">
+                  I enjoy trading card games semi-regularly
+                </label>
+                <label for="advanced" class="radio">
+                  <input id="advanced" value="advanced" type="radio" name="experience">
+                  I'm a die-hard TCG fan
+                </label>
+              </div>
+            </div>
+
+            <!-- SUBSCRIBE -->
+            <div class="field">
+              <div class="control">
+                <label class="label">Acknowledgement</label>
+                <label class="checkbox">
+                  <input id="subscribe" type="checkbox">
+                  I hereby acknowledge that I will have a kickass time.
+                </label>
+              </div>
+            </div>
+
+            <footer class="modal-card-foot">
+              <!-- SUBMIT/CANCEL -->
+              <div class="field is-grouped">
+                <div class="control">
+                  <input id="submit-btn" type="submit" value="Submit" class="button is-success"></input>
+                </div>
+                <div class="control">
+                  <input type="reset" value="Cancel" class="button is-success is-light"></input>
+                </div>
+              </div>
+            </footer>
+          </form>
+
+          <!-- End of Modal Content -->
+        </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Rules Modal -->
+    <div id="rules-modal" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">RULES</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+        <section id="rules-background" class="has-text-weight-bold modal-card-body has-text-light has-text-centered">
+        <br>
+        <br>
+        <h1 class="is-size-1-desktop has-text-grey-lighter has-text-weight-bold"><span class="has-text-dark">Epic</span> Game Name</h1>
+        <br>
+        <br>
+        <h2 class="is-size-2-desktop has-text-grey-lighter has-text-weight-bold"><span class="has-text-dark">Rules</span> of the Game</h2>
+        <div class="columns is-centered">
+          <p class="column is-three-fifths has-text-light is-size-4">This is a paragraph describing the rules of the game. We will use this to give a broad overview of what to expect. It is also where we will briefly thank our player for joining us.</p>
+        </div>
+        <h3 class="is-size-3-desktop">This is a subheading</h3>
+        <ul class="has-text-left">
+          <ol>These</ol>
+          <ol>Are</ol>
+          <ol>Some</ol>
+          <ol>More</ol>
+          <ol>Rules</ol>
+          </ul>
+        </section>
+      </div>
+    </div>
           <!-- Cards Modal -->
           <div id="cards-modal" class="modal">
             <div class="modal-background"></div>
-      
+
             <div class="modal-content">
               <div class="box">
               <h3>Cards</h3>
@@ -234,7 +414,7 @@
           <!-- Leaderboard Modal -->
           <div id="leaderboard-modal" class="modal">
             <div class="modal-background"></div>
-      
+
             <div class="modal-content">
               <div class="box">
               <h3>Leaderboard</h3>
@@ -254,13 +434,13 @@
               </br></br></br></br></br></br></br></br></br></br></br> So we fight!</p>
                 </div>
               </section>
-              
+
             </div>
           </div>
           <!-- Settings Modal -->
           <div id="settings-modal" class="modal">
             <div class="modal-background"></div>
-      
+
             <div class="modal-content">
               <div class="box">
               <h3>Settings</h3>
@@ -269,14 +449,16 @@
             </div>
           </div>
           <!-- End of Modal Content -->
-       
 
-     
+
+
     <!-- END OF MODALS -->
-    <script src="./assets/js/script.js"></script>
     <script
-      src="https://kit.fontawesome.com/8933e0b13d.js"
-      crossorigin="anonymous"
+    src="https://kit.fontawesome.com/8933e0b13d.js"
+    crossorigin="anonymous"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/Draggable.min.js"></script>
+    <script src="./assets/js/script.js"></script>
   </body>
 </html>
