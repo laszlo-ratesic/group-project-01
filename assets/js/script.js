@@ -109,8 +109,9 @@ let player = {
   name: "",
   class: "",
   power: 0,
-  health: 100,
+  health: 30,
   deck: starterDeck,
+  hand: []
 };
 
 let settings = {
@@ -121,8 +122,9 @@ let settings = {
 let enemy = {
   name: "testBot",
   power: 0,
-  health: 100,
+  health: 30,
   deck: enemyDeck,
+  hand: []
 };
 
 let discardPile = [];
@@ -229,7 +231,6 @@ function attackTarget(event) {
       console.log(`Your ${readyToAttack.dataset.name} card did not survive the battle.`)
       discardPile.push(readyToAttack);
       readyToAttack.remove();
-      console.log(discardPile);
     }
 
   }
@@ -344,7 +345,6 @@ function startPlayerTurn() {
     setCardProps(newCard, player.deck);
   }
 
-  console.log(playerHand.children);
 
   // Make cards in hand clickable to play
   for (let i = 0; i < playerHand.children.length; i++) {
@@ -368,8 +368,9 @@ function endEnemyTurn() {
     player.power = turnCounter + 2;
   } else {
     player.power = turnCounter;
-    enemy.power = turnCounter;
   }
+  playerPower.max = player.power * 100;
+  playerPower.value = player.power * 100;
   console.log(`You now have ${player.power} power.`);
   startPlayerTurn();
 }
@@ -387,7 +388,10 @@ function enemyPlayCard() {
         placeholder.src = "./assets/images/placeholder-card.png";
         placeholder.style.transform = "scale(1.2)";
         card.appendChild(placeholder);
-        console.log(`Enemy played ${card.dataset.name}`);
+        console.log(`${enemy.name} played ${card.dataset.name}`);
+        enemy.power -= card.dataset.cost;
+        enemyPower.value = enemy.power * 100;
+        console.log(`${enemy.name} now has ${enemy.power} power`)
       }
     };
     endEnemyTurn();
@@ -419,13 +423,18 @@ function enemyThinking() {
 }
 
 function enemyTurn() {
+  enemy.power = turnCounter;
+  enemyPower.max = enemy.power * 100;
+  enemyPower.value = enemy.power * 100;
   // draws a card
   if (enemy.deck.length > 0) {
     const newCard = document.createElement("div");
     newCard.classList.add("enemy-card");
     enemyHand.appendChild(newCard);
     setCardProps(newCard, enemy.deck);
+    enemy.hand.push(newCard);
   }
+  console.log(`${enemy.name} has ${displayHand(enemy.hand)}`);
   enemyThinking();
 }
 
@@ -442,8 +451,8 @@ function endPlayerTurn() {
 function playCard(event) {
   const chosenCard = event.currentTarget;
   if (player.power >= chosenCard.dataset.cost) {
-    console.log(chosenCard);
     player.power -= chosenCard.dataset.cost;
+    playerPower.value = player.power * 100;
     console.log(`You have ${player.power} power left`);
     chosenCard.classList.remove("player-card");
     chosenCard.classList.add("played-card");
@@ -476,6 +485,14 @@ function setCardProps(cardEl, fromDeck) {
   }
 }
 
+function displayHand(hand) {
+  let output = "";
+  for (let i = 0; i < hand.length; i++) {
+    output += hand[i].dataset.name + " cost=" + hand[i].dataset.cost + ", ";
+  }
+  return output;
+}
+
 function displayFelt() {
   const card1 = document.getElementById("0");
   const card2 = document.getElementById("1");
@@ -493,48 +510,49 @@ function displayFelt() {
   turnCounter++;
   player.power++;
   enemy.power++;
-  console.log(player);
 
   playerHealth.value = player.health;
+  playerPower.max = (player.power * 100);
+  playerPower.value = (player.power * 100);
 
   playerCard1.addEventListener("click", playCard);
   setCardProps(playerCard1, player.deck);
+  player.hand.push(playerCard1);
+
   playerCard2.addEventListener("click", playCard);
   setCardProps(playerCard2, player.deck);
+  player.hand.push(playerCard2);
+
   playerCard3.addEventListener("click", playCard);
   setCardProps(playerCard3, player.deck);
+  player.hand.push(playerCard3);
+
   playerCard4.addEventListener("click", playCard);
   setCardProps(playerCard4, player.deck);
-  const cardData1 = playerCard1.dataset;
-  const cardData2 = playerCard2.dataset;
-  const cardData3 = playerCard3.dataset;
-  const cardData4 = playerCard4.dataset;
-  console.log(
-    `Your hand: ${cardData1.name} cost=${cardData1.cost}, ${cardData2.name} cost=${cardData2.cost}, ${cardData3.name} cost=${cardData3.cost}, ${cardData4.name} cost=${cardData4.cost}`
-  );
+  player.hand.push(playerCard4);
+
+  console.log(`You have ${displayHand(player.hand)}`);
 
   setCardProps(enemyCard1, enemy.deck);
+  enemy.hand.push(enemyCard1);
   setCardProps(enemyCard2, enemy.deck);
+  enemy.hand.push(enemyCard2);
   setCardProps(enemyCard3, enemy.deck);
-  setCardProps(enemyCard4, enemy.deck);
-  const enemyCardData1 = enemyCard1.dataset;
-  const enemyCardData2 = enemyCard2.dataset;
-  const enemyCardData3 = enemyCard3.dataset;
-  const enemyCardData4 = enemyCard4.dataset;
+  enemy.hand.push(enemyCard3);
 
-  console.log(enemy);
   enemyHealth.value = enemy.health;
+  enemyPower.max = (enemy.power * 100);
+  enemyPower.value = (enemy.power * 100);
+
 
   console.log(
-    `You are battling ${enemy.name}, with a deck containing: ${enemyCardData1.name} cost=${enemyCardData1.cost}, ${enemyCardData2.name} cost=${enemyCardData2.cost}, ${enemyCardData3.name} cost=${enemyCardData3.cost}, ${enemyCardData4.name} cost=${enemyCardData4.cost}`
+    `You are battling ${enemy.name}`
   );
-
   endTurnBtn.addEventListener("click", endPlayerTurn);
 }
 
 function chooseCard(event) {
   const chosenCard = event.target;
-  console.log(chosenCard);
   displayFelt();
 }
 
@@ -552,6 +570,7 @@ function createCard(cardId) {
 }
 
 function displayChoice() {
+  console.log(`Welcome ${player.name}!`)
   heroBody.style.width = "75%";
   heroBody.classList.add("is-align-self-center");
   for (let i = 0; i < 3; i++) {
@@ -573,7 +592,6 @@ function startGame(event) {
   if (classSelect.value === "mage") {
     player.power = 2;
   }
-  console.log(player);
 
   for (i = 0; i < difficultyInput.length; i++) {
     if (difficultyInput[i].checked) {
@@ -581,7 +599,6 @@ function startGame(event) {
     }
   }
   settings.profanity = profanityInput.checked;
-  console.log(settings);
 
   modal.classList.remove("is-active");
   // Prevents cancel from returning felt view
@@ -594,6 +611,7 @@ function startGame(event) {
 
 formEl.addEventListener("submit", startGame);
 
+// BULMA CODE
 /* When a user clicks on a button, an element with the `.modal` class is opened. */
 document.addEventListener("DOMContentLoaded", () => {
   // Get all "navbar-burger" elements
