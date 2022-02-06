@@ -1,3 +1,5 @@
+const navBarBrand = document.querySelector(".navbar-brand");
+const navBarMenu = document.querySelector(".navbar-menu");
 const modal = document.querySelector(".modal");
 const landingMsg = document.getElementById("landing-msg");
 
@@ -267,8 +269,6 @@ function attackTarget(event) {
     }
   }
 
-  console.dir(target);
-
   target.style.animation = "wobble 1s";
   enemyAvatar.style.boxShadow = "none";
   enemyAvatar.removeEventListener("mouseenter", attackTargetHover);
@@ -364,6 +364,14 @@ function AtkMsg() {
   }
 }
 
+function displayHand(hand) {
+  let output = "";
+  for (let i = 0; i < hand.length; i++) {
+    output += hand[i].dataset.name + " cost=" + hand[i].dataset.cost + ", ";
+  }
+  return output;
+}
+
 function startPlayerTurn() {
   // draws a card
   if (player.deck.length > 0) {
@@ -376,6 +384,7 @@ function startPlayerTurn() {
     playerHand.appendChild(newCard);
     setCardProps(newCard, player.deck);
   }
+  console.log(displayHand(player.hand));
 
   // Make cards in hand clickable to play
   for (let i = 0; i < playerHand.children.length; i++) {
@@ -402,7 +411,7 @@ function endEnemyTurn() {
   }
   playerPower.max = player.power * 100;
   playerPower.value = player.power * 100;
-  console.log(`You now have ${player.power} power.`);
+  console.log(`You have ${player.power} power.`);
   startPlayerTurn();
 }
 
@@ -547,14 +556,15 @@ function endPlayerTurn() {
 function playCard(event) {
   const chosenCard = event.currentTarget;
   if (player.power >= chosenCard.dataset.cost) {
-    player.power -= chosenCard.dataset.cost;
-    playerPower.value = player.power * 100;
-    console.log(`You have ${player.power} power left`);
     chosenCard.classList.remove("player-card");
     chosenCard.classList.add("played-card");
     chosenCard.setAttribute("data-state", "in-play");
     chosenCard.removeEventListener("click", playCard);
     playerField.appendChild(chosenCard);
+    console.log(`You played ${chosenCard.dataset.name}!`)
+    player.power -= chosenCard.dataset.cost;
+    playerPower.value = player.power * 100;
+    console.log(`You have ${player.power} power left`);
   }
 }
 
@@ -579,14 +589,6 @@ function setCardProps(cardEl, fromDeck) {
       cardEl.setAttribute("data-def", cardProps[i][1]);
     }
   }
-}
-
-function displayHand(hand) {
-  let output = "";
-  for (let i = 0; i < hand.length; i++) {
-    output += hand[i].dataset.name + " cost=" + hand[i].dataset.cost + ", ";
-  }
-  return output;
 }
 
 function displayFelt() {
@@ -663,6 +665,8 @@ function createCard(cardId) {
 }
 
 function displayChoice() {
+  navBarBrand.classList.add("is-hidden");
+  navBarMenu.classList.add("is-hidden");
   console.log(`Welcome ${player.name}!`);
   heroBody.style.width = "75%";
   heroBody.classList.add("is-align-self-center");
@@ -708,6 +712,8 @@ newGameForm.addEventListener("submit", startGame);
 // BULMA CODE
 /* When a user clicks on a button, an element with the `.modal` class is opened. */
 document.addEventListener("DOMContentLoaded", () => {
+
+  // NAVBURGERS
   // Get all "navbar-burger" elements
   const $navbarBurgers = Array.prototype.slice.call(
     document.querySelectorAll(".navbar-burger"),
@@ -729,6 +735,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+  // END OF NAVBURGERS
 
   // Functions to open and close a modal
   function openModal($el) {

@@ -192,6 +192,94 @@
     </footer>
 
     <!-- MODALS -->
+
+    <!-- New Game Modal -->
+    <div id="new-game-modal" class="modal">
+      <div class="modal-background"></div>
+
+      <div class="modal-content">
+        <div class="box">
+          <div class="title">Start a New Game</div>
+          <!-- Modal Content -->
+          <!-- NAME -->
+          <form id="new-game-form">
+            <div class="field">
+              <label class="label">Character Name</label>
+              <div class="control">
+                <input id="name-input" type="text" class="input" placeholder="Kingslayer" required="required">
+              </div>
+            </div>
+
+            <!-- CLASS -->
+            <div class="field">
+              <label for="class-select" class="label">Class</label>
+              <div class="control">
+                <div class="select">
+                  <select name="class-select" id="class-select" required="required">
+                    <option value="">--Please choose a class--</option>
+                    <option value="warrior">Warrior</option>
+                    <option value="mage">Mage</option>
+                    <option value="rogue">Rogue</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- DIFFICULTY -->
+            <div class="field">
+              <div class="control">
+                <label id="difficulty-level" for="difficulty" class="label">Difficulty Level</label>
+                <label for="easy" class="radio">
+                  <input id="easy" value="easy" type="radio" name="difficulty" required="required">
+                  Easy
+                </label>
+                <label for="medium" class="radio">
+                  <input id="medium" value="medium" type="radio" name="difficulty" disabled>
+                  Medium
+                </label>
+                <label for="hard" class="radio">
+                  <input id="hard" value="hard" type="radio" name="difficulty" disabled>
+                  Hard
+                </label>
+                <label for="diabolical" class="radio">
+                  <input id="diabolical" value="diabolical" type="radio" name="difficulty" disabled>
+                  Diabolical
+                </label>
+              </div>
+            </div>
+
+            <!-- TRASHTALK -->
+            <div class="field">
+              <div class="control">
+                <label class="label">Profanity</label>
+                <label class="checkbox">
+                  <input id="profanity-input" type="checkbox">
+                  Enable <a target="_blank" href="https://twitter.com/foaas">Trash Talk</a>?
+                </label>
+              </div>
+            </div>
+
+            <footer class="modal-card-foot">
+              <!-- SUBMIT/CANCEL -->
+              <div class="field is-grouped">
+                <div class="control">
+                  <input id="submit-btn" type="submit" value="Submit" class="button is-success"></input>
+                </div>
+                <div class="control">
+                  <input type="reset" value="Cancel" class="button is-success is-light"></input>
+                </div>
+              </div>
+            </footer>
+          </form>
+
+          <!-- End of Modal Content -->
+        </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+
+
     <!-- Create Account Modal -->
     <div id="create-account-modal" class="modal">
       <div class="modal-background"></div>
@@ -281,90 +369,8 @@
       </div>
     </div>
 
-    <!-- New Game Modal -->
-    <div id="new-game-modal" class="modal">
-      <div class="modal-background"></div>
 
-      <div class="modal-content">
-        <div class="box">
-          <div class="title">Start a New Game</div>
-          <!-- Modal Content -->
-          <!-- NAME -->
-          <form id="new-game-form">
-            <div class="field">
-              <label class="label">Character Name</label>
-              <div class="control">
-                <input id="name-input" type="text" class="input" placeholder="Kingslayer" required="required">
-              </div>
-            </div>
 
-            <!-- CLASS -->
-            <div class="field">
-              <label for="class-select" class="label">Class</label>
-              <div class="control">
-                <div class="select">
-                  <select name="class-select" id="class-select" required="required">
-                    <option value="">--Please choose a class--</option>
-                    <option value="warrior">Warrior</option>
-                    <option value="mage">Mage</option>
-                    <option value="rogue">Rogue</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <!-- DIFFICULTY -->
-            <div class="field">
-              <div class="control">
-                <label id="difficulty-level" for="difficulty" class="label">Difficulty Level</label>
-                <label for="easy" class="radio">
-                  <input id="easy" value="easy" type="radio" name="difficulty" required="required">
-                  Easy
-                </label>
-                <label for="medium" class="radio">
-                  <input id="medium" value="medium" type="radio" name="difficulty" disabled>
-                  Medium
-                </label>
-                <label for="hard" class="radio">
-                  <input id="hard" value="hard" type="radio" name="difficulty" disabled>
-                  Hard
-                </label>
-                <label for="diabolical" class="radio">
-                  <input id="diabolical" value="diabolical" type="radio" name="difficulty" disabled>
-                  Diabolical
-                </label>
-              </div>
-            </div>
-
-            <!-- TRASHTALK -->
-            <div class="field">
-              <div class="control">
-                <label class="label">Profanity</label>
-                <label class="checkbox">
-                  <input id="profanity-input" type="checkbox">
-                  Enable <a target="_blank" href="https://twitter.com/foaas">Trash Talk</a>?
-                </label>
-              </div>
-            </div>
-
-            <footer class="modal-card-foot">
-              <!-- SUBMIT/CANCEL -->
-              <div class="field is-grouped">
-                <div class="control">
-                  <input id="submit-btn" type="submit" value="Submit" class="button is-success"></input>
-                </div>
-                <div class="control">
-                  <input type="reset" value="Cancel" class="button is-success is-light"></input>
-                </div>
-              </div>
-            </footer>
-          </form>
-
-          <!-- End of Modal Content -->
-        </div>
-        </div>
-        <button class="modal-close is-large" aria-label="close"></button>
-    </div>
     <!-- Rules Modal -->
     <div id="rules-modal" class="modal">
       <div class="modal-background"></div>
