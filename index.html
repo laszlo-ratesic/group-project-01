@@ -8,7 +8,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/sass/combined.css" />
     <title>Group Project 01</title>
   </head>
   <body>
@@ -82,7 +82,7 @@
           <p class="title">
             Epic Card Game
           </p>
-          <button class="button is-large is-danger is-outlined js-modal-trigger" data-target="player-modal">
+          <button class="button is-large is-success is-outlined js-modal-trigger" data-target="player-modal">
             New Game
           </button>
         </div>
@@ -104,9 +104,9 @@
           </div>
 
           <div id="no-mans-land" class="is-flex is-flex-direction-column">
-            <div id="enemy-field" class="cards-in-play is-flex is-align-items-flex-end is-justify-content-space-around">
+            <div id="enemy-field" class="cards-in-play is-flex is-align-items-flex-end is-justify-content-flex-start">
             </div>
-            <div id="player-field" class="cards-in-play is-flex is-justify-content-space-around">
+            <div id="player-field" class="cards-in-play is-flex is-justify-content-flex-end">
 
             </div>
           </div>
@@ -130,7 +130,8 @@
                 <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
               </div>
             </div>
-            <div id="player-deck"></div>
+            <div id="end-turn-btn" class="button is-danger">End Turn</div>
+            <div id="player-deck""></div>
           </div>
         </div>
 
@@ -262,16 +263,30 @@
           <!-- Rules Modal -->
           <div id="rules-modal" class="modal">
             <div class="modal-background"></div>
-            <div class="modal-content">
-              <section id="rules-background" class="modal-card-body">
-                <div class="content modalBox">
-                  <h2 class="title">Rules</h2>
-                <p>the rules go here </br></br></br></br></br></br></br></br>
-                </br></br></br></br></br></br></br></br></br></br></br></br>
-              </br></br></br></br></br></br></br></br></br></br></br> 1</p>
+            <div class="modal-card">
+              <header class="modal-card-head">
+                <p class="modal-card-title">RULES</p>
+                <button class="delete" aria-label="close"></button>
+              </header>
+              <section id="rules-background" class="has-text-weight-bold modal-card-body has-text-light has-text-centered">
+                <br>
+                <br>
+              <h1 class="is-size-1-desktop has-text-grey-lighter has-text-weight-bold"><span class="has-text-dark">Epic</span> Game Name</h1>
+                <br>
+                <br>
+                <h2 class="is-size-2-desktop has-text-grey-lighter has-text-weight-bold"><span class="has-text-dark">Rules</span> of the Game</h2>
+                <div class="columns is-centered">
+                  <p class="column is-three-fifths has-text-light is-size-4">This is a paragraph describing the rules of the game. We will use this to give a broad overview of what to expect. It is also where we will briefly thank our player for joining us.</p>
                 </div>
+                <h3 class="is-size-3-desktop">This is a subheading</h3>
+                <ul class="has-text-left">
+                  <ol>These</ol>
+                  <ol>Are</ol>
+                  <ol>Some</ol>
+                  <ol>More</ol>
+                  <ol>Rules</ol>
+                </ul>
               </section>
-
             </div>
           </div>
           <!-- Cards Modal -->

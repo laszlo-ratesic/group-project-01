@@ -1,5 +1,3 @@
-const deck = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
 /* When a user clicks on a button, an element with the `.modal` class is opened. */
 document.addEventListener("DOMContentLoaded", () => {
   // Get all "navbar-burger" elements
@@ -73,8 +71,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* For each element in the array returned by document.querySelectorAll('.notification .delete'), add a
- click event listener to the delete element that will remove the parent notification element from
- the DOM. */
+  click event listener to the delete element that will remove the parent notification element from
+  the DOM. */
   (document.querySelectorAll(".notification .delete") || []).forEach(
     ($delete) => {
       const $notification = $delete.parentNode;
@@ -85,6 +83,103 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   );
 });
+// END OF BULMA JS
+
+const angel = {
+  name: "angel",
+  cost: 1,
+  atk: 1,
+  def: 2,
+};
+const demon = {
+  name: "demon",
+  cost: 1,
+  atk: 2,
+  def: 1,
+};
+const knight = {
+  name: "knight",
+  cost: 2,
+  atk: 2,
+  def: 3,
+};
+const inferno = {
+  name: "inferno",
+  cost: 3,
+  atk: 5,
+  def: 0,
+};
+const warlock = {
+  name: "warlock",
+  cost: 6,
+  atk: 7,
+  def: 3,
+};
+const centurion = {
+  name: "centurion",
+  cost: 5,
+  atk: 4,
+  def: 6,
+};
+const dragon = {
+  name: "dragon",
+  cost: 8,
+  atk: 10,
+  def: 10,
+};
+
+const deck = [angel, demon, knight, inferno, warlock, centurion, dragon];
+
+let turnCounter = 0;
+
+const formEl = document.getElementById("form-el");
+const modal = document.querySelector(".modal");
+const heroEl = document.querySelector(".hero");
+const landingMsg = document.getElementById("landing-msg");
+const heroHead = document.querySelector(".hero-head");
+const heroBody = document.querySelector(".hero-body");
+const heroFoot = document.querySelector(".hero-foot");
+const footer = document.querySelector(".footer");
+
+const enemyAvatar = document.getElementById("enemy-avatar");
+const playerAvatar = document.getElementById("player-avatar");
+
+const enemyDeck = document.querySelector("#enemy-deck");
+const playerDeck = document.querySelector("#player-deck");
+
+const enemyHand = document.getElementById("enemy-hand");
+const playerHand = document.getElementById("player-hand");
+
+const noMansLand = document.getElementById("no-mans-land");
+
+const enemyField = document.getElementById("enemy-field");
+const playerField = document.getElementById("player-field");
+
+const playerCard1 = document.getElementById("player-card-1");
+const playerCard2 = document.getElementById("player-card-2");
+const playerCard3 = document.getElementById("player-card-3");
+const playerCard4 = document.getElementById("player-card-4");
+
+const enemyCard1 = document.getElementById("enemy-card-1");
+const enemyCard2 = document.getElementById("enemy-card-2");
+const enemyCard3 = document.getElementById("enemy-card-3");
+const enemyCard4 = document.getElementById("enemy-card-4");
+
+const endTurnBtn = document.getElementById("end-turn-btn");
+
+$insetGoldGlow =
+  "inset gold -15px -15px 10px, inset gold 15px -15px 10px, inset gold 15px 15px 10px, inset gold -15px 15px 10px";
+$insetRedGlow =
+  "inset red 15px 15px 10px, inset red 15px -15px 10px, inset red -15px -15px 10px, inset red -15px 15px 10px";
+
+$redGlow =
+  "red 15px 15px 10px, red 15px -15px 10px, red -15px -15px 10px, red -15px 15px 10px";
+$blueGlow =
+  "blue 15px 15px 10px, blue 15px -15px 10px, blue -15px -15px 10px, blue -15px 15px 10px";
+$goldGlow =
+  "gold -15px -15px 10px, gold 15px -15px 10px, gold 15px 15px 10px, gold -15px 15px 10px";
+
+const feltView = document.getElementById("felt-view");
 
 function hover(event) {
   event.target.style.transform = "scale(1.3)";
@@ -93,8 +188,15 @@ function hover(event) {
 function unhover(event) {
   event.target.style.transform = "scale(1)";
 }
-const feltView = document.getElementById("felt-view");
 
+function attackTargetHover(event) {
+  event.target.style.boxShadow = $redGlow;
+}
+function attackTargetUnhover(event) {
+  event.target.style.boxShadow = $goldGlow;
+}
+
+// Opponent Trash Talk Window
 function notification(message) {
   const notification = document.createElement("div");
   notification.classList.add("notification", "is-warning");
@@ -108,10 +210,101 @@ function notification(message) {
   }, 2000);
 }
 
+// {Player's} card floats with red shadow
+// *We use this to show which cards are in play on player's turn
+function cardReady(cardEl) {
+  cardEl.style.transition = "all 1200ms";
+  cardEl.style.transform = "translateY(-15px)";
+  cardEl.style.boxShadow = $redGlow;
+  cardEl.style.animation = "3s ease 1200ms infinite alternate bounce";
+}
+
+// {Enemy's} card is highlighted by a gold shadow
+// *Use this to show which enemy card the player is targeting for attack
+function targetCard(cardEl) {
+  cardEl.style.transition = "all 300ms";
+  cardEl.style.boxShadow = $goldGlow;
+  cardEl.addEventListener("mouseenter", attackTargetHover);
+  cardEl.addEventListener("mouseleave", attackTargetUnhover);
+  cardEl.addEventListener("click", attackTarget);
+}
+
+
+function attackTarget(event) {
+  // The (parent) event (<--double-check this)
+  const target = event.currentTarget;
+  // Player's currently attacking card
+  const readyToAttack = document.querySelector(".ready-to-attack");
+
+  target.style.animation = "wobble 1s";
+  readyToAttack.style.boxShadow = "none";
+  readyToAttack.style.transform = "translateY(15px)";
+  readyToAttack.dataset.state = "exhausted";
+  readyToAttack.classList.add("card-inactive");
+  readyToAttack.classList.remove("ready-to-attack");
+  console.log(playerField.children[0]);
+  for (let i = 0; i < playerField.children.length; i++) {
+    if (playerField.children[i].dataset.state === "in-play") {
+      cardReady(playerField.children[i]);
+      playerField.children[i].addEventListener("click", AtkMsg);
+    }
+  }
+}
+
+function AtkMsg() {
+  const attacker = this;
+  for (let i = 0; i < playerField.children.length; i++) {
+    if (playerField.children[i] !== attacker) {
+      playerField.children[i].style.animation = null;
+      playerField.children[i].style.boxShadow = "none";
+    }
+  }
+  attacker.style.animation = null;
+  attacker.style.boxShadow = $blueGlow;
+  attacker.classList.remove("played-card");
+  attacker.classList.add("ready-to-attack");
+  console.log("What do you want to attack?");
+  enemyAvatar.style.transition = "all 300ms";
+  enemyAvatar.style.boxShadow = $goldGlow;
+  enemyAvatar.addEventListener("mouseenter", attackTargetHover);
+  enemyAvatar.addEventListener("mouseleave", attackTargetUnhover);
+  enemyAvatar.addEventListener("click", attackTarget);
+  if (enemyField.children) {
+    for (let i = 0; i < enemyField.children.length; i++) {
+      targetCard(enemyField.children[i]);
+    }
+  }
+}
+
+function startPlayerTurn() {
+  if (playerField.children) {
+    for (let i = 0; i < playerField.children.length; i++) {
+      cardReady(playerField.children[i]);
+      playerField.children[i].addEventListener("click", AtkMsg);
+    }
+  }
+  if (deck) {
+    // IF STILL CARDS IN DECK THEN DRAW CARD
+    // AND ADD TO HAND
+  }
+}
+
+function endEnemyTurn() {
+  turnCounter++;
+  startPlayerTurn();
+}
+
 function enemyPlayCard() {
   setTimeout(function () {
-    enemyCard2.style.transform = null;
+    enemyCard2.classList.add("played-enemy-card");
     enemyField.appendChild(enemyCard2);
+
+    const placeholder = document.createElement("img");
+    placeholder.src = "./assets/images/placeholder-card.png";
+    placeholder.style.transform = "scale(1.2)";
+    enemyCard2.appendChild(placeholder);
+    setTimeout(card3down(), 1000);
+    endEnemyTurn();
   }, 3000);
 }
 
@@ -166,6 +359,8 @@ function enemyTurn() {
 }
 
 function endPlayerTurn() {
+  turnCounter++;
+  endTurnBtn.removeEventListener("click", endPlayerTurn);
   playerCard1.removeEventListener("click", playCard);
   playerCard2.removeEventListener("click", playCard);
   playerCard3.removeEventListener("click", playCard);
@@ -182,36 +377,29 @@ function playCard(event) {
   chosenCard.setAttribute("data-state", "in-play");
   chosenCard.removeEventListener("click", playCard);
   playerField.appendChild(chosenCard);
-  endPlayerTurn();
 }
 
 function drawCard() {
-  const randomCardFromDeck = Math.floor(Math.random() * deck.length);
-  return randomCardFromDeck;
+  const randomIndex = Math.floor(Math.random() * deck.length);
+  return deck[randomIndex];
+}
+
+function setCardProps(cardEl) {
+  const cardProps = Object.entries(drawCard());
+  for (let i = 0; i < cardProps.length; i++) {
+    if (i === 0) {
+      cardEl.setAttribute("data-name", cardProps[i][1]);
+    } else if (i === 1) {
+      cardEl.setAttribute("data-cost", cardProps[i][1]);
+    } else if (i === 2) {
+      cardEl.setAttribute("data-atk", cardProps[i][1]);
+    } else {
+      cardEl.setAttribute("data-def", cardProps[i][1]);
+    }
+  }
 }
 
 function displayFelt() {
-  feltView.classList.remove("is-hidden");
-  playerCard1.addEventListener("click", playCard);
-  playerCard1.setAttribute("data-state", "in-hand");
-  playerCard1.setAttribute("data-power", drawCard());
-
-  playerCard2.addEventListener("click", playCard);
-  playerCard2.setAttribute("data-state", "in-hand");
-  playerCard2.setAttribute("data-power", drawCard());
-
-  playerCard3.addEventListener("click", playCard);
-  playerCard3.setAttribute("data-state", "in-hand");
-  playerCard3.setAttribute("data-power", drawCard());
-
-  playerCard4.addEventListener("click", playCard);
-  playerCard4.setAttribute("data-state", "in-hand");
-  playerCard4.setAttribute("data-power", drawCard());
-}
-
-function chooseCard(event) {
-  const chosenCard = event.target;
-  console.log(chosenCard);
   const card1 = document.getElementById("0");
   const card2 = document.getElementById("1");
   const card3 = document.getElementById("2");
@@ -222,6 +410,31 @@ function chooseCard(event) {
   heroBody.classList.add("p0");
   heroBody.style.flexDirection = "column";
   heroBody.style.justifyContent = "space-between";
+
+  feltView.classList.remove("is-hidden");
+  turnCounter++;
+  playerCard1.addEventListener("click", playCard);
+  playerCard1.setAttribute("data-state", "in-hand");
+  setCardProps(playerCard1);
+
+  playerCard2.addEventListener("click", playCard);
+  playerCard2.setAttribute("data-state", "in-hand");
+  setCardProps(playerCard2);
+
+  playerCard3.addEventListener("click", playCard);
+  playerCard3.setAttribute("data-state", "in-hand");
+  setCardProps(playerCard3);
+
+  playerCard4.addEventListener("click", playCard);
+  playerCard4.setAttribute("data-state", "in-hand");
+  setCardProps(playerCard4);
+
+  endTurnBtn.addEventListener("click", endPlayerTurn);
+}
+
+function chooseCard(event) {
+  const chosenCard = event.target;
+  console.log(chosenCard);
   displayFelt();
 }
 
@@ -257,44 +470,11 @@ function startGame(event) {
   event.preventDefault();
   modal.classList.remove("is-active");
   // Prevents cancel from returning felt view
-  heroEl.style.backgroundImage = "url(./assets/images/red-felt.jpeg)";
+  heroEl.style.backgroundImage = "url(./assets/images/black-felt.jpg)";
   landingMsg.classList.add("is-hidden");
   heroFoot.classList.add("is-hidden");
   footer.classList.add("is-hidden");
   displayChoice();
 }
-
-const formEl = document.getElementById("form-el");
-const modal = document.querySelector(".modal");
-const heroEl = document.querySelector(".hero");
-const landingMsg = document.getElementById("landing-msg");
-const heroHead = document.querySelector(".hero-head");
-const heroBody = document.querySelector(".hero-body");
-const heroFoot = document.querySelector(".hero-foot");
-const footer = document.querySelector(".footer");
-
-const enemyAvatar = document.getElementById("enemy-avatar");
-const playerAvatar = document.getElementById("player-avatar");
-
-const enemyDeck = document.querySelector("#enemy-deck");
-const playerDeck = document.querySelector("#player-deck");
-
-const enemyHand = document.getElementById("enemy-hand");
-const playerHand = document.getElementById("player-hand");
-
-const noMansLand = document.getElementById("no-mans-land");
-
-const enemyField = document.getElementById("enemy-field");
-const playerField = document.getElementById("player-field");
-
-const playerCard1 = document.getElementById("player-card-1");
-const playerCard2 = document.getElementById("player-card-2");
-const playerCard3 = document.getElementById("player-card-3");
-const playerCard4 = document.getElementById("player-card-4");
-
-const enemyCard1 = document.getElementById("enemy-card-1");
-const enemyCard2 = document.getElementById("enemy-card-2");
-const enemyCard3 = document.getElementById("enemy-card-3");
-const enemyCard4 = document.getElementById("enemy-card-4");
 
 formEl.addEventListener("submit", startGame);
