@@ -1,18 +1,23 @@
+const modal = document.querySelector(".modal");
+const landingMsg = document.getElementById("landing-msg");
+
 const accountForm = document.getElementById("account-form");
+const usernameInput = document.getElementById("username-input");
+
 const newGameForm = document.getElementById("new-game-form");
-const feltView = document.getElementById("felt-view");
-const gameOver = document.getElementById("game-over");
 const nameInput = document.getElementById("name-input");
 const classSelect = document.getElementById("class-select");
 const difficultyInput = document.getElementsByName("difficulty");
 const profanityInput = document.getElementById("profanity-input");
-const modal = document.querySelector(".modal");
+
+const feltView = document.getElementById("felt-view");
 const heroEl = document.querySelector(".hero");
-const landingMsg = document.getElementById("landing-msg");
 const heroHead = document.querySelector(".hero-head");
 const heroBody = document.querySelector(".hero-body");
 const heroFoot = document.querySelector(".hero-foot");
 const footer = document.querySelector(".footer");
+
+const gameOver = document.getElementById("game-over");
 
 const enemyAvatar = document.getElementById("enemy-avatar");
 const playerAvatar = document.getElementById("player-avatar");
