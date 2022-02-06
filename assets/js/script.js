@@ -1,4 +1,5 @@
 const feltView = document.getElementById("felt-view");
+const gameOver = document.getElementById("game-over");
 const formEl = document.getElementById("form-el");
 const nameInput = document.getElementById("name-input");
 const classSelect = document.getElementById("class-select");
@@ -42,6 +43,9 @@ const enemyHealth = document.getElementById("enemy-health");
 const enemyPower = document.getElementById("enemy-power");
 const playerHealth = document.getElementById("player-health");
 const playerPower = document.getElementById("player-power");
+
+const youWon = document.getElementById("you-won");
+const youLost = document.getElementById("you-lost");
 
 $insetGoldGlow =
   "inset gold -15px -15px 10px, inset gold 15px -15px 10px, inset gold 15px 15px 10px, inset gold -15px 15px 10px";
@@ -101,9 +105,9 @@ let dragon = {
 
 let turnCounter = 0;
 
-let starterDeck = [angel, demon, knight, inferno, angel, inferno, demon];
+let starterDeck = [angel, demon, knight, inferno, angel, inferno, demon, warlock, centurion, dragon, angel, demon, knight, inferno, angel, inferno, demon, warlock, centurion, dragon, angel, demon, knight, inferno, angel, inferno, demon, warlock, centurion, dragon, angel, demon, knight, inferno, angel, inferno, demon, warlock, centurion, dragon];
 
-let enemyDeck = [angel, demon, knight, inferno, angel, inferno, demon];
+let enemyDeck = [angel, demon, knight, inferno, angel, inferno, demon, warlock, centurion, dragon, angel, demon, knight, inferno, angel, inferno, demon, warlock, centurion, dragon, angel, demon, knight, inferno, angel, inferno, demon, warlock, centurion, dragon, angel, demon, knight, inferno, angel, inferno, demon, warlock, centurion, dragon];
 
 let player = {
   name: "",
@@ -111,7 +115,7 @@ let player = {
   power: 0,
   health: 30,
   deck: starterDeck,
-  hand: []
+  hand: [],
 };
 
 let settings = {
@@ -124,12 +128,15 @@ let enemy = {
   power: 0,
   health: 30,
   deck: enemyDeck,
-  hand: []
+  hand: [],
 };
 
 let discardPile = [];
 
 let thinkingInterval;
+
+let playerCards = playerField.children;
+let enemyCards = enemyField.children;
 
 function hover(event) {
   event.target.style.transform = "scale(1.3)";
@@ -185,10 +192,21 @@ function removeTarget(cardEl) {
   cardEl.removeEventListener("click", attackTarget);
 }
 
+function endGame() {
+  feltView.classList.add("is-hidden");
+  gameOver.classList.remove("is-hidden");
+  if (enemy.health <= 0) {
+    youWon.classList.remove("is-hidden");
+  } else {
+    youLost.classList.remove("is-hidden");
+  }
+  return;
+}
+
 function attackTarget(event) {
   const readyToAttack = document.querySelector(".ready-to-attack");
-  for (let i = 0; i < playerField.children.length; i++) {
-    playerField.children[i].removeEventListener("click", AtkMsg);
+  for (let i = 0; i < playerCards.length; i++) {
+    playerCards[i].removeEventListener("click", AtkMsg);
   }
   const target = event.currentTarget;
 
@@ -196,6 +214,10 @@ function attackTarget(event) {
   if (target.id === "enemy-avatar") {
     enemy.health -= readyToAttack.dataset.atk;
     enemyHealth.value = enemy.health;
+    if (enemy.health <= 0) {
+      console.log("Game Over. You Win!");
+      endGame();
+    }
   }
   // If the player attacks an enemy card
   else if (target.dataset.state === "in-play") {
@@ -222,17 +244,21 @@ function attackTarget(event) {
       discardPile.push(target);
       target.remove();
     }
-    console.log(`Your ${readyToAttack.dataset.name} card had ${readyToAttack.dataset.def} def points`);
+    console.log(
+      `Your ${readyToAttack.dataset.name} card had ${readyToAttack.dataset.def} def points`
+    );
     readyToAttack.dataset.def -= target.dataset.atk;
     if (readyToAttack.dataset.def > 0) {
-      console.log(`Your ${readyToAttack.dataset.name} card now has ${readyToAttack.dataset.def} def points`);
-    }
-    else {
-      console.log(`Your ${readyToAttack.dataset.name} card did not survive the battle.`)
+      console.log(
+        `Your ${readyToAttack.dataset.name} card now has ${readyToAttack.dataset.def} def points`
+      );
+    } else {
+      console.log(
+        `Your ${readyToAttack.dataset.name} card did not survive the battle.`
+      );
       discardPile.push(readyToAttack);
       readyToAttack.remove();
     }
-
   }
 
   console.dir(target);
@@ -243,9 +269,9 @@ function attackTarget(event) {
   enemyAvatar.removeEventListener("mouseleave", attackTargetUnhover);
   enemyAvatar.removeEventListener("click", attackTarget);
 
-  if (enemyField.children) {
-    for (let i = 0; i < enemyField.children.length; i++) {
-      removeTarget(enemyField.children[i]);
+  if (enemyCards) {
+    for (let i = 0; i < enemyCards.length; i++) {
+      removeTarget(enemyCards[i]);
     }
   }
 
@@ -254,10 +280,10 @@ function attackTarget(event) {
   readyToAttack.dataset.state = "exhausted";
   readyToAttack.classList.add("card-inactive");
   readyToAttack.classList.remove("ready-to-attack");
-  for (let i = 0; i < playerField.children.length; i++) {
-    if (playerField.children[i].dataset.state === "on-guard") {
-      cardReady(playerField.children[i]);
-      playerField.children[i].addEventListener("click", AtkMsg);
+  for (let i = 0; i < playerCards.length; i++) {
+    if (playerCards[i].dataset.state === "on-guard") {
+      cardReady(playerCards[i]);
+      playerCards[i].addEventListener("click", AtkMsg);
     }
   }
 }
@@ -268,14 +294,14 @@ function removeAtkMsg() {
   readyToAttack.style.boxShadow = "none";
   readyToAttack.style.transform = "translateY(15px)";
   readyToAttack.classList.add("played-card");
-  for (let i = 0; i < playerField.children.length; i++) {
+  for (let i = 0; i < playerCards.length; i++) {
     if (
-      playerField.children[i].dataset.state !== "exhausted" &&
-      playerField.children[i].dataset.state !== "in-play"
+      playerCards[i].dataset.state !== "exhausted" &&
+      playerCards[i].dataset.state !== "in-play"
     ) {
-      cardReady(playerField.children[i]);
-      playerField.children[i].dataset.state = "on-guard";
-      playerField.children[i].addEventListener("click", AtkMsg);
+      cardReady(playerCards[i]);
+      playerCards[i].dataset.state = "on-guard";
+      playerCards[i].addEventListener("click", AtkMsg);
     }
   }
   readyToAttack.classList.remove("ready-to-attack");
@@ -284,9 +310,9 @@ function removeAtkMsg() {
   enemyAvatar.removeEventListener("mouseenter", attackTargetHover);
   enemyAvatar.removeEventListener("mouseleave", attackTargetUnhover);
   enemyAvatar.removeEventListener("click", attackTarget);
-  if (enemyField.children) {
-    for (let i = 0; i < enemyField.children.length; i++) {
-      removeTarget(enemyField.children[i]);
+  if (enemyCards) {
+    for (let i = 0; i < enemyCards.length; i++) {
+      removeTarget(enemyCards[i]);
     }
   }
 }
@@ -301,16 +327,16 @@ function AtkMsg() {
   /* For each card in the player's field, if it is not the attacker, set its animation to null, set its
   box shadow to none, and set its transform to translateY(15px). If the card is not exhausted or in
   play, set its state to on-guard. */
-  for (let i = 0; i < playerField.children.length; i++) {
-    if (playerField.children[i] !== attacker) {
-      playerField.children[i].style.animation = null;
-      playerField.children[i].style.boxShadow = "none";
-      playerField.children[i].style.transform = "translateY(15px)";
+  for (let i = 0; i < playerCards.length; i++) {
+    if (playerCards[i] !== attacker) {
+      playerCards[i].style.animation = null;
+      playerCards[i].style.boxShadow = "none";
+      playerCards[i].style.transform = "translateY(15px)";
       if (
-        playerField.children[i].dataset.state !== "exhausted" &&
-        playerField.children[i].dataset.state !== "in-play"
+        playerCards[i].dataset.state !== "exhausted" &&
+        playerCards[i].dataset.state !== "in-play"
       ) {
-        playerField.children[i].dataset.state = "on-guard";
+        playerCards[i].dataset.state = "on-guard";
       }
     }
   }
@@ -325,9 +351,9 @@ function AtkMsg() {
   enemyAvatar.addEventListener("mouseenter", attackTargetHover);
   enemyAvatar.addEventListener("mouseleave", attackTargetUnhover);
   enemyAvatar.addEventListener("click", attackTarget);
-  if (enemyField.children) {
-    for (let i = 0; i < enemyField.children.length; i++) {
-      targetCard(enemyField.children[i]);
+  if (enemyCards) {
+    for (let i = 0; i < enemyCards.length; i++) {
+      targetCard(enemyCards[i]);
     }
   }
 }
@@ -345,18 +371,17 @@ function startPlayerTurn() {
     setCardProps(newCard, player.deck);
   }
 
-
   // Make cards in hand clickable to play
   for (let i = 0; i < playerHand.children.length; i++) {
     playerHand.children[i].addEventListener("click", playCard);
   }
 
   // Initiates cards for attack
-  if (playerField.children) {
-    for (let i = 0; i < playerField.children.length; i++) {
-      cardReady(playerField.children[i]);
-      playerField.children[i].dataset.state = "on-guard";
-      playerField.children[i].addEventListener("click", AtkMsg);
+  if (playerCards) {
+    for (let i = 0; i < playerCards.length; i++) {
+      cardReady(playerCards[i]);
+      playerCards[i].dataset.state = "on-guard";
+      playerCards[i].addEventListener("click", AtkMsg);
     }
   }
   endTurnBtn.addEventListener("click", endPlayerTurn);
@@ -375,11 +400,69 @@ function endEnemyTurn() {
   startPlayerTurn();
 }
 
+function coinToss() {
+  return Math.floor(Math.random() * 2);
+}
+
+function enemyAttack() {
+  // Loop through enemy field and find cards that are on-guard
+  // if a card is on guard then attack the player
+  // Should they attack the player directly or an available card?
+  // For now, let's make it random
+
+  for (let i = 0; i < enemyCards.length; i++) {
+    if (enemyCards[i].dataset.state === "on-guard") {
+      // First choose whether to attack the player or a card
+      if (coinToss() === 0 || playerCards.length === 0) {
+        player.health -= enemyCards[i].dataset.atk;
+        playerHealth.value = player.health;
+        console.log(`${enemy.name} attacked ${player.name} directly!`);
+        if (player.health <= 0) {
+          endGame();
+        }
+      }
+      // If enemy attacks player's cards
+      else {
+        const randomIndex = Math.floor(Math.random() * playerCards.length);
+        console.log(
+          `${enemyCards[i].dataset.name} attacked ${playerCards[randomIndex].dataset.name}!`
+        );
+
+        playerCards[randomIndex].dataset.def -= enemyCards[i].dataset.atk;
+        enemyCards[i].dataset.def -= playerCards[randomIndex].dataset.atk;
+        if (playerCards[randomIndex].dataset.def > 0) {
+          console.log(
+            `${playerCards[randomIndex].dataset.name} survived and now has ${playerCards[randomIndex].dataset.def} def`
+          );
+        } else {
+          console.log(
+            `${playerCards[randomIndex].dataset.name} didn't make it`
+          );
+          discardPile.push(playerCards[randomIndex]);
+          playerCards[randomIndex].remove();
+        }
+        if (enemyCards[i].dataset.def > 0) {
+          console.log(
+            `${enemyCards[i].dataset.name} survived and now has ${enemyCards[i].dataset.def} def`
+          );
+        } else {
+          console.log(`${enemyCards[i].dataset.name} didn't make it`);
+          discardPile.push(enemyCards[i]);
+          enemyCards[i].remove();
+          i--;
+        }
+      }
+    }
+  }
+  endEnemyTurn();
+}
+
 function enemyPlayCard() {
   setTimeout(function () {
-    // Should select a card from the hand that has <= cost than power
+    // loop through hand
     for (let i = 0; i < enemyHand.children.length; i++) {
       const card = enemyHand.children[i];
+      // Play a card from the hand that has <= cost than power
       if (card.dataset.cost <= enemy.power) {
         card.classList.add("played-enemy-card");
         card.dataset.state = "in-play";
@@ -391,41 +474,48 @@ function enemyPlayCard() {
         console.log(`${enemy.name} played ${card.dataset.name}`);
         enemy.power -= card.dataset.cost;
         enemyPower.value = enemy.power * 100;
-        console.log(`${enemy.name} now has ${enemy.power} power`)
+        console.log(`${enemy.name} now has ${enemy.power} power`);
       }
-    };
-    endEnemyTurn();
+    }
+    enemyAttack();
   }, 3000);
 }
 
 function cardPop(card) {
-  setTimeout(function() {
+  setTimeout(function () {
     card.style.transform = "translateY(5rem)";
-    setTimeout(function() {
+    setTimeout(function () {
       card.style.transform = "translateY(0rem)";
     }, 200);
   }, 200);
-};
+}
 
 function enemyThinking() {
   if (!thinkingInterval) {
-    thinkingInterval = setInterval(function() {
+    thinkingInterval = setInterval(function () {
       const randomIndex = Math.floor(Math.random() * enemyHand.children.length);
       cardPop(enemyHand.children[randomIndex]);
     }, 200);
   }
   // This needs to wait
   setTimeout(enemyPlayCard(), 2000);
-  setTimeout(function() {
+  setTimeout(function () {
     clearInterval(thinkingInterval);
     thinkingInterval = null;
-  }, 2000)
+  }, 2000);
 }
 
 function enemyTurn() {
   enemy.power = turnCounter;
   enemyPower.max = enemy.power * 100;
   enemyPower.value = enemy.power * 100;
+
+  for (let i = 0; i < enemyCards.length; i++) {
+    if (enemyCards[i].dataset.state === "in-play") {
+      enemyCards[i].dataset.state = "on-guard";
+    }
+  }
+
   // draws a card
   if (enemy.deck.length > 0) {
     const newCard = document.createElement("div");
@@ -512,8 +602,8 @@ function displayFelt() {
   enemy.power++;
 
   playerHealth.value = player.health;
-  playerPower.max = (player.power * 100);
-  playerPower.value = (player.power * 100);
+  playerPower.max = player.power * 100;
+  playerPower.value = player.power * 100;
 
   playerCard1.addEventListener("click", playCard);
   setCardProps(playerCard1, player.deck);
@@ -541,13 +631,10 @@ function displayFelt() {
   enemy.hand.push(enemyCard3);
 
   enemyHealth.value = enemy.health;
-  enemyPower.max = (enemy.power * 100);
-  enemyPower.value = (enemy.power * 100);
+  enemyPower.max = enemy.power * 100;
+  enemyPower.value = enemy.power * 100;
 
-
-  console.log(
-    `You are battling ${enemy.name}`
-  );
+  console.log(`You are battling ${enemy.name}`);
   endTurnBtn.addEventListener("click", endPlayerTurn);
 }
 
@@ -570,7 +657,7 @@ function createCard(cardId) {
 }
 
 function displayChoice() {
-  console.log(`Welcome ${player.name}!`)
+  console.log(`Welcome ${player.name}!`);
   heroBody.style.width = "75%";
   heroBody.classList.add("is-align-self-center");
   for (let i = 0; i < 3; i++) {
