@@ -172,7 +172,7 @@ function notification(message) {
   enemyAvatar.appendChild(notification);
   setTimeout(function () {
     enemyAvatar.removeChild(notification);
-  }, 2000);
+  }, 3000);
 }
 
 // {Player's} card floats with red shadow
@@ -549,6 +549,16 @@ function endPlayerTurn() {
   playerCard2.removeEventListener("click", playCard);
   playerCard3.removeEventListener("click", playCard);
   playerCard4.removeEventListener("click", playCard);
+  // ENEMY INSULT MESSAGES GO HERE
+  let insult;
+  function fuckOff() {
+    // const randomI =
+    // Use math random to pick the insult
+    // insult = above
+    // CODE HERE
+    // call the API
+    // output an insult
+  }
   setTimeout(notification("That all you got?"), 1000);
   setTimeout(enemyTurn(), 2000);
 }
@@ -686,8 +696,14 @@ function startGame(event) {
   event.preventDefault();
   player.name = nameInput.value.trim();
   player.class = classSelect.value;
-  if (classSelect.value === "mage") {
+  if (player.class === "warrior") {
+    playerAvatar.style.backgroundImage = "url(./assets/images/aliks_the_barbarian_by_lucy_lisett_da3v8lm-fullview.jpeg)";
+  }
+  else if (player.class === "mage") {
+    playerAvatar.style.backgroundImage = "url(./assets/images/merlin_the_court_wizard_by_lucy_lisett_daakmxo-pre.jpeg)";
     player.power = 2;
+  } else {
+    playerAvatar.style.backgroundImage = "url(./assets/images/commander_by_lucy_lisett_dc6fkyu-pre.jpeg)";
   }
 
   for (i = 0; i < difficultyInput.length; i++) {
@@ -695,6 +711,19 @@ function startGame(event) {
       settings.difficulty = difficultyInput[i].value;
     }
   }
+  if (settings.difficulty === "easy") {
+    enemyAvatar.style.backgroundImage = "url(./assets/images/snake_witch_by_lucy_lisett_deecsrr-pre.jpeg)";
+  }
+  else if (settings.difficulty === "medium") {
+    enemyAvatar.style.backgroundImage = "url(./assets/images/black_demon_by_lucy_lisett_deiolkq-pre.jpeg)";
+  }
+  else if (settings.difficulty === "hard") {
+    enemyAvatar.style.backgroundImage = "url(./assets/images/dark_priest_by_lucy_lisett_deftk3k-pre.jpeg)";
+  }
+  else {
+    enemyAvatar.style.backgroundImage = "url(./assets/images/demonic_wizard_by_lucy_lisett_degm84n-pre.jpeg)"
+  }
+
   settings.profanity = profanityInput.checked;
 
   modal.classList.remove("is-active");
@@ -705,6 +734,21 @@ function startGame(event) {
   footer.classList.add("is-hidden");
   displayChoice();
 }
+
+let user = {
+  username: '',
+  experience: '',
+  startingDeck: ''
+}
+
+function createAccount(event) {
+  event.preventDefault();
+  // SAVE FORM ELEMENT
+  user.username = usernameInput.value.trim();
+  localStorage.setItem("user", JSON.stringify(user));
+}
+
+accountForm.addEventListener("submit", createAccount);
 
 newGameForm.addEventListener("submit", startGame);
 
