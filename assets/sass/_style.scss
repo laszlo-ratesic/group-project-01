@@ -52,10 +52,11 @@
 #enemy-avatar {
   position: relative;
   background-size: 150%;
-  background-position: -2.5rem -.5rem;
+  background-position: top;
   width: 10rem;
   height: 10rem;
   border-radius: 50%;
+  border: solid 3px black;
 }
 
 #enemy-avatar-border {
@@ -67,19 +68,28 @@
 
 #enemy-health {
   width: 100%;
-  border: solid 3px black;
+  border: solid 1px black;
   border-radius: 0px;
   position: relative;
   top: 3rem;
   margin-bottom: 1rem;
 }
+
 #enemy-power {
   width: 100%;
-  border: solid 3px black;
+  border: solid 1px black;
   border-radius: 0px;
   position: relative;
   top: 2.5rem;
   margin-bottom: 0;
+}
+
+progress {
+  text-align: center;
+}
+
+progress:after {
+  content:attr(value)'%';
 }
 
 #enemy-deck {
@@ -138,7 +148,7 @@
 
 #player-health {
   width: 100%;
-  border: solid 3px black;
+  border: solid 1px black;
   border-radius: 0px;
   position: relative;
   bottom: 2.5rem;
@@ -147,7 +157,7 @@
 
 #player-power {
   width: 100%;
-  border: solid 3px black;
+  border: solid 1px black;
   border-radius: 0px;
   position: relative;
   bottom: 3rem;
