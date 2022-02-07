@@ -685,29 +685,29 @@ function endPlayerTurn() {
   playerCard3.removeEventListener("click", playCard);
   playerCard4.removeEventListener("click", playCard);
   // ENEMY INSULT MESSAGES GO HERE
-  let insult;
-  function fuckOff() {
-      const randomIndex = Math.floor(Math.random() * array of insults length)
 
-      const apiUrlTwo ="https://foaas.com/" + insult
+function fuckOff() {
+    const randomIndex = Math.floor(Math.random() * insult.length)
+
+    const apiUrlTwo ="https://foaas.com/" + insult(randomIndex)
         
     
-      fetch(apiUrlTwo)
-      .then(function (response) {
-        if (response.ok) {
-          response.json().then(function (data) {
-            console.log(data);
-          })
-        }
-      })
-    }
+    fetch(apiUrlTwo)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          console.log(data);
+        })
+      }
+    })
+  }
     // const randomI =
     // Use math random to pick the insult
     // insult = above
     // CODE HERE
     // call the API
     // output an insult
-  }
+  
   setTimeout(notification("That all you got?"), 1000);
   setTimeout(enemyTurn(), 2000);
 }
