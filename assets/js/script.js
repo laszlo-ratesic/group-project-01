@@ -257,26 +257,26 @@ let insult = [
   bye/:from,
   caniuse/:tool/:from,
   cocksplat/:name/:from,
-  dosomething/:do/:something/:from
+  dosomething/:do/:something/:from,
   dumbledore/:from,
   everyone/:from,
   everything/:from,
   fascinating/:from,
   field/:name/:from/:reference,
-  give/:from
-  holygrail/:from
-  horse/:from
-  legend/:name/:from
-  life/:from
-  linus/:name/:from
-  mornin/:from
-  nugget/:name/:from
-  problem/:name/:from
-  ridiculous/:from
-  sake/:from
-  shakespeare/:name/:from
-  shit/:from
-  thinking/:name/:from
+  give/:from,
+  holygrail/:from,
+  horse/:from,
+  legend/:name/:from,
+  life/:from,
+  linus/:name/:from,
+  mornin/:from,
+  nugget/:name/:from,
+  problem/:name/:from,
+  ridiculous/:from,
+  sake/:from,
+  shakespeare/:name/:from,
+  shit/:from,
+  thinking/:name/:from,
   waste/:name/:from
 ];
 
