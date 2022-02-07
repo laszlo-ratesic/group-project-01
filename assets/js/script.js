@@ -871,7 +871,7 @@ function setCardProps(cardEl, fromDeck) {
 
 function displayFelt() {
   loadingBar.remove();
-  heroEl.style.backgroundImage = "url(./assets/images/red-felt.jpeg)";
+  heroEl.style = "background-image:url(./assets/images/red-felt.jpeg); cursor:url('./assets/images/custom-cursor.png'), auto;";
   const card1 = document.getElementById("0");
   const card2 = document.getElementById("1");
   const card3 = document.getElementById("2");

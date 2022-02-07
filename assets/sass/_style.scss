@@ -304,6 +304,7 @@ progress:after {
 .end-turn {
   display: inline-block;
   position: relative;
+  cursor: url('../images/custom-cursor.png'), auto;
 }
 
 .img-top {
@@ -312,12 +313,16 @@ progress:after {
   top: -3px;
   left: 0;
   z-index: 1000;
+  cursor: url('../images/custom-cursor.png'), auto;
 }
 
-
+.img-bottom {
+  cursor: url('../images/custom-cursor.png'), auto;
+}
 
 .end-turn:hover .img-top {
   display: inline;
+  cursor: url('../images/custom-cursor.png'), auto;
 }
 
 
