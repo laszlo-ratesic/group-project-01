@@ -52,10 +52,11 @@
 #enemy-avatar {
   position: relative;
   background-size: 150%;
-  background-position: -2.5rem -.5rem;
+  background-position: top;
   width: 10rem;
   height: 10rem;
   border-radius: 50%;
+  border: solid 3px black;
 }
 
 #enemy-avatar-border {
@@ -67,26 +68,38 @@
 
 #enemy-health {
   width: 100%;
-  border: solid 3px black;
+  border: solid 1px black;
   border-radius: 0px;
   position: relative;
   top: 3rem;
   margin-bottom: 1rem;
 }
+
 #enemy-power {
   width: 100%;
-  border: solid 3px black;
+  border: solid 1px black;
   border-radius: 0px;
   position: relative;
   top: 2.5rem;
   margin-bottom: 0;
 }
 
+progress {
+  text-align: center;
+}
+
+progress:after {
+  content:attr(value)'%';
+}
+
 #enemy-deck {
+  background-image: url(../images/CardJpgs/Card_Back.jpg);
+  background-size: cover;
+  background-position: center;
   border: solid 3px black;
-  border-radius: 15px;
+  border-radius: 10px;
   height: 15rem;
-  width: 10rem;
+  width: 11rem;
 }
 
 #enemy-hand {
@@ -94,7 +107,9 @@
 }
 
 .enemy-card {
-  background-color: red;
+  background-image: url(../images/CardJpgs/Card_Back.jpg);
+  background-size: cover;
+  background-position: center;
   border: solid 3px black;
   border-radius: 10px;
   height: 14rem;
@@ -138,7 +153,7 @@
 
 #player-health {
   width: 100%;
-  border: solid 3px black;
+  border: solid 1px black;
   border-radius: 0px;
   position: relative;
   bottom: 2.5rem;
@@ -147,7 +162,7 @@
 
 #player-power {
   width: 100%;
-  border: solid 3px black;
+  border: solid 1px black;
   border-radius: 0px;
   position: relative;
   bottom: 3rem;
@@ -155,10 +170,13 @@
 }
 
 #player-deck {
+  background-image: url(../images/CardJpgs/Card_Back.jpg);
+  background-size: cover;
+  background-position: center;
   border: solid 3px black;
-  border-radius: 15px;
+  border-radius: 10px;
   height: 15rem;
-  width: 10rem;
+  width: 11rem;
 }
 
 #player-hand {

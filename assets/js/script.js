@@ -1,3 +1,9 @@
+const pantryID = "e7259b55-e424-4352-b9d4-af473fc7431a";
+
+const createAccountModal = document.getElementById("create-account-modal");
+const accountEl = document.getElementById("account-el");
+const newGameBtn = document.getElementById("new-game-btn");
+
 const navBarBrand = document.querySelector(".navbar-brand");
 const navBarMenu = document.querySelector(".navbar-menu");
 const modal = document.querySelector(".modal");
@@ -5,6 +11,9 @@ const landingMsg = document.getElementById("landing-msg");
 
 const accountForm = document.getElementById("account-form");
 const usernameInput = document.getElementById("username-input");
+const startingDeck = document.getElementById("deck-select");
+const experienceLevel = document.getElementsByName("experience");
+
 
 const newGameForm = document.getElementById("new-game-form");
 const nameInput = document.getElementById("name-input");
@@ -254,9 +263,114 @@ let hauntedStallion = {
 
 let turnCounter = 0;
 
-let starterDeck = [angel, demon, knight, inferno, angel, inferno, demon, warlock, centurion, dragon, angel, demon, knight, inferno, angel, inferno, demon, warlock, centurion, dragon, angel, demon, knight, inferno, angel, inferno, demon, warlock, centurion, dragon, angel, demon, knight, inferno, angel, inferno, demon, warlock, centurion, dragon];
+let wildwoodUser = {
+  username: '',
+  experience: '',
+  startingDeck: '',
+}
 
-let enemyDeck = [angel, demon, knight, inferno, angel, inferno, demon, warlock, centurion, dragon, angel, demon, knight, inferno, angel, inferno, demon, warlock, centurion, dragon, angel, demon, knight, inferno, angel, inferno, demon, warlock, centurion, dragon, angel, demon, knight, inferno, angel, inferno, demon, warlock, centurion, dragon];
+function getDeck(deck) {
+  const apiUrl =
+    "https://getpantry.cloud/apiv1/pantry/e7259b55-e424-4352-b9d4-af473fc7431a/basket/" +
+    deck;
+
+  fetch(apiUrl)
+  .then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        console.log(data);
+      })
+    }
+  })
+}
+
+getDeck("DragonsWrath");
+
+let starterDeck = [
+  angel,
+  demon,
+  knight,
+  inferno,
+  angel,
+  inferno,
+  demon,
+  warlock,
+  centurion,
+  dragon,
+  angel,
+  demon,
+  knight,
+  inferno,
+  angel,
+  inferno,
+  demon,
+  warlock,
+  centurion,
+  dragon,
+  angel,
+  demon,
+  knight,
+  inferno,
+  angel,
+  inferno,
+  demon,
+  warlock,
+  centurion,
+  dragon,
+  angel,
+  demon,
+  knight,
+  inferno,
+  angel,
+  inferno,
+  demon,
+  warlock,
+  centurion,
+  dragon,
+];
+
+let enemyDeck = [
+  angel,
+  demon,
+  knight,
+  inferno,
+  angel,
+  inferno,
+  demon,
+  warlock,
+  centurion,
+  dragon,
+  angel,
+  demon,
+  knight,
+  inferno,
+  angel,
+  inferno,
+  demon,
+  warlock,
+  centurion,
+  dragon,
+  angel,
+  demon,
+  knight,
+  inferno,
+  angel,
+  inferno,
+  demon,
+  warlock,
+  centurion,
+  dragon,
+  angel,
+  demon,
+  knight,
+  inferno,
+  angel,
+  inferno,
+  demon,
+  warlock,
+  centurion,
+  dragon,
+];
 
 let player = {
   name: "",
@@ -321,7 +435,7 @@ function notification(message) {
 function cardReady(cardEl) {
   cardEl.style.transition = "all 1200ms";
   cardEl.style.transform = "translateY(-15px)";
-  cardEl.style.boxShadow = $redGlow;
+  cardEl.style.boxShadow = $blueGlow;
   cardEl.style.animation = "3s ease 1200ms infinite alternate bounce";
 }
 
@@ -488,7 +602,7 @@ function AtkMsg() {
     }
   }
   attacker.style.animation = null;
-  attacker.style.boxShadow = $blueGlow;
+  attacker.style.boxShadow = $redGlow;
   attacker.classList.remove("played-card");
   attacker.classList.add("ready-to-attack");
   attacker.dataset.state = "ready-to-attack";
@@ -712,7 +826,7 @@ function playCard(event) {
     chosenCard.setAttribute("data-state", "in-play");
     chosenCard.removeEventListener("click", playCard);
     playerField.appendChild(chosenCard);
-    console.log(`You played ${chosenCard.dataset.name}!`)
+    console.log(`You played ${chosenCard.dataset.name}!`);
     player.power -= chosenCard.dataset.cost;
     playerPower.value = player.power * 100;
     console.log(`You have ${player.power} power left`);
@@ -838,13 +952,15 @@ function startGame(event) {
   player.name = nameInput.value.trim();
   player.class = classSelect.value;
   if (player.class === "warrior") {
-    playerAvatar.style.backgroundImage = "url(./assets/images/aliks_the_barbarian_by_lucy_lisett_da3v8lm-fullview.jpeg)";
-  }
-  else if (player.class === "mage") {
-    playerAvatar.style.backgroundImage = "url(./assets/images/merlin_the_court_wizard_by_lucy_lisett_daakmxo-pre.jpeg)";
+    playerAvatar.style.backgroundImage =
+      "url(./assets/images/aliks_the_barbarian_by_lucy_lisett_da3v8lm-fullview.jpeg)";
+  } else if (player.class === "mage") {
+    playerAvatar.style.backgroundImage =
+      "url(./assets/images/merlin_the_court_wizard_by_lucy_lisett_daakmxo-pre.jpeg)";
     player.power = 2;
   } else {
-    playerAvatar.style.backgroundImage = "url(./assets/images/commander_by_lucy_lisett_dc6fkyu-pre.jpeg)";
+    playerAvatar.style.backgroundImage =
+      "url(./assets/images/commander_by_lucy_lisett_dc6fkyu-pre.jpeg)";
   }
 
   for (i = 0; i < difficultyInput.length; i++) {
@@ -853,16 +969,17 @@ function startGame(event) {
     }
   }
   if (settings.difficulty === "easy") {
-    enemyAvatar.style.backgroundImage = "url(./assets/images/snake_witch_by_lucy_lisett_deecsrr-pre.jpeg)";
-  }
-  else if (settings.difficulty === "medium") {
-    enemyAvatar.style.backgroundImage = "url(./assets/images/black_demon_by_lucy_lisett_deiolkq-pre.jpeg)";
-  }
-  else if (settings.difficulty === "hard") {
-    enemyAvatar.style.backgroundImage = "url(./assets/images/dark_priest_by_lucy_lisett_deftk3k-pre.jpeg)";
-  }
-  else {
-    enemyAvatar.style.backgroundImage = "url(./assets/images/demonic_wizard_by_lucy_lisett_degm84n-pre.jpeg)"
+    enemyAvatar.style.backgroundImage =
+      "url(./assets/images/snake_witch_by_lucy_lisett_deecsrr-pre.jpeg)";
+  } else if (settings.difficulty === "medium") {
+    enemyAvatar.style.backgroundImage =
+      "url(./assets/images/black_demon_by_lucy_lisett_deiolkq-pre.jpeg)";
+  } else if (settings.difficulty === "hard") {
+    enemyAvatar.style.backgroundImage =
+      "url(./assets/images/dark_priest_by_lucy_lisett_deftk3k-pre.jpeg)";
+  } else {
+    enemyAvatar.style.backgroundImage =
+      "url(./assets/images/demonic_wizard_by_lucy_lisett_degm84n-pre.jpeg)";
   }
 
   settings.profanity = profanityInput.checked;
@@ -876,42 +993,40 @@ function startGame(event) {
   displayChoice();
 }
 
-let wildwoodUser = {
-  username: '',
-  experience: '',
-  startingDeck: ''
-}
-
 function createAccount(event) {
-  event.preventDefault();
-  
-  // SAVE FORM ELEMENT
+  // event.preventDefault();
   wildwoodUser.username = usernameInput.value.trim();
-
-  var experienceLevel = document.getElementsByName("experience");
   wildwoodUser.experience = experienceLevel.value;
-
     for (let i = 0; i < experienceLevel.length; i++) {
       if (experienceLevel[i].checked) {
         wildwoodUser.experience = experienceLevel[i].value
       }
     }
-  
-  var starterDeck = document.getElementById("deck-select");
-  wildwoodUser.startingDeck = starterDeck.value;
-
+  wildwoodUser.startingDeck = startingDeck.value;
   localStorage.setItem("wildwoodUser", JSON.stringify(wildwoodUser));
+  newGameBtn.dataset.target = "new-game-modal";
+  accountEl.children[0].textContent = `Welcome ${wildwoodUser.username}`;
+  // Welcome, username!;
 }
 
 accountForm.addEventListener("submit", createAccount);
-
 newGameForm.addEventListener("submit", startGame);
 
+const localStorageData = JSON.parse(localStorage.getItem("wildwoodUser"));
+
+if (!localStorageData) {
+  newGameBtn.dataset.target = "create-account-modal";
+
+}
+else {
+  accountEl.dataset.target = null;
+  console.log(localStorageData);
+  accountEl.children[0].textContent = `Welcome ${localStorageData.username}!`;
+}
 
 // BULMA CODE
 /* When a user clicks on a button, an element with the `.modal` class is opened. */
 document.addEventListener("DOMContentLoaded", () => {
-
   // NAVBURGERS
   // Get all "navbar-burger" elements
   const $navbarBurgers = Array.prototype.slice.call(
