@@ -247,6 +247,10 @@ let thinkingInterval;
 let playerCards = playerField.children;
 let enemyCards = enemyField.children;
 
+let insult = [
+
+];
+
 function hover(event) {
   event.target.style.transform = "scale(1.3)";
 }
