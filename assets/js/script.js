@@ -937,7 +937,7 @@ function createCard(cardId) {
   return cardEl;
 }
 
-function displayChoice() {
+function loadScreen() {
   navBarBrand.classList.add("is-hidden");
   navBarMenu.classList.add("is-hidden");
   console.log(`Welcome ${player.name}!`);
@@ -1005,7 +1005,7 @@ function startGame(event) {
   landingMsg.classList.add("is-hidden");
   heroFoot.classList.add("is-hidden");
   footer.classList.add("is-hidden");
-  displayChoice();
+  loadScreen();
 }
 
 function createAccount(event) {
