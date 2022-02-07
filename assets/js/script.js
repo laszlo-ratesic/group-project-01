@@ -281,7 +281,7 @@ function notification(message) {
 function cardReady(cardEl) {
   cardEl.style.transition = "all 1200ms";
   cardEl.style.transform = "translateY(-15px)";
-  cardEl.style.boxShadow = $redGlow;
+  cardEl.style.boxShadow = $blueGlow;
   cardEl.style.animation = "3s ease 1200ms infinite alternate bounce";
 }
 
@@ -448,7 +448,7 @@ function AtkMsg() {
     }
   }
   attacker.style.animation = null;
-  attacker.style.boxShadow = $blueGlow;
+  attacker.style.boxShadow = $redGlow;
   attacker.classList.remove("played-card");
   attacker.classList.add("ready-to-attack");
   attacker.dataset.state = "ready-to-attack";
