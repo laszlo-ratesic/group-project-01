@@ -255,7 +255,10 @@ let insult = [
   blackadder/:name/:from,
   bus/:name/:from,
   bye/:from,
-  
+  caniuse/:tool/:from,
+  cocksplat/:name/:from,
+  dosomething/:do/:something/:from
+  dumbledore/:from
 ];
 
 function hover(event) {
