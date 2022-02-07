@@ -697,10 +697,10 @@ function fuckOff() {
   let name = player.name;
     const randomIndex = Math.floor(Math.random() * insult.length)
 
-    let apiUrlTwo = "https://foaas.com/" + insult(randomIndex) + from;
+    const apiUrlTwo = "https://foaas.com/";
         
     
-    fetch(apiUrlTwo)
+    fetch(apiUrlTwo+insult(randomIndex)+from)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
