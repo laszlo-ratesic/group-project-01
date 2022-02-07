@@ -5,6 +5,8 @@ const landingMsg = document.getElementById("landing-msg");
 
 const accountForm = document.getElementById("account-form");
 const usernameInput = document.getElementById("username-input");
+//const starterDeck = document.getElementById("deck-select");
+//const experienceLevel = document.getElementById("experience-level");
 
 const newGameForm = document.getElementById("new-game-form");
 const nameInput = document.getElementById("name-input");
@@ -735,7 +737,7 @@ function startGame(event) {
   displayChoice();
 }
 
-let user = {
+let wildwoodUser = {
   username: '',
   experience: '',
   startingDeck: ''
@@ -743,9 +745,18 @@ let user = {
 
 function createAccount(event) {
   event.preventDefault();
+  
   // SAVE FORM ELEMENT
-  user.username = usernameInput.value.trim();
-  localStorage.setItem("user", JSON.stringify(user));
+  wildwoodUser.username = usernameInput.value.trim();
+  localStorage.setItem("wildwoodUser", JSON.stringify(wildwoodUser));
+
+  var experienceLevel = document.getElementById("experience-level");
+  wildwoodUser.experience = experienceLevel.value;
+  localStorage.setItem("wildwoodUser", JSON.stringify(wildwoodUser));
+  
+  var starterDeck = document.getElementById("deck-select");
+  wildwoodUser.startingDeck = starterDeck.value;
+  localStorage.setItem("wildwoodUser", JSON.stringify(wildwoodUser));
 }
 
 accountForm.addEventListener("submit", createAccount);
