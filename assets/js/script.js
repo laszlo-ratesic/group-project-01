@@ -70,6 +70,7 @@ const youWon = document.getElementById("you-won");
 const youLost = document.getElementById("you-lost");
 
 const loadingBar = document.createElement("progress");
+const msg = document.createElement("img");
 
 $insetGoldGlow =
   "inset gold -15px -15px 10px, inset gold 15px -15px 10px, inset gold 15px 15px 10px, inset gold -15px 15px 10px";
@@ -871,13 +872,8 @@ function setCardProps(cardEl, fromDeck) {
 
 function displayFelt() {
   loadingBar.remove();
+  msg.remove();
   heroEl.style = "background-image:url(./assets/images/red-felt.jpeg); cursor:url('./assets/images/custom-cursor.png'), auto;";
-  const card1 = document.getElementById("0");
-  const card2 = document.getElementById("1");
-  const card3 = document.getElementById("2");
-  card1.classList.add("is-hidden");
-  card2.classList.add("is-hidden");
-  card3.classList.add("is-hidden");
   heroBody.style.width = "100%";
   heroBody.classList.add("p0");
   heroBody.style.flexDirection = "column";
@@ -928,11 +924,6 @@ function displayFelt() {
   endTurnBtn.addEventListener("mouseup", buttonReleased);
 }
 
-function chooseCard(event) {
-  const chosenCard = event.target;
-  displayFelt();
-}
-
 function createCard(cardId) {
   const cardEl = document.createElement("img");
   cardEl.style.position = "relative";
@@ -951,17 +942,17 @@ function displayChoice() {
   navBarMenu.classList.add("is-hidden");
   console.log(`Welcome ${player.name}!`);
   heroBody.style.width = "75%";
-  heroBody.classList.add("is-align-self-center");
+  heroBody.classList.add("is-align-self-center", "is-flex", "is-flex-direction-column");
   loadingBar.classList.add("progress", "is-large", "is-medium-dark");
   loadingBar.max = "100";
   loadingBar.textContent = "60%";
+  loadingBar.style.marginTop = "5rem";
+  msg.src = "./assets/images/box1.png";
+  msg.style.width = "25vw";
+  heroBody.appendChild(msg);
   heroBody.appendChild(loadingBar);
-  for (let i = 0; i < 3; i++) {
-    heroBody.appendChild(createCard(i));
-    const card = document.getElementById(`${i}`);
-    card.addEventListener("click", chooseCard);
-    heroBody.style.justifyContent = "space-around";
-  }
+  heroBody.style.justifyContent = "center";
+  setTimeout(displayFelt, 5000);
 }
 
 /**
