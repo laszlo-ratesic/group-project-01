@@ -8,8 +8,11 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/sass/combined.css" />
-    <title>Wildwood</title>
+    <title>Bloodgate</title>
   </head>
   <body>
     <section class="hero is-dark is-fullheight">
@@ -18,8 +21,8 @@
         <header class="navbar">
           <div class="container is-fluid">
             <div class="navbar-brand">
-              <a class="navbar-item is-size-1 is-size-5-mobile js-modal-trigger" data-target="create-account-modal">
-                <h1>Create Account</h1>
+              <a id="account-el" class="navbar-item is-size-1 is-size-5-mobile js-modal-trigger" data-target="create-account-modal">
+                <h1">Create Account</h1>
               </a>
               <span class="navbar-burger" data-target="navbarMenuHeroC">
                 <span></span>
@@ -70,7 +73,6 @@
                 </span>
               </div>
             </div>
-
           </div>
         </header>
       </div>
@@ -80,9 +82,11 @@
         <!-- HOME SCREEN -->
         <div id="landing-msg" class="container has-text-centered">
           <p class="title is-size-1">
-            Wildwood
+            Bloodgate
           </p>
-          <button class="button is-large is-success is-outlined js-modal-trigger" data-target="new-game-modal">
+          <br>
+          <p class="subtitle is-size-2">The Wildwood Deception</p>
+          <button id="new-game-btn" class="button is-large is-success is-outlined js-modal-trigger" data-target="new-game-modal">
             New Game
           </button>
         </div>
@@ -113,26 +117,30 @@
 
           <div id="player-row">
             <div id="player-avatar" class="is-flex is-flex-direction-column is-justify-content-flex-start">
-              <img id="player-avatar-border" src="./assets/images/avatar-frame.png" alt="">
+              <img id="player-avatar-border" alt="">
               <progress id="player-health" class="progress is-small is-danger" value="30" max="30">15%</progress>
               <progress id="player-power" class="progress is-small is-link" value="100" max="100">15%</progress>
             </div>
             <div id="player-hand" class="is-flex">
-              <div id="player-card-1" class="player-card is-size-1" style="text-align: center;">
+              <div id="player-card-1" class="player-card is-size-1 item" style="text-align: center;">
                 <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
               </div>
-              <div id="player-card-2" class="player-card is-size-1" style="text-align: center;">
+              <div id="player-card-2" class="player-card is-size-1 item" style="text-align: center;">
                 <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
               </div>
-              <div id="player-card-3" class="player-card is-size-1" style="text-align: center;">
+              <div id="player-card-3" class="player-card is-size-1 item" style="text-align: center;">
                 <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
               </div>
-              <div id="player-card-4" class="player-card is-size-1" style="text-align: center;">
+              <div id="player-card-4" class="player-card is-size-1 item" style="text-align: center;">
                 <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
               </div>
             </div>
-            <div id="end-turn-btn" class="button is-danger">End Turn</div>
-            <div id="player-deck""></div>
+            <div id="end-turn-btn" class="is-clickable end-turn has-text-centered" style="width:18%;cursor: url('../images/custom-cursor.png'), auto;">
+              <img class="img-bottom" src="./assets/images/buttonNormal.png" alt="">
+              <img class="img-top" src="./assets/images/buttonHighLight.png" alt="">
+              <h1 class="is-size-4 is-unselectable is-overlay has-text-grey-lighter" style="font-family: 'MedievalSharp', serif; z-index:1002; top:25%; letter-spacing: .2em; pointer-events: none; cursor: url('../images/custom-cursor.png'), auto;">End Turn</h1>
+            </div>
+            <div id="player-deck"></div>
           </div>
         </div>
 
@@ -306,9 +314,9 @@
                 <div class="select">
                   <select name="deck-select" id="deck-select" required="required">
                     <option value="">--Please choose a starting deck--</option>
-                    <option value="warrior">Dragon's wrath</option>
-                    <option value="mage">Bloodfury Dominion</option>
-                    <option value="rogue">Legion of the Forest</option>
+                    <option value="dragons-wrath">Dragon's wrath</option>
+                    <option value="bloodfury-dominion">Bloodfury Dominion</option>
+                    <option value="legion-of-the-forest">Legion of the Forest</option>
                   </select>
                 </div>
               </div>
@@ -352,7 +360,7 @@
               <!-- SUBMIT/CANCEL -->
               <div class="field is-grouped">
                 <div class="control">
-                  <input id="submit-btn" type="submit" value="Submit" class="button is-success"></input>
+                  <button type="submit" value="Submit" class="button is-success">Huzzah!</button>
                 </div>
                 <div class="control">
                   <input type="reset" value="Cancel" class="button is-success is-light"></input>
@@ -416,7 +424,6 @@
           <!-- Leaderboard Modal -->
           <div id="leaderboard-modal" class="modal">
             <div class="modal-background"></div>
-
             <div class="modal-content">
               <div class="box">
               <h3>Leaderboard</h3>
@@ -436,18 +443,23 @@
               </br></br></br></br></br></br></br></br></br></br></br> So we fight!</p>
                 </div>
               </section>
-
             </div>
           </div>
           <!-- Settings Modal -->
           <div id="settings-modal" class="modal">
             <div class="modal-background"></div>
-
-            <div class="modal-content">
-              <div class="box">
-              <h3>Settings</h3>
-              <p>filler</p>
-              </div>
+            <div class="modal-card">
+              <header class="modal-card-head">
+                <p class="modal-card-title">Settings</p>
+                <button class="delete" aria-label="close"></button>
+              </header>
+              <section class="modal-card-body">
+                <h1 class="button is-danger">Delete Account</h1>
+              </section>
+              <footer class="modal-card-foot">
+                <button class="button is-success">Save Changes</button>
+                <button class="button">Cancel</button>
+              </footer>
             </div>
           </div>
           <!-- End of Modal Content -->

@@ -1,5 +1,9 @@
 const pantryID = "e7259b55-e424-4352-b9d4-af473fc7431a";
 
+const createAccountModal = document.getElementById("create-account-modal");
+const accountEl = document.getElementById("account-el");
+const newGameBtn = document.getElementById("new-game-btn");
+
 const navBarBrand = document.querySelector(".navbar-brand");
 const navBarMenu = document.querySelector(".navbar-menu");
 const modal = document.querySelector(".modal");
@@ -7,6 +11,8 @@ const landingMsg = document.getElementById("landing-msg");
 
 const accountForm = document.getElementById("account-form");
 const usernameInput = document.getElementById("username-input");
+const startingDeck = document.getElementById("deck-select");
+const experienceLevel = document.getElementsByName("experience");
 
 const newGameForm = document.getElementById("new-game-form");
 const nameInput = document.getElementById("name-input");
@@ -47,6 +53,12 @@ const enemyCard2 = document.getElementById("enemy-card-2");
 const enemyCard3 = document.getElementById("enemy-card-3");
 const enemyCard4 = document.getElementById("enemy-card-4");
 
+function displayTarget(event) {
+  const target = event.target;
+  console.log(target);
+}
+document.addEventListener("click", displayTarget);
+
 const endTurnBtn = document.getElementById("end-turn-btn");
 
 const enemyHealth = document.getElementById("enemy-health");
@@ -56,6 +68,9 @@ const playerPower = document.getElementById("player-power");
 
 const youWon = document.getElementById("you-won");
 const youLost = document.getElementById("you-lost");
+
+const loadingBar = document.createElement("progress");
+const msg = document.createElement("img");
 
 $insetGoldGlow =
   "inset gold -15px -15px 10px, inset gold 15px -15px 10px, inset gold 15px 15px 10px, inset gold -15px 15px 10px";
@@ -70,152 +85,291 @@ $goldGlow =
   "gold -15px -15px 10px, gold 15px -15px 10px, gold 15px 15px 10px, gold -15px 15px 10px";
 
 // TEST CARD OBJECTS
-let angel = {
-  name: "angel",
-  cost: 1,
-  atk: 1,
-  def: 2,
+let colossalDragon = {
+  name: "Colossal Dragon",
+  cost: 10,
+  atk: 10,
+  def: 8,
 };
-let demon = {
-  name: "demon",
-  cost: 1,
-  atk: 2,
-  def: 1,
+let elderWizard = {
+  name: "Elder Wizard",
+  cost: 9,
+  atk: 9,
+  def: 7,
 };
-let knight = {
-  name: "knight",
-  cost: 2,
-  atk: 2,
-  def: 3,
+let sorceress = {
+  name: "Sorceress",
+  cost: 9,
+  atk: 8,
+  def: 8,
 };
-let inferno = {
-  name: "inferno",
-  cost: 3,
+let dragonSorcerer = {
+  name: "Dragon Sorcerer",
+  cost: 8,
+  atk: 7,
+  def: 7,
+};
+let demonPriest = {
+  name: "Demon Priest",
+  cost: 8,
+  atk: 8,
+  def: 6,
+};
+let elvenSorcerer = {
+  name: "Elven Sorcerer",
+  cost: 8,
+  atk: 8,
+  def: 6,
+};
+let shamanicArcher = {
+  name: "Shamanic Archer",
+  cost: 7,
+  atk: 7,
+  def: 6,
+};
+let undeadDragon = {
+  name: "Undead Dragon",
+  cost: 7,
   atk: 5,
-  def: 0,
+  def: 8,
 };
-let warlock = {
-  name: "warlock",
+let aquatarion = {
+  name: "Aquatarion",
+  cost: 7,
+  atk: 7,
+  def: 6,
+};
+let dragula = {
+  name: "Dragula",
+  cost: 7,
+  atk: 6,
+  def: 7,
+};
+let empressOfTheDeep = {
+  name: "Empress of the Deep",
+  cost: 7,
+  atk: 8,
+  def: 5,
+};
+let griffin = {
+  name: "Griffin",
+  cost: 7,
+  atk: 8,
+  def: 5,
+};
+let darkElf = {
+  name: "Dark Elf",
+  cost: 6,
+  atk: 4,
+  def: 7,
+};
+let bullDemon = {
+  name: "Bull Demon",
+  cost: 6,
+  atk: 4,
+  def: 7,
+};
+let blazingDragon = {
+  name: "Blazing Dragon",
   cost: 6,
   atk: 7,
-  def: 3,
+  def: 4,
 };
-let centurion = {
-  name: "centurion",
+let forestDragon = {
+  name: "Forest Dragon",
+  cost: 6,
+  atk: 5,
+  def: 6,
+};
+let ladyOfTheForest = {
+  name: "Lady of the Forest",
+  cost: 6,
+  atk: 3,
+  def: 8,
+};
+let magmaSnail = {
+  name: "Magma Snail",
+  cost: 6,
+  atk: 2,
+  def: 9,
+};
+let cloudDragon = {
+  name: "Cloud Dragon",
+  cost: 5,
+  atk: 3,
+  def: 7,
+};
+let darkWitch = {
+  name: "Dark Witch",
+  cost: 5,
+  atk: 6,
+  def: 4,
+};
+let giantKing = {
+  name: "Giant King",
+  cost: 5,
+  atk: 5,
+  def: 5,
+};
+let angelicWarrior = {
+  name: "Angelic Warrior",
+  cost: 5,
+  atk: 6,
+  def: 4,
+};
+let sabbaticGoat = {
+  name: "Sabbatic Goat",
   cost: 5,
   atk: 4,
   def: 6,
 };
-let dragon = {
-  name: "dragon",
-  cost: 8,
-  atk: 10,
-  def: 10,
+let stoneGiant = {
+  name: "Stone Giant",
+  cost: 4,
+  atk: 3,
+  def: 6,
+};
+let enchantress = {
+  name: "Enchantress",
+  cost: 4,
+  atk: 4,
+  def: 5,
+};
+let clawface = {
+  name: "Clawface",
+  cost: 4,
+  atk: 6,
+  def: 3,
+};
+let tigerDragon = {
+  name: "Tiger Dragon",
+  cost: 4,
+  atk: 3,
+  def: 6,
+};
+let elvenArcher = {
+  name: "Elven Archer",
+  cost: 4,
+  atk: 6,
+  def: 3,
+};
+let swampGiant = {
+  name: "Swamp Giant",
+  cost: 3,
+  atk: 3,
+  def: 5,
+};
+let stalkers = {
+  name: "Stalkers",
+  cost: 3,
+  atk: 4,
+  def: 4,
+};
+let hauntedTree = {
+  name: "Haunted Tree",
+  cost: 2,
+  atk: 4,
+  def: 2,
+};
+let hauntedStallion = {
+  name: "Haunted Stallion",
+  cost: 1,
+  atk: 3,
+  def: 2,
 };
 
 let turnCounter = 0;
+
+let wildwoodUser = {
+  username: "",
+  experience: "",
+  startingDeck: "",
+};
 
 function getDeck(deck) {
   const apiUrl =
     "https://getpantry.cloud/apiv1/pantry/e7259b55-e424-4352-b9d4-af473fc7431a/basket/" +
     deck;
 
-  fetch(apiUrl)
-  .then(function (response) {
+  fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
         console.log(data);
-      })
+      });
     }
-  })
+  });
 }
 
 getDeck("DragonsWrath");
 
 let starterDeck = [
-  angel,
-  demon,
-  knight,
-  inferno,
-  angel,
-  inferno,
-  demon,
-  warlock,
-  centurion,
-  dragon,
-  angel,
-  demon,
-  knight,
-  inferno,
-  angel,
-  inferno,
-  demon,
-  warlock,
-  centurion,
-  dragon,
-  angel,
-  demon,
-  knight,
-  inferno,
-  angel,
-  inferno,
-  demon,
-  warlock,
-  centurion,
-  dragon,
-  angel,
-  demon,
-  knight,
-  inferno,
-  angel,
-  inferno,
-  demon,
-  warlock,
-  centurion,
-  dragon,
+  colossalDragon,
+  elderWizard,
+  sorceress,
+  dragonSorcerer,
+  demonPriest,
+  elvenSorcerer,
+  shamanicArcher,
+  undeadDragon,
+  aquatarion,
+  dragula,
+  empressOfTheDeep,
+  griffin,
+  darkElf,
+  bullDemon,
+  blazingDragon,
+  forestDragon,
+  ladyOfTheForest,
+  magmaSnail,
+  cloudDragon,
+  darkWitch,
+  giantKing,
+  angelicWarrior,
+  sabbaticGoat,
+  stoneGiant,
+  enchantress,
+  clawface,
+  tigerDragon,
+  elvenArcher,
+  swampGiant,
+  stalkers,
+  hauntedTree,
+  hauntedStallion,
 ];
 
 let enemyDeck = [
-  angel,
-  demon,
-  knight,
-  inferno,
-  angel,
-  inferno,
-  demon,
-  warlock,
-  centurion,
-  dragon,
-  angel,
-  demon,
-  knight,
-  inferno,
-  angel,
-  inferno,
-  demon,
-  warlock,
-  centurion,
-  dragon,
-  angel,
-  demon,
-  knight,
-  inferno,
-  angel,
-  inferno,
-  demon,
-  warlock,
-  centurion,
-  dragon,
-  angel,
-  demon,
-  knight,
-  inferno,
-  angel,
-  inferno,
-  demon,
-  warlock,
-  centurion,
-  dragon,
+  colossalDragon,
+  elderWizard,
+  sorceress,
+  dragonSorcerer,
+  demonPriest,
+  elvenSorcerer,
+  shamanicArcher,
+  undeadDragon,
+  aquatarion,
+  dragula,
+  empressOfTheDeep,
+  griffin,
+  darkElf,
+  bullDemon,
+  blazingDragon,
+  forestDragon,
+  ladyOfTheForest,
+  magmaSnail,
+  cloudDragon,
+  darkWitch,
+  giantKing,
+  angelicWarrior,
+  sabbaticGoat,
+  stoneGiant,
+  enchantress,
+  clawface,
+  tigerDragon,
+  elvenArcher,
+  swampGiant,
+  stalkers,
+  hauntedTree,
+  hauntedStallion,
 ];
 
 let player = {
@@ -246,6 +400,18 @@ let thinkingInterval;
 
 let playerCards = playerField.children;
 let enemyCards = enemyField.children;
+
+const imgTop = document.querySelector(".img-top");
+
+function buttonPressed(event) {
+  event.target.src = "./assets/images/buttonPressed.png";
+  event.target.style.top = "0";
+}
+
+function buttonReleased(event) {
+  event.target.src = "./assets/images/buttonHighLight.png";
+  event.target.style.top = "-3px";
+}
 
 function hover(event) {
   event.target.style.transform = "scale(1.3)";
@@ -281,7 +447,7 @@ function notification(message) {
 function cardReady(cardEl) {
   cardEl.style.transition = "all 1200ms";
   cardEl.style.transform = "translateY(-15px)";
-  cardEl.style.boxShadow = $redGlow;
+  cardEl.style.boxShadow = $blueGlow;
   cardEl.style.animation = "3s ease 1200ms infinite alternate bounce";
 }
 
@@ -448,7 +614,7 @@ function AtkMsg() {
     }
   }
   attacker.style.animation = null;
-  attacker.style.boxShadow = $blueGlow;
+  attacker.style.boxShadow = $redGlow;
   attacker.classList.remove("played-card");
   attacker.classList.add("ready-to-attack");
   attacker.dataset.state = "ready-to-attack";
@@ -501,6 +667,8 @@ function startPlayerTurn() {
     }
   }
   endTurnBtn.addEventListener("click", endPlayerTurn);
+  endTurnBtn.addEventListener("mousedown", buttonPressed);
+  endTurnBtn.addEventListener("mouseup", buttonReleased);
 }
 
 function endEnemyTurn() {
@@ -703,12 +871,9 @@ function setCardProps(cardEl, fromDeck) {
 }
 
 function displayFelt() {
-  const card1 = document.getElementById("0");
-  const card2 = document.getElementById("1");
-  const card3 = document.getElementById("2");
-  card1.classList.add("is-hidden");
-  card2.classList.add("is-hidden");
-  card3.classList.add("is-hidden");
+  loadingBar.remove();
+  msg.remove();
+  heroEl.style = "background-image:url(./assets/images/red-felt.jpeg); cursor:url('./assets/images/custom-cursor.png'), auto;";
   heroBody.style.width = "100%";
   heroBody.classList.add("p0");
   heroBody.style.flexDirection = "column";
@@ -755,11 +920,8 @@ function displayFelt() {
 
   console.log(`You are battling ${enemy.name}`);
   endTurnBtn.addEventListener("click", endPlayerTurn);
-}
-
-function chooseCard(event) {
-  const chosenCard = event.target;
-  displayFelt();
+  endTurnBtn.addEventListener("mousedown", buttonPressed);
+  endTurnBtn.addEventListener("mouseup", buttonReleased);
 }
 
 function createCard(cardId) {
@@ -775,18 +937,22 @@ function createCard(cardId) {
   return cardEl;
 }
 
-function displayChoice() {
+function loadScreen() {
   navBarBrand.classList.add("is-hidden");
   navBarMenu.classList.add("is-hidden");
   console.log(`Welcome ${player.name}!`);
   heroBody.style.width = "75%";
-  heroBody.classList.add("is-align-self-center");
-  for (let i = 0; i < 3; i++) {
-    heroBody.appendChild(createCard(i));
-    const card = document.getElementById(`${i}`);
-    card.addEventListener("click", chooseCard);
-    heroBody.style.justifyContent = "space-around";
-  }
+  heroBody.classList.add("is-align-self-center", "is-flex", "is-flex-direction-column");
+  loadingBar.classList.add("progress", "is-large", "is-medium-dark");
+  loadingBar.max = "100";
+  loadingBar.textContent = "60%";
+  loadingBar.style.marginTop = "5rem";
+  msg.src = "./assets/images/box1.png";
+  msg.style.width = "25vw";
+  heroBody.appendChild(msg);
+  heroBody.appendChild(loadingBar);
+  heroBody.style.justifyContent = "center";
+  setTimeout(displayFelt, 5000);
 }
 
 /**
@@ -829,32 +995,47 @@ function startGame(event) {
   }
 
   settings.profanity = profanityInput.checked;
+  heroEl.style.backgroundImage = "url(./assets/images/hero2.jpg)";
+  heroEl.style.backgroundSize = "cover";
+  heroEl.style.backgroundPosition = "top";
+  heroEl.style.backgroundColor = "black";
+  heroEl.style.boxShadow = "inset 0 0 28vmin 0 rgba(0, 0, 0, 0.9";
 
   modal.classList.remove("is-active");
-  // Prevents cancel from returning felt view
-  heroEl.style.backgroundImage = "url(./assets/images/red-felt.jpeg)";
   landingMsg.classList.add("is-hidden");
   heroFoot.classList.add("is-hidden");
   footer.classList.add("is-hidden");
-  displayChoice();
+  loadScreen();
 }
 
-let user = {
-  username: "",
-  experience: "",
-  startingDeck: "",
-};
-
 function createAccount(event) {
-  event.preventDefault();
-  // SAVE FORM ELEMENT
-  user.username = usernameInput.value.trim();
-  localStorage.setItem("user", JSON.stringify(user));
+  // event.preventDefault();
+  wildwoodUser.username = usernameInput.value.trim();
+  wildwoodUser.experience = experienceLevel.value;
+  for (let i = 0; i < experienceLevel.length; i++) {
+    if (experienceLevel[i].checked) {
+      wildwoodUser.experience = experienceLevel[i].value;
+    }
+  }
+  wildwoodUser.startingDeck = startingDeck.value;
+  localStorage.setItem("wildwoodUser", JSON.stringify(wildwoodUser));
+  newGameBtn.dataset.target = "new-game-modal";
+  accountEl.children[0].textContent = `Welcome ${wildwoodUser.username}`;
+  // Welcome, username!;
 }
 
 accountForm.addEventListener("submit", createAccount);
-
 newGameForm.addEventListener("submit", startGame);
+
+const localStorageData = JSON.parse(localStorage.getItem("wildwoodUser"));
+
+if (!localStorageData) {
+  newGameBtn.dataset.target = "create-account-modal";
+} else {
+  accountEl.dataset.target = "settings-modal";
+  console.log(localStorageData);
+  accountEl.children[0].textContent = `Welcome ${localStorageData.username}!`;
+}
 
 // BULMA CODE
 /* When a user clicks on a button, an element with the `.modal` class is opened. */
