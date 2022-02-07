@@ -700,13 +700,14 @@ function fuckOff() {
     const apiUrlTwo = "https://foaas.com/";
         
     
-    fetch(apiUrlTwo+insult(randomIndex)+from)
+    fetch(apiUrlTwo+insult[randomIndex]+"/"+from)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
           console.log(data);
         })
       }
+      else (console.log("error"));
     })
   }
     // const randomI =
