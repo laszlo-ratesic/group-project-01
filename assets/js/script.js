@@ -246,24 +246,26 @@ let thinkingInterval;
 
 let playerCards = playerField.children;
 let enemyCards = enemyField.children;
-
+// These variables are for the insult array
+let from = enemy.name;
+let name = player.name;
 // This array holds API call commands for foaas API
 let insult = [
-  anyway/:company/:from,
+  // anyway/:company/:from,
   asshole/:from,
   back/:name/:from,
   bag/:from,
   blackadder/:name/:from,
   bus/:name/:from,
   bye/:from,
-  caniuse/:tool/:from,
+  // caniuse/:tool/:from,
   cocksplat/:name/:from,
-  dosomething/:do/:something/:from,
+  // dosomething/:do/:something/:from,
   dumbledore/:from,
   everyone/:from,
   everything/:from,
   fascinating/:from,
-  field/:name/:from/:reference,
+  // field/:name/:from/:reference,
   give/:from,
   holygrail/:from,
   horse/:from,
@@ -277,8 +279,8 @@ let insult = [
   sake/:from,
   shakespeare/:name/:from,
   shit/:from,
-  thinking/:name/:from,
-  waste/:name/:from
+  thinking/:name:from,
+  waste/:name/:from,
 ];
 
 function hover(event) {
