@@ -7,6 +7,9 @@ const landingMsg = document.getElementById("landing-msg");
 
 const accountForm = document.getElementById("account-form");
 const usernameInput = document.getElementById("username-input");
+const startingDeck = document.getElementById("deck-select");
+const experienceLevel = document.getElementsByName("experience");
+
 
 const newGameForm = document.getElementById("new-game-form");
 const nameInput = document.getElementById("name-input");
@@ -117,6 +120,12 @@ let dragon = {
 };
 
 let turnCounter = 0;
+
+let wildwoodUser = {
+  username: '',
+  experience: '',
+  startingDeck: ''
+}
 
 function getDeck(deck) {
   const apiUrl =
@@ -842,30 +851,16 @@ function startGame(event) {
   displayChoice();
 }
 
-let wildwoodUser = {
-  username: '',
-  experience: '',
-  startingDeck: ''
-}
-
 function createAccount(event) {
   event.preventDefault();
-
-  // SAVE FORM ELEMENT
   wildwoodUser.username = usernameInput.value.trim();
-
-  var experienceLevel = document.getElementsByName("experience");
   wildwoodUser.experience = experienceLevel.value;
-
     for (let i = 0; i < experienceLevel.length; i++) {
       if (experienceLevel[i].checked) {
         wildwoodUser.experience = experienceLevel[i].value
       }
     }
-
-  var starterDeck = document.getElementById("deck-select");
-  wildwoodUser.startingDeck = starterDeck.value;
-
+  wildwoodUser.startingDeck = startingDeck.value;
   localStorage.setItem("wildwoodUser", JSON.stringify(wildwoodUser));
 }
 
