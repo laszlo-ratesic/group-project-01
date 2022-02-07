@@ -655,7 +655,7 @@ function endPlayerTurn() {
   function fuckOff() {
       const randomIndex = Math.floor(Math.random() * array of insults length)
 
-      const apiUrlTwo ="https://foaas.com/'insult'/"+user.username
+      const apiUrlTwo ="https://foaas.com/" + insult + "/"+user.username
         
     
       fetch(apiUrlTwo)
