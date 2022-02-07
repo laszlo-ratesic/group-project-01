@@ -695,12 +695,13 @@ function fuckOff() {
   // These variables are for the insult array
   let from = enemy.name;
   let name = player.name;
+  
     const randomIndex = Math.floor(Math.random() * insult.length)
 
-    const apiUrlTwo = "https://foaas.com/";
+    const apiUrlTwo = "https://foaas.com/" + insult[randomIndex] + "/" + from;
         
     
-    fetch(apiUrlTwo+insult[randomIndex]+"/"+from)
+    fetch(apiUrlTwo)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
