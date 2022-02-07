@@ -1,5 +1,7 @@
 const pantryID = "e7259b55-e424-4352-b9d4-af473fc7431a";
 
+const createAccountModal = document.getElementById("create-account-modal");
+const accountEl = document.getElementById("account-el");
 const newGameBtn = document.getElementById("new-game-btn");
 
 const navBarBrand = document.querySelector(".navbar-brand");
@@ -126,7 +128,7 @@ let turnCounter = 0;
 let wildwoodUser = {
   username: '',
   experience: '',
-  startingDeck: ''
+  startingDeck: '',
 }
 
 function getDeck(deck) {
@@ -854,7 +856,7 @@ function startGame(event) {
 }
 
 function createAccount(event) {
-  event.preventDefault();
+  // event.preventDefault();
   wildwoodUser.username = usernameInput.value.trim();
   wildwoodUser.experience = experienceLevel.value;
     for (let i = 0; i < experienceLevel.length; i++) {
@@ -864,8 +866,9 @@ function createAccount(event) {
     }
   wildwoodUser.startingDeck = startingDeck.value;
   localStorage.setItem("wildwoodUser", JSON.stringify(wildwoodUser));
-  modal.classList.remove("is-active");
-  console.log("This works");
+  newGameBtn.dataset.target = "new-game-modal";
+  accountEl.children[0].textContent = `Welcome ${wildwoodUser.username}`;
+  // Welcome, username!;
 }
 
 accountForm.addEventListener("submit", createAccount);
@@ -875,9 +878,12 @@ const localStorageData = JSON.parse(localStorage.getItem("wildwoodUser"));
 
 if (!localStorageData) {
   newGameBtn.dataset.target = "create-account-modal";
+
 }
 else {
-  newGameBtn.dataset.target = "new-game-modal";
+  accountEl.dataset.target = null;
+  console.log(localStorageData);
+  accountEl.children[0].textContent = `Welcome ${localStorageData.username}!`;
 }
 
 // BULMA CODE
