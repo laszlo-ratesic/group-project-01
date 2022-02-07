@@ -653,6 +653,20 @@ function endPlayerTurn() {
   // ENEMY INSULT MESSAGES GO HERE
   let insult;
   function fuckOff() {
+      const randomIndex = Math.floor(Math.random() * array of insults length)
+
+      const apiUrlTwo ="https://foaas.com/'insult'/"+user.username
+        
+    
+      fetch(apiUrlTwo)
+      .then(function (response) {
+        if (response.ok) {
+          response.json().then(function (data) {
+            console.log(data);
+          })
+        }
+      })
+    }
     // const randomI =
     // Use math random to pick the insult
     // insult = above
