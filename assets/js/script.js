@@ -1,5 +1,7 @@
 const pantryID = "e7259b55-e424-4352-b9d4-af473fc7431a";
 
+const newGameBtn = document.getElementById("new-game-btn");
+
 const navBarBrand = document.querySelector(".navbar-brand");
 const navBarMenu = document.querySelector(".navbar-menu");
 const modal = document.querySelector(".modal");
@@ -862,11 +864,21 @@ function createAccount(event) {
     }
   wildwoodUser.startingDeck = startingDeck.value;
   localStorage.setItem("wildwoodUser", JSON.stringify(wildwoodUser));
+  modal.classList.remove("is-active");
+  console.log("This works");
 }
 
 accountForm.addEventListener("submit", createAccount);
-
 newGameForm.addEventListener("submit", startGame);
+
+const localStorageData = JSON.parse(localStorage.getItem("wildwoodUser"));
+
+if (!localStorageData) {
+  newGameBtn.dataset.target = "create-account-modal";
+}
+else {
+  newGameBtn.dataset.target = "new-game-modal";
+}
 
 // BULMA CODE
 /* When a user clicks on a button, an element with the `.modal` class is opened. */
