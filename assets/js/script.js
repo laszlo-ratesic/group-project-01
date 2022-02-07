@@ -427,7 +427,18 @@ function attackTargetHover(event) {
 function attackTargetUnhover(event) {
   event.target.style.boxShadow = $goldGlow;
 }
+// Enemy username api function
+function enemyName() {
+  const apiUrlTwo = "https://randomuser.me/api/";
 
+  fetch(apiUrlTwo).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        console.log(data);
+      });
+    }
+  });
+}
 // Opponent Trash Talk Window
 function notification(message) {
   const notification = document.createElement("div");
