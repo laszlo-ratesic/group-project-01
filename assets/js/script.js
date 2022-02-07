@@ -68,47 +68,188 @@ $goldGlow =
   "gold -15px -15px 10px, gold 15px -15px 10px, gold 15px 15px 10px, gold -15px 15px 10px";
 
 // TEST CARD OBJECTS
-let angel = {
-  name: "angel",
-  cost: 1,
-  atk: 1,
-  def: 2,
+let colossalDragon = {
+  name: "Colossal Dragon",
+  cost: 10,
+  atk: 10,
+  def: 8,
 };
-let demon = {
-  name: "demon",
-  cost: 1,
-  atk: 2,
-  def: 1,
+let elderWizard = {
+  name: "Elder Wizard",
+  cost: 9,
+  atk: 9,
+  def: 7,
 };
-let knight = {
-  name: "knight",
-  cost: 2,
-  atk: 2,
-  def: 3,
+let sorceress = {
+  name: "Sorceress",
+  cost: 9,
+  atk: 8,
+  def: 8,
 };
-let inferno = {
-  name: "inferno",
-  cost: 3,
+let dragonSorcerer = {
+  name: "Dragon Sorcerer",
+  cost: 8,
+  atk: 7,
+  def: 7,
+};
+let demonPriest = {
+  name: "Demon Priest",
+  cost: 8,
+  atk: 8,
+  def: 6,
+};
+let elvenSorcerer = {
+  name: "Elven Sorcerer",
+  cost: 8,
+  atk: 8,
+  def: 6,
+};
+let shamanicArcher = {
+  name: "Shamanic Archer",
+  cost: 7,
+  atk: 7,
+  def: 6,
+};
+let undeadDragon = {
+  name: "Undead Dragon",
+  cost: 7,
   atk: 5,
-  def: 0,
+  def: 8,
 };
-let warlock = {
-  name: "warlock",
+let aquatarion = {
+  name: "Aquatarion",
+  cost: 7,
+  atk: 7,
+  def: 6,
+};
+let dragula = {
+  name: "Dragula",
+  cost: 7,
+  atk: 6,
+  def: 7,
+};
+let empressOfTheDeep = {
+  name: "Empress of the Deep",
+  cost: 7,
+  atk: 8,
+  def: 5,
+};
+let griffin = {
+  name: "Griffin",
+  cost: 7,
+  atk: 8,
+  def: 5,
+};
+let darkElf = {
+  name: "Dark Elf",
+  cost: 6,
+  atk: 4,
+  def: 7,
+};
+let bullDemon = {
+  name: "Bull Demon",
+  cost: 6,
+  atk: 4,
+  def: 7,
+};
+let blazingDragon = {
+  name: "Blazing Dragon",
   cost: 6,
   atk: 7,
-  def: 3,
+  def: 4,
 };
-let centurion = {
-  name: "centurion",
+let forestDragon = {
+  name: "Forest Dragon",
+  cost: 6,
+  atk: 5,
+  def: 6,
+};
+let ladyOfTheForest = {
+  name: "Lady of the Forest",
+  cost: 6,
+  atk: 3,
+  def: 8,
+};
+let magmaSnail = {
+  name: "Magma Snail",
+  cost: 6,
+  atk: 2,
+  def: 9,
+};
+let cloudDragon = {
+  name: "Cloud Dragon",
+  cost: 5,
+  atk: 3,
+  def: 7,
+};
+let darkWitch = {
+  name: "Dark Witch",
+  cost: 5,
+  atk: 6,
+  def: 4,
+};
+let giantKing = {
+  name: "Giant King",
+  cost: 5,
+  atk: 5,
+  def: 5,
+};
+let angelicWarrior = {
+  name: "Angelic Warrior",
+  cost: 5,
+  atk: 6,
+  def: 4,
+};let sabbaticGoat = {
+  name: "Sabbatic Goat",
   cost: 5,
   atk: 4,
   def: 6,
+};let stoneGiant = {
+  name: "Stone Giant",
+  cost: 4,
+  atk: 3,
+  def: 6,
+};let enchantress = {
+  name: "Enchantress",
+  cost: 4,
+  atk: 4,
+  def: 5,
+};let clawface = {
+  name: "Clawface",
+  cost: 4,
+  atk: 6,
+  def: 3,
+};let tigerDragon = {
+  name: "Tiger Dragon",
+  cost: 4,
+  atk: 3,
+  def: 6,
+};let elvenArcher = {
+  name: "Elven Archer",
+  cost: 4,
+  atk: 6,
+  def: 3,
+};let swampGiant = {
+  name: "Swamp Giant",
+  cost: 3,
+  atk: 3,
+  def: 5,
+};let stalkers = {
+  name: "Stalkers",
+  cost: 3,
+  atk: 4,
+  def: 4,
+};let hauntedTree = {
+  name: "Haunted Tree",
+  cost: 2,
+  atk: 4,
+  def: 2,
 };
-let dragon = {
-  name: "dragon",
-  cost: 8,
-  atk: 10,
-  def: 10,
+let hauntedStallion = {
+  name: "Haunted Stallion",
+  cost: 1,
+  atk: 3,
+  def: 2,
 };
 
 let turnCounter = 0;
