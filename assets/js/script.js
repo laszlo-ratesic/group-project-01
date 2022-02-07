@@ -247,6 +247,7 @@ let thinkingInterval;
 let playerCards = playerField.children;
 let enemyCards = enemyField.children;
 
+// This array holds API call commands for foaas API
 let insult = [
   anyway/:company/:from,
   asshole/:from,
