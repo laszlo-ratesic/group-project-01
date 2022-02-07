@@ -93,10 +93,13 @@ progress:after {
 }
 
 #enemy-deck {
+  background-image: url(../images/CardJpgs/Card_Back.jpg);
+  background-size: cover;
+  background-position: center;
   border: solid 3px black;
-  border-radius: 15px;
+  border-radius: 10px;
   height: 15rem;
-  width: 10rem;
+  width: 11rem;
 }
 
 #enemy-hand {
@@ -104,7 +107,9 @@ progress:after {
 }
 
 .enemy-card {
-  background-color: red;
+  background-image: url(../images/CardJpgs/Card_Back.jpg);
+  background-size: cover;
+  background-position: center;
   border: solid 3px black;
   border-radius: 10px;
   height: 14rem;
@@ -165,10 +170,13 @@ progress:after {
 }
 
 #player-deck {
+  background-image: url(../images/CardJpgs/Card_Back.jpg);
+  background-size: cover;
+  background-position: center;
   border: solid 3px black;
   border-radius: 15px;
   height: 15rem;
-  width: 10rem;
+  width: 11rem;
 }
 
 #player-hand {
