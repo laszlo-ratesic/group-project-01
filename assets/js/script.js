@@ -75,18 +75,21 @@ let angel = {
   cost: 1,
   atk: 1,
   def: 2,
+  cardFace: "./assets/images/CardJpgs/AngelicWarrior.jpg"
 };
 let demon = {
   name: "demon",
   cost: 1,
   atk: 2,
   def: 1,
+  cardFace: "./assets/images/CardJpgs/BullDemon.jpg"
 };
 let knight = {
   name: "knight",
   cost: 2,
   atk: 2,
   def: 3,
+  cardFace: "./assets/images/CardJpgs/DarkElf.jpg"
 };
 let inferno = {
   name: "inferno",
