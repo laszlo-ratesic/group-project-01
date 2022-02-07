@@ -14,7 +14,6 @@ const usernameInput = document.getElementById("username-input");
 const startingDeck = document.getElementById("deck-select");
 const experienceLevel = document.getElementsByName("experience");
 
-
 const newGameForm = document.getElementById("new-game-form");
 const nameInput = document.getElementById("name-input");
 const classSelect = document.getElementById("class-select");
@@ -54,6 +53,12 @@ const enemyCard2 = document.getElementById("enemy-card-2");
 const enemyCard3 = document.getElementById("enemy-card-3");
 const enemyCard4 = document.getElementById("enemy-card-4");
 
+function displayTarget(event) {
+  const target = event.target;
+  console.log(target);
+}
+document.addEventListener("click", displayTarget);
+
 const endTurnBtn = document.getElementById("end-turn-btn");
 
 const enemyHealth = document.getElementById("enemy-health");
@@ -63,6 +68,8 @@ const playerPower = document.getElementById("player-power");
 
 const youWon = document.getElementById("you-won");
 const youLost = document.getElementById("you-lost");
+
+const loadingBar = document.createElement("progress");
 
 $insetGoldGlow =
   "inset gold -15px -15px 10px, inset gold 15px -15px 10px, inset gold 15px 15px 10px, inset gold -15px 15px 10px";
@@ -208,47 +215,56 @@ let angelicWarrior = {
   cost: 5,
   atk: 6,
   def: 4,
-};let sabbaticGoat = {
+};
+let sabbaticGoat = {
   name: "Sabbatic Goat",
   cost: 5,
   atk: 4,
   def: 6,
-};let stoneGiant = {
+};
+let stoneGiant = {
   name: "Stone Giant",
   cost: 4,
   atk: 3,
   def: 6,
-};let enchantress = {
+};
+let enchantress = {
   name: "Enchantress",
   cost: 4,
   atk: 4,
   def: 5,
-};let clawface = {
+};
+let clawface = {
   name: "Clawface",
   cost: 4,
   atk: 6,
   def: 3,
-};let tigerDragon = {
+};
+let tigerDragon = {
   name: "Tiger Dragon",
   cost: 4,
   atk: 3,
   def: 6,
-};let elvenArcher = {
+};
+let elvenArcher = {
   name: "Elven Archer",
   cost: 4,
   atk: 6,
   def: 3,
-};let swampGiant = {
+};
+let swampGiant = {
   name: "Swamp Giant",
   cost: 3,
   atk: 3,
   def: 5,
-};let stalkers = {
+};
+let stalkers = {
   name: "Stalkers",
   cost: 3,
   atk: 4,
   def: 4,
-};let hauntedTree = {
+};
+let hauntedTree = {
   name: "Haunted Tree",
   cost: 2,
   atk: 4,
@@ -264,24 +280,23 @@ let hauntedStallion = {
 let turnCounter = 0;
 
 let wildwoodUser = {
-  username: '',
-  experience: '',
-  startingDeck: '',
-}
+  username: "",
+  experience: "",
+  startingDeck: "",
+};
 
 function getDeck(deck) {
   const apiUrl =
     "https://getpantry.cloud/apiv1/pantry/e7259b55-e424-4352-b9d4-af473fc7431a/basket/" +
     deck;
 
-  fetch(apiUrl)
-  .then(function (response) {
+  fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
         console.log(data);
-      })
+      });
     }
-  })
+  });
 }
 
 getDeck("DragonsWrath");
@@ -318,7 +333,7 @@ let starterDeck = [
   swampGiant,
   stalkers,
   hauntedTree,
-  hauntedStallion
+  hauntedStallion,
 ];
 
 let enemyDeck = [
@@ -353,7 +368,7 @@ let enemyDeck = [
   swampGiant,
   stalkers,
   hauntedTree,
-  hauntedStallion
+  hauntedStallion,
 ];
 
 let player = {
@@ -384,6 +399,18 @@ let thinkingInterval;
 
 let playerCards = playerField.children;
 let enemyCards = enemyField.children;
+
+const imgTop = document.querySelector(".img-top");
+
+function buttonPressed(event) {
+  event.target.src = "./assets/images/buttonPressed.png";
+  event.target.style.top = "0";
+}
+
+function buttonReleased(event) {
+  event.target.src = "./assets/images/buttonHighLight.png";
+  event.target.style.top = "-3px";
+}
 
 function hover(event) {
   event.target.style.transform = "scale(1.3)";
@@ -639,6 +666,8 @@ function startPlayerTurn() {
     }
   }
   endTurnBtn.addEventListener("click", endPlayerTurn);
+  endTurnBtn.addEventListener("mousedown", buttonPressed);
+  endTurnBtn.addEventListener("mouseup", buttonReleased);
 }
 
 function endEnemyTurn() {
@@ -841,6 +870,8 @@ function setCardProps(cardEl, fromDeck) {
 }
 
 function displayFelt() {
+  loadingBar.remove();
+  heroEl.style.backgroundImage = "url(./assets/images/red-felt.jpeg)";
   const card1 = document.getElementById("0");
   const card2 = document.getElementById("1");
   const card3 = document.getElementById("2");
@@ -893,6 +924,8 @@ function displayFelt() {
 
   console.log(`You are battling ${enemy.name}`);
   endTurnBtn.addEventListener("click", endPlayerTurn);
+  endTurnBtn.addEventListener("mousedown", buttonPressed);
+  endTurnBtn.addEventListener("mouseup", buttonReleased);
 }
 
 function chooseCard(event) {
@@ -919,6 +952,10 @@ function displayChoice() {
   console.log(`Welcome ${player.name}!`);
   heroBody.style.width = "75%";
   heroBody.classList.add("is-align-self-center");
+  loadingBar.classList.add("progress", "is-large", "is-medium-dark");
+  loadingBar.max = "100";
+  loadingBar.textContent = "60%";
+  heroBody.appendChild(loadingBar);
   for (let i = 0; i < 3; i++) {
     heroBody.appendChild(createCard(i));
     const card = document.getElementById(`${i}`);
@@ -967,10 +1004,13 @@ function startGame(event) {
   }
 
   settings.profanity = profanityInput.checked;
+  heroEl.style.backgroundImage = "url(./assets/images/hero2.jpg)";
+  heroEl.style.backgroundSize = "cover";
+  heroEl.style.backgroundPosition = "top";
+  heroEl.style.backgroundColor = "black";
+  heroEl.style.boxShadow = "inset 0 0 28vmin 0 rgba(0, 0, 0, 0.9";
 
   modal.classList.remove("is-active");
-  // Prevents cancel from returning felt view
-  heroEl.style.backgroundImage = "url(./assets/images/red-felt.jpeg)";
   landingMsg.classList.add("is-hidden");
   heroFoot.classList.add("is-hidden");
   footer.classList.add("is-hidden");
@@ -981,11 +1021,11 @@ function createAccount(event) {
   // event.preventDefault();
   wildwoodUser.username = usernameInput.value.trim();
   wildwoodUser.experience = experienceLevel.value;
-    for (let i = 0; i < experienceLevel.length; i++) {
-      if (experienceLevel[i].checked) {
-        wildwoodUser.experience = experienceLevel[i].value
-      }
+  for (let i = 0; i < experienceLevel.length; i++) {
+    if (experienceLevel[i].checked) {
+      wildwoodUser.experience = experienceLevel[i].value;
     }
+  }
   wildwoodUser.startingDeck = startingDeck.value;
   localStorage.setItem("wildwoodUser", JSON.stringify(wildwoodUser));
   newGameBtn.dataset.target = "new-game-modal";
@@ -1000,9 +1040,7 @@ const localStorageData = JSON.parse(localStorage.getItem("wildwoodUser"));
 
 if (!localStorageData) {
   newGameBtn.dataset.target = "create-account-modal";
-
-}
-else {
+} else {
   accountEl.dataset.target = "settings-modal";
   console.log(localStorageData);
   accountEl.children[0].textContent = `Welcome ${localStorageData.username}!`;

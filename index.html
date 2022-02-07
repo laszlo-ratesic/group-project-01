@@ -8,6 +8,9 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/sass/combined.css" />
     <title>Wildwood</title>
   </head>
@@ -130,8 +133,12 @@
                 <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
               </div>
             </div>
-            <div id="end-turn-btn" class="button is-danger">End Turn</div>
-            <div id="player-deck""></div>
+            <div id="end-turn-btn" class="is-clickable end-turn has-text-centered" style="width:18%;">
+              <img class="img-bottom" src="./assets/images/buttonNormal.png" alt="">
+              <img class="img-top" src="./assets/images/buttonHighLight.png" alt="">
+              <h1 class="is-size-4 is-unselectable is-overlay has-text-grey-lighter" style="font-family: 'MedievalSharp', serif; z-index:1002; top:25%; letter-spacing: .2em; pointer-events: none;">End Turn</h1>
+            </div>
+            <div id="player-deck"></div>
           </div>
         </div>
 
