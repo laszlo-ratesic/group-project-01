@@ -248,6 +248,7 @@ let playerCards = playerField.children;
 let enemyCards = enemyField.children;
 
 let insult = [
+asshole,
 
 ];
 
