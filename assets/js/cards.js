@@ -1,6 +1,7 @@
 let A = {
     Power: 1,
     Attack: 1,
+    Defense: 1,
 }
 let B = {
     Power: 2,

@@ -4,7 +4,7 @@
   --third-color: #3f6c51ff;
   --fourth-color: #d7263dff;
   --fifth-color: #f26419ff;
-  --sixth-color: #f9e900ff;
+  --sixth-color: rgba(102, 102, 102, 0.63);
 }
 
 .hero {
@@ -93,7 +93,7 @@ progress:after {
 }
 
 #enemy-deck {
-  background-image: url(../images/CardJpgs/Card_Back.jpg);
+  background-image: url(../images/CardPNGs/Card_Back.png);
   background-size: cover;
   background-position: center;
   border: solid 3px black;
@@ -107,7 +107,7 @@ progress:after {
 }
 
 .enemy-card {
-  background-image: url(../images/CardJpgs/Card_Back.jpg);
+  background-image: url(../images/CardPNGs/Card_Back.png);
   background-size: cover;
   background-position: center;
   border: solid 3px black;
@@ -170,7 +170,7 @@ progress:after {
 }
 
 #player-deck {
-  background-image: url(../images/CardJpgs/Card_Back.jpg);
+  background-image: url(../images/CardPNGs/Card_Back.png);
   background-size: cover;
   background-position: center;
   border: solid 3px black;
@@ -300,6 +300,31 @@ progress:after {
   box-shadow: none;
   animation: none;
 }
+
+.end-turn {
+  display: inline-block;
+  position: relative;
+  cursor: url('../images/custom-cursor.png'), auto;
+}
+
+.img-top {
+  display: none;
+  position: absolute;
+  top: -3px;
+  left: 0;
+  z-index: 1000;
+  cursor: url('../images/custom-cursor.png'), auto;
+}
+
+.img-bottom {
+  cursor: url('../images/custom-cursor.png'), auto;
+}
+
+.end-turn:hover .img-top {
+  display: inline;
+  cursor: url('../images/custom-cursor.png'), auto;
+}
+
 
 @media screen and (max-width: 980px) {
   #player-row {
