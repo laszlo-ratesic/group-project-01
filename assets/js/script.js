@@ -1,4 +1,5 @@
 const pantryID = "e7259b55-e424-4352-b9d4-af473fc7431a";
+const apiurl = "https://getpantry.cloud/apiv1/pantry/e7259b55-e424-4352-b9d4-af473fc7431a/basket/dragons-wrath";
 
 const createAccountModal = document.getElementById("create-account-modal");
 const accountEl = document.getElementById("account-el");
