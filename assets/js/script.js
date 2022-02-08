@@ -201,13 +201,16 @@ function endGame() {
   return;
 }
 
+function gBCR(elem) {
+  return elem.getBoundingClientRect();
+};
+
 function attackTarget(event) {
   const readyToAttack = document.querySelector(".ready-to-attack");
   for (let i = 0; i < playerCards.length; i++) {
     playerCards[i].removeEventListener("click", AtkMsg);
   }
   const target = event.currentTarget;
-
   // If the player attacks the enemy directly
   if (target.id === "enemy-avatar") {
     enemy.health -= readyToAttack.dataset.atk;
@@ -258,7 +261,6 @@ function attackTarget(event) {
       readyToAttack.remove();
     }
   }
-
   target.style.animation = "wobble 1s";
   enemyAvatar.style.boxShadow = "none";
   enemyAvatar.removeEventListener("mouseenter", attackTargetHover);
@@ -377,7 +379,17 @@ function startPlayerTurn() {
     cardImg.src = "./assets/images/placeholder-card.png";
     cardImg.style.transform = "scale(1.2)";
     newCard.appendChild(cardImg);
-    playerHand.appendChild(newCard);
+    gsap.fromTo(newCard, {
+      onStart: function() {
+        playerHand.after(newCard);
+      },
+      x: 700,
+      onComplete: function() {
+        playerHand.appendChild(newCard);
+      }
+    }, {
+      x: 0
+    })
     setCardProps(newCard, player.deck);
     player.hand.push(newCard);
   }
@@ -544,7 +556,17 @@ function enemyTurn() {
   if (enemy.deck.length > 0) {
     const newCard = document.createElement("div");
     newCard.classList.add("enemy-card");
-    enemyHand.appendChild(newCard);
+    gsap.fromTo(newCard, {
+      onStart: function() {
+        enemyHand.after(newCard);
+      },
+      x: 700,
+      onComplete: function() {
+        enemyHand.appendChild(newCard);
+      }
+    }, {
+      x: 0
+    })
     setCardProps(newCard, enemy.deck);
     enemy.hand.push(newCard);
   }
