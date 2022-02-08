@@ -310,22 +310,6 @@ let wildwoodUser = {
   startingDeck: "",
 };
 
-function getDeck(deck) {
-  const apiUrl =
-    "https://getpantry.cloud/apiv1/pantry/e7259b55-e424-4352-b9d4-af473fc7431a/basket/" +
-    deck;
-
-  fetch(apiUrl).then(function (response) {
-    if (response.ok) {
-      response.json().then(function (data) {
-        return data.cards;
-      });
-    }
-  });
-}
-
-console.log(getDeck("dragons-wrath"));
-
 let starterDeck = [
   colossalDragon,
   elderWizard,
@@ -417,6 +401,20 @@ let enemy = {
   deck: enemyDeck,
   hand: [],
 };
+
+function getDeck(deck) {
+  const apiUrl =
+    "https://getpantry.cloud/apiv1/pantry/e7259b55-e424-4352-b9d4-af473fc7431a/basket/" +
+    deck;
+
+  fetch(apiUrl).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        console.log(data.cards);
+      });
+    }
+  });
+}
 
 let discardPile = [];
 
@@ -998,6 +996,9 @@ function loadScreen() {
  */
 function startGame(event) {
   event.preventDefault();
+  player.deck = localStorageData.startingDeck;
+  getDeck(player.deck);
+  console.log(player);
   player.name = nameInput.value.trim();
   player.class = classSelect.value;
   if (player.class === "warrior") {
@@ -1077,10 +1078,8 @@ if (!localStorageData) {
   newGameBtn.dataset.target = "create-account-modal";
 } else {
   accountEl.dataset.target = "settings-modal";
-  console.log(localStorageData);
   accountEl.children[0].textContent = `Welcome ${localStorageData.username}!`;
 }
-
 // BULMA CODE
 /* When a user clicks on a button, an element with the `.modal` class is opened. */
 document.addEventListener("DOMContentLoaded", () => {
