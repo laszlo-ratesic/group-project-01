@@ -401,6 +401,44 @@ let thinkingInterval;
 let playerCards = playerField.children;
 let enemyCards = enemyField.children;
 
+// This array holds API call commands for foaas API
+const asshole = "asshole";
+const back = "back";
+const bag = "bag";
+const blackadder = "blackadder"
+let insult = [
+  // anyway/:company/:from,
+  asshole,
+  back,
+  bag,
+  blackadder,
+  // bus/name/from,
+  // bye/from,
+  // caniuse/:tool/:from,
+  // cocksplat/name/from,
+  // dosomething/:do/:something/:from,
+  // dumbledore/from,
+  // everyone/from,
+  // everything/from,
+  // fascinating/from,
+  // field/:name/:from/:reference,
+  // give/from,
+  // holygrail/from,
+  // horse/from,
+  // legend/name/from,
+  // // life/from,
+  // linus/name/from,
+  // mornin/from,
+  // nugget/name/from,
+  // problem/name/from,
+  // ridiculous/from,
+  // sake/from,
+  // shakespeare/name/from,
+  // shit/from,
+  // thinking/name/from,
+  // waste/name/from,
+];
+
 function hover(event) {
   event.target.style.transform = "scale(1.3)";
 }
@@ -805,16 +843,64 @@ function endPlayerTurn() {
   playerCard3.removeEventListener("click", playCard);
   playerCard4.removeEventListener("click", playCard);
   // ENEMY INSULT MESSAGES GO HERE
-  let insult;
-  function fuckOff() {
+  
+//   let from = enemy.name;
+//   const randomIndex = Math.floor(Math.random() * insult.length)
+//   const apiUrlTwo = "https://foaas.com/" + insult[randomIndex] + "/" + from;
+// async function fuckOff(url = '', data = {}) {
+//   // Default options are marked with *
+//   const response = await fetch(url, {
+//     method: 'POST', // *GET, POST, PUT, DELETE, etc.
+//     mode: 'cors', // no-cors, *cors, same-origin
+//     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+//     credentials: 'same-origin', // include, *same-origin, omit
+//     headers: {
+//       'Content-Type': 'application/json'
+//       // 'Content-Type': 'application/x-www-form-urlencoded',
+//     },
+//     redirect: 'follow', // manual, *follow, error
+//     referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+//     body: JSON.stringify(data) // body data type must match "Content-Type" header
+//   });
+//   return response.json(); // parses JSON response into native JavaScript objects
+// }
+
+// fuckOff(apiUrlTwo, {})
+//   .then(data => {
+//     console.log(data); // JSON data parsed by `data.json()` call
+//   });
+
+
+ function fuckOff() {
+   // These variables are for the insult array
+   let from = enemy.name;
+   let name = player.name;
+  
+     const randomIndex = Math.floor(Math.random() * insult.length)
+
+     const apiUrlTwo = "https://foaas.com/" + insult[randomIndex] + "/" + from;
+        
+    
+     fetch(apiUrlTwo, {
+          headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));  
+     })
+     .then(function (response) {
+       if (response.ok) {
+         response.json().then(function (data) {
+           console.log(data);
+         })
+       }
+       else (console.log("error"));
+     })
+   }
     // const randomI =
     // Use math random to pick the insult
     // insult = above
     // CODE HERE
     // call the API
     // output an insult
-  }
-  setTimeout(notification("That all you got?"), 1000);
+  
+  setTimeout(fuckOff(), 1000);
   setTimeout(enemyTurn(), 2000);
 }
 
