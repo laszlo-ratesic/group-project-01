@@ -582,6 +582,12 @@ function playCard(event) {
     chosenCard.classList.add("played-card");
     chosenCard.setAttribute("data-state", "in-play");
     chosenCard.removeEventListener("click", playCard);
+    const w = window.innerWidth/4;
+    const h = window.innerHeight/8;
+    gsap.from(chosenCard, {
+      scale:1.5,
+      xPercent: -w,
+      yPercent: -h});
     playerField.appendChild(chosenCard);
     console.log(`You played ${chosenCard.dataset.name}!`);
     player.power -= chosenCard.dataset.cost;
