@@ -1,6 +1,7 @@
 const pantryID = "e7259b55-e424-4352-b9d4-af473fc7431a";
 const apiurl = "https://getpantry.cloud/apiv1/pantry/e7259b55-e424-4352-b9d4-af473fc7431a/basket/dragons-wrath";
 
+const accountEl = document.getElementById("account-el");
 const navBarBrand = document.querySelector(".navbar-brand");
 const navBarMenu = document.querySelector(".navbar-menu");
 const modal = document.querySelector(".modal");
@@ -50,18 +51,14 @@ const enemyCard2 = document.getElementById("enemy-card-2");
 const enemyCard3 = document.getElementById("enemy-card-3");
 const enemyCard4 = document.getElementById("enemy-card-4");
 
-function displayTarget(event) {
-  const target = event.target;
-  console.log(target);
-}
-document.addEventListener("click", displayTarget);
-
 const endTurnBtn = document.getElementById("end-turn-btn");
 
 const enemyHealth = document.getElementById("enemy-health");
 const enemyPower = document.getElementById("enemy-power");
 const playerHealth = document.getElementById("player-health");
 const playerPower = document.getElementById("player-power");
+
+const newGameBtn = document.getElementById("new-game-btn");
 
 const youWon = document.getElementById("you-won");
 const youLost = document.getElementById("you-lost");
@@ -321,13 +318,13 @@ function getDeck(deck) {
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        console.log(data);
+        return data.cards;
       });
     }
   });
 }
 
-getDeck("DragonsWrath");
+console.log(getDeck("dragons-wrath"));
 
 let starterDeck = [
   colossalDragon,
