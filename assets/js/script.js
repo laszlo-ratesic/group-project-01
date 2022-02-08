@@ -825,7 +825,7 @@ async function fuckOff(url) {
       });
     }
   });
-}
+};
 
 function playCard(event) {
   const chosenCard = event.currentTarget;
