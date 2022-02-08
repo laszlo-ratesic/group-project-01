@@ -70,6 +70,8 @@ const msg = document.createElement("img");
 
 const localStorageData = JSON.parse(localStorage.getItem("bloodgateUser"));
 
+const restartBtn = document.getElementById("restart-btn");
+
 $insetGoldGlow =
   "inset gold -15px -15px 10px, inset gold 15px -15px 10px, inset gold 15px 15px 10px, inset gold -15px 15px 10px";
 $insetRedGlow =
@@ -186,6 +188,10 @@ function removeTarget(cardEl) {
   cardEl.removeEventListener("click", attackTarget);
 }
 
+function reloadPage() {
+  location.reload(true);
+}
+
 function endGame() {
   feltView.classList.add("is-hidden");
   gameOver.classList.remove("is-hidden");
@@ -194,6 +200,7 @@ function endGame() {
   } else {
     youLost.classList.remove("is-hidden");
   }
+  restartBtn.addEventListener("click", reloadPage);
   return;
 }
 
