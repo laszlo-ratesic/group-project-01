@@ -1,10 +1,6 @@
 const pantryID = "e7259b55-e424-4352-b9d4-af473fc7431a";
 const apiurl = "https://getpantry.cloud/apiv1/pantry/e7259b55-e424-4352-b9d4-af473fc7431a/basket/dragons-wrath";
 
-const createAccountModal = document.getElementById("create-account-modal");
-const accountEl = document.getElementById("account-el");
-const newGameBtn = document.getElementById("new-game-btn");
-
 const navBarBrand = document.querySelector(".navbar-brand");
 const navBarMenu = document.querySelector(".navbar-menu");
 const modal = document.querySelector(".modal");
@@ -275,8 +271,38 @@ let hauntedTree = {
 let hauntedStallion = {
   name: "Haunted Stallion",
   cost: 1,
-  atk: 3,
-  def: 2,
+  atk: 2,
+  def: 1,
+};
+let knight = {
+  name: "knight",
+  cost: 2,
+  atk: 2,
+  def: 3,
+};
+let inferno = {
+  name: "inferno",
+  cost: 3,
+  atk: 5,
+  def: 0,
+};
+let warlock = {
+  name: "warlock",
+  cost: 6,
+  atk: 7,
+  def: 3,
+};
+let centurion = {
+  name: "centurion",
+  cost: 5,
+  atk: 4,
+  def: 6,
+};
+let dragon = {
+  name: "dragon",
+  cost: 8,
+  atk: 10,
+  def: 10,
 };
 
 let turnCounter = 0;
@@ -448,7 +474,7 @@ function notification(message) {
 function cardReady(cardEl) {
   cardEl.style.transition = "all 1200ms";
   cardEl.style.transform = "translateY(-15px)";
-  cardEl.style.boxShadow = $blueGlow;
+  cardEl.style.boxShadow = $redGlow;
   cardEl.style.animation = "3s ease 1200ms infinite alternate bounce";
 }
 
@@ -615,7 +641,7 @@ function AtkMsg() {
     }
   }
   attacker.style.animation = null;
-  attacker.style.boxShadow = $redGlow;
+  attacker.style.boxShadow = $blueGlow;
   attacker.classList.remove("played-card");
   attacker.classList.add("ready-to-attack");
   attacker.dataset.state = "ready-to-attack";
@@ -1009,6 +1035,12 @@ function startGame(event) {
   loadScreen();
 }
 
+let user = {
+  username: "",
+  experience: "",
+  startingDeck: "",
+};
+
 function createAccount(event) {
   // event.preventDefault();
   wildwoodUser.username = usernameInput.value.trim();
@@ -1026,6 +1058,7 @@ function createAccount(event) {
 }
 
 accountForm.addEventListener("submit", createAccount);
+
 newGameForm.addEventListener("submit", startGame);
 
 const localStorageData = JSON.parse(localStorage.getItem("wildwoodUser"));
@@ -1117,7 +1150,7 @@ document.addEventListener("DOMContentLoaded", () => {
   click event listener to the delete element that will remove the parent notification element from
   the DOM. */
   (document.querySelectorAll(".notification .delete") || []).forEach(
-    ($delete) => {
+    ($delete) => {git
       const $notification = $delete.parentNode;
 
       $delete.addEventListener("click", () => {
