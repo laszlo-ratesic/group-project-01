@@ -91,19 +91,19 @@ let elderWizard = {
 };
 let sorceress = {
   name: "Sorceress",
-  cost: 9,
-  atk: 8,
-  def: 8,
+  cost: 7,
+  atk: 6,
+  def: 3,
 };
 let dragonSorcerer = {
   name: "Dragon Sorcerer",
-  cost: 8,
+  cost: 7,
   atk: 7,
-  def: 7,
+  def: 5,
 };
 let demonPriest = {
   name: "Demon Priest",
-  cost: 8,
+  cost: 5,
   atk: 8,
   def: 6,
 };
