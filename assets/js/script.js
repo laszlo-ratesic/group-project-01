@@ -100,27 +100,27 @@ let elderWizard = {
 };
 let sorceress = {
   name: "Sorceress",
-  cost: 9,
-  atk: 8,
-  def: 8,
+  cost: 7,
+  atk: 6,
+  def: 3,
 };
 let dragonSorcerer = {
   name: "Dragon Sorcerer",
-  cost: 8,
+  cost: 7,
   atk: 7,
-  def: 7,
+  def: 5,
 };
 let demonPriest = {
   name: "Demon Priest",
-  cost: 8,
+  cost: 5,
   atk: 8,
   def: 6,
 };
 let elvenSorcerer = {
   name: "Elven Sorcerer",
-  cost: 8,
-  atk: 8,
-  def: 6,
+  cost: 2,
+  atk: 3,
+  def: 1,
 };
 let shamanicArcher = {
   name: "Shamanic Archer",
@@ -130,33 +130,33 @@ let shamanicArcher = {
 };
 let undeadDragon = {
   name: "Undead Dragon",
-  cost: 7,
-  atk: 5,
-  def: 8,
+  cost: 5,
+  atk: 4,
+  def: 4,
 };
 let aquatarion = {
   name: "Aquatarion",
-  cost: 7,
-  atk: 7,
-  def: 6,
+  cost: 5,
+  atk: 4,
+  def: 4,
 };
 let dragula = {
   name: "Dragula",
-  cost: 7,
-  atk: 6,
-  def: 7,
+  cost: 4,
+  atk: 4,
+  def: 5,
 };
 let empressOfTheDeep = {
   name: "Empress of the Deep",
-  cost: 7,
-  atk: 8,
-  def: 5,
+  cost: 4,
+  atk: 5,
+  def: 3,
 };
 let griffin = {
   name: "Griffin",
-  cost: 7,
-  atk: 8,
-  def: 5,
+  cost: 2,
+  atk: 3,
+  def: 1,
 };
 let darkElf = {
   name: "Dark Elf",
@@ -172,15 +172,15 @@ let bullDemon = {
 };
 let blazingDragon = {
   name: "Blazing Dragon",
-  cost: 6,
+  cost: 5,
   atk: 7,
-  def: 4,
+  def: 3,
 };
 let forestDragon = {
   name: "Forest Dragon",
-  cost: 6,
-  atk: 5,
-  def: 6,
+  cost: 3,
+  atk: 3,
+  def: 7,
 };
 let ladyOfTheForest = {
   name: "Lady of the Forest",
@@ -196,7 +196,7 @@ let magmaSnail = {
 };
 let cloudDragon = {
   name: "Cloud Dragon",
-  cost: 5,
+  cost: 3,
   atk: 3,
   def: 7,
 };
@@ -208,9 +208,9 @@ let darkWitch = {
 };
 let giantKing = {
   name: "Giant King",
-  cost: 5,
-  atk: 5,
-  def: 5,
+  cost: 3,
+  atk: 1,
+  def: 6,
 };
 let angelicWarrior = {
   name: "Angelic Warrior",
@@ -244,9 +244,9 @@ let clawface = {
 };
 let tigerDragon = {
   name: "Tiger Dragon",
-  cost: 4,
+  cost: 3,
   atk: 3,
-  def: 6,
+  def: 3,
 };
 let elvenArcher = {
   name: "Elven Archer",
@@ -256,9 +256,9 @@ let elvenArcher = {
 };
 let swampGiant = {
   name: "Swamp Giant",
-  cost: 3,
-  atk: 3,
-  def: 5,
+  cost: 2,
+  atk: 2,
+  def: 4,
 };
 let stalkers = {
   name: "Stalkers",
