@@ -1,0 +1,294 @@
+{
+  "key": "value",
+  "name": "legion-of-the-forest",
+  "cards": [
+    {
+      "name": "Elder Wizard",
+      "cost": 9,
+      "atk": 9,
+      "def": 7
+    },
+    {
+      "name": "Sorceress",
+      "cost": 7,
+      "atk": 6,
+      "def": 3
+    },
+    {
+      "name": "Elven Sorcerer",
+      "cost": 2,
+      "atk": 3,
+      "def": 1
+    },
+    {
+      "name": "Shamanic Archer",
+      "cost": 7,
+      "atk": 7,
+      "def": 6
+    },
+    {
+      "name": "Aquatarion",
+      "cost": 5,
+      "atk": 4,
+      "def": 4
+    },
+    {
+      "name": "Empress of the Deep",
+      "cost": 4,
+      "atk": 5,
+      "def": 3
+    },
+    {
+      "name": "Griffin",
+      "cost": 2,
+      "atk": 3,
+      "def": 1
+    },
+    {
+      "name": "Dark Elf",
+      "cost": 6,
+      "atk": 4,
+      "def": 7
+    },
+    {
+      "name": "Forest Dragon",
+      "cost": 3,
+      "atk": 3,
+      "def": 7
+    },
+    {
+      "name": "Lady of the Forest",
+      "cost": 6,
+      "atk": 3,
+      "def": 8
+    },
+    {
+      "name": "Cloud Dragon",
+      "cost": 3,
+      "atk": 3,
+      "def": 7
+    },
+    {
+      "name": "Giant King",
+      "cost": 3,
+      "atk": 1,
+      "def": 6
+    },
+    {
+      "name": "Giant King",
+      "cost": 3,
+      "atk": 1,
+      "def": 6
+    },
+    {
+      "name": "Angelic Warrior",
+      "cost": 5,
+      "atk": 6,
+      "def": 4
+    },
+    {
+      "name": "Angelic Warrior",
+      "cost": 5,
+      "atk": 6,
+      "def": 4
+    },
+    {
+      "name": "Stone Giant",
+      "cost": 4,
+      "atk": 3,
+      "def": 6
+    },
+    {
+      "name": "Stone Giant",
+      "cost": 4,
+      "atk": 3,
+      "def": 6
+    },
+    {
+      "name": "Stone Giant",
+      "cost": 4,
+      "atk": 3,
+      "def": 6
+    },
+    {
+      "name": "Elven Archer",
+      "cost": 4,
+      "atk": 6,
+      "def": 3
+    },
+    {
+      "name": "Elven Archer",
+      "cost": 4,
+      "atk": 6,
+      "def": 3
+    },
+    {
+      "name": "Elven Archer",
+      "cost": 4,
+      "atk": 6,
+      "def": 3
+    },
+    {
+      "name": "Elven Archer",
+      "cost": 4,
+      "atk": 6,
+      "def": 3
+    },
+    {
+      "name": "Swamp Giant",
+      "cost": 2,
+      "atk": 2,
+      "def": 4
+    },
+    {
+      "name": "Haunted Tree",
+      "cost": 2,
+      "atk": 4,
+      "def": 2
+    },
+    {
+      "name": "Elder Wizard",
+      "cost": 9,
+      "atk": 9,
+      "def": 7
+    },
+    {
+      "name": "Sorceress",
+      "cost": 7,
+      "atk": 6,
+      "def": 3
+    },
+    {
+      "name": "Elven Sorcerer",
+      "cost": 2,
+      "atk": 3,
+      "def": 1
+    },
+    {
+      "name": "Shamanic Archer",
+      "cost": 7,
+      "atk": 7,
+      "def": 6
+    },
+    {
+      "name": "Aquatarion",
+      "cost": 5,
+      "atk": 4,
+      "def": 4
+    },
+    {
+      "name": "Empress of the Deep",
+      "cost": 4,
+      "atk": 5,
+      "def": 3
+    },
+    {
+      "name": "Griffin",
+      "cost": 2,
+      "atk": 3,
+      "def": 1
+    },
+    {
+      "name": "Dark Elf",
+      "cost": 6,
+      "atk": 4,
+      "def": 7
+    },
+    {
+      "name": "Forest Dragon",
+      "cost": 3,
+      "atk": 3,
+      "def": 7
+    },
+    {
+      "name": "Lady of the Forest",
+      "cost": 6,
+      "atk": 3,
+      "def": 8
+    },
+    {
+      "name": "Cloud Dragon",
+      "cost": 3,
+      "atk": 3,
+      "def": 7
+    },
+    {
+      "name": "Giant King",
+      "cost": 3,
+      "atk": 1,
+      "def": 6
+    },
+    {
+      "name": "Giant King",
+      "cost": 3,
+      "atk": 1,
+      "def": 6
+    },
+    {
+      "name": "Angelic Warrior",
+      "cost": 5,
+      "atk": 6,
+      "def": 4
+    },
+    {
+      "name": "Angelic Warrior",
+      "cost": 5,
+      "atk": 6,
+      "def": 4
+    },
+    {
+      "name": "Stone Giant",
+      "cost": 4,
+      "atk": 3,
+      "def": 6
+    },
+    {
+      "name": "Stone Giant",
+      "cost": 4,
+      "atk": 3,
+      "def": 6
+    },
+    {
+      "name": "Stone Giant",
+      "cost": 4,
+      "atk": 3,
+      "def": 6
+    },
+    {
+      "name": "Elven Archer",
+      "cost": 4,
+      "atk": 6,
+      "def": 3
+    },
+    {
+      "name": "Elven Archer",
+      "cost": 4,
+      "atk": 6,
+      "def": 3
+    },
+    {
+      "name": "Elven Archer",
+      "cost": 4,
+      "atk": 6,
+      "def": 3
+    },
+    {
+      "name": "Elven Archer",
+      "cost": 4,
+      "atk": 6,
+      "def": 3
+    },
+    {
+      "name": "Swamp Giant",
+      "cost": 2,
+      "atk": 2,
+      "def": 4
+    },
+    {
+      "name": "Haunted Tree",
+      "cost": 2,
+      "atk": 4,
+      "def": 2
+    }
+  ]
+}

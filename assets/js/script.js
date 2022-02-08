@@ -82,229 +82,6 @@ $blueGlow =
 $goldGlow =
   "0 0 50px 25px rgb(255,215,0)";
 
-// TEST CARD OBJECTS
-let colossalDragon = {
-  name: "Colossal Dragon",
-  cost: 10,
-  atk: 10,
-  def: 8,
-};
-let elderWizard = {
-  name: "Elder Wizard",
-  cost: 9,
-  atk: 9,
-  def: 7,
-};
-let sorceress = {
-  name: "Sorceress",
-  cost: 7,
-  atk: 6,
-  def: 3,
-};
-let dragonSorcerer = {
-  name: "Dragon Sorcerer",
-  cost: 7,
-  atk: 7,
-  def: 5,
-};
-let demonPriest = {
-  name: "Demon Priest",
-  cost: 5,
-  atk: 8,
-  def: 6,
-};
-let elvenSorcerer = {
-  name: "Elven Sorcerer",
-  cost: 2,
-  atk: 3,
-  def: 1,
-};
-let shamanicArcher = {
-  name: "Shamanic Archer",
-  cost: 7,
-  atk: 7,
-  def: 6,
-};
-let undeadDragon = {
-  name: "Undead Dragon",
-  cost: 5,
-  atk: 4,
-  def: 4,
-};
-let aquatarion = {
-  name: "Aquatarion",
-  cost: 5,
-  atk: 4,
-  def: 4,
-};
-let dragula = {
-  name: "Dragula",
-  cost: 4,
-  atk: 4,
-  def: 5,
-};
-let empressOfTheDeep = {
-  name: "Empress of the Deep",
-  cost: 4,
-  atk: 5,
-  def: 3,
-};
-let griffin = {
-  name: "Griffin",
-  cost: 2,
-  atk: 3,
-  def: 1,
-};
-let darkElf = {
-  name: "Dark Elf",
-  cost: 6,
-  atk: 4,
-  def: 7,
-};
-let bullDemon = {
-  name: "Bull Demon",
-  cost: 6,
-  atk: 4,
-  def: 7,
-};
-let blazingDragon = {
-  name: "Blazing Dragon",
-  cost: 5,
-  atk: 7,
-  def: 3,
-};
-let forestDragon = {
-  name: "Forest Dragon",
-  cost: 3,
-  atk: 3,
-  def: 7,
-};
-let ladyOfTheForest = {
-  name: "Lady of the Forest",
-  cost: 6,
-  atk: 3,
-  def: 8,
-};
-let magmaSnail = {
-  name: "Magma Snail",
-  cost: 6,
-  atk: 2,
-  def: 9,
-};
-let cloudDragon = {
-  name: "Cloud Dragon",
-  cost: 3,
-  atk: 3,
-  def: 7,
-};
-let darkWitch = {
-  name: "Dark Witch",
-  cost: 5,
-  atk: 6,
-  def: 4,
-};
-let giantKing = {
-  name: "Giant King",
-  cost: 3,
-  atk: 1,
-  def: 6,
-};
-let angelicWarrior = {
-  name: "Angelic Warrior",
-  cost: 5,
-  atk: 6,
-  def: 4,
-};
-let sabbaticGoat = {
-  name: "Sabbatic Goat",
-  cost: 5,
-  atk: 4,
-  def: 6,
-};
-let stoneGiant = {
-  name: "Stone Giant",
-  cost: 4,
-  atk: 3,
-  def: 6,
-};
-let enchantress = {
-  name: "Enchantress",
-  cost: 4,
-  atk: 4,
-  def: 5,
-};
-let clawface = {
-  name: "Clawface",
-  cost: 4,
-  atk: 6,
-  def: 3,
-};
-let tigerDragon = {
-  name: "Tiger Dragon",
-  cost: 3,
-  atk: 3,
-  def: 3,
-};
-let elvenArcher = {
-  name: "Elven Archer",
-  cost: 4,
-  atk: 6,
-  def: 3,
-};
-let swampGiant = {
-  name: "Swamp Giant",
-  cost: 2,
-  atk: 2,
-  def: 4,
-};
-let stalkers = {
-  name: "Stalkers",
-  cost: 3,
-  atk: 4,
-  def: 4,
-};
-let hauntedTree = {
-  name: "Haunted Tree",
-  cost: 2,
-  atk: 4,
-  def: 2,
-};
-let hauntedStallion = {
-  name: "Haunted Stallion",
-  cost: 1,
-  atk: 2,
-  def: 1,
-};
-let knight = {
-  name: "knight",
-  cost: 2,
-  atk: 2,
-  def: 3,
-};
-let inferno = {
-  name: "inferno",
-  cost: 3,
-  atk: 5,
-  def: 0,
-};
-let warlock = {
-  name: "warlock",
-  cost: 6,
-  atk: 7,
-  def: 3,
-};
-let centurion = {
-  name: "centurion",
-  cost: 5,
-  atk: 4,
-  def: 6,
-};
-let dragon = {
-  name: "dragon",
-  cost: 8,
-  atk: 10,
-  def: 10,
-};
 
 let turnCounter = 0;
 
@@ -314,82 +91,12 @@ let bloodgateUser = {
   startingDeck: "",
 };
 
-let starterDeck = [
-  colossalDragon,
-  elderWizard,
-  sorceress,
-  dragonSorcerer,
-  demonPriest,
-  elvenSorcerer,
-  shamanicArcher,
-  undeadDragon,
-  aquatarion,
-  dragula,
-  empressOfTheDeep,
-  griffin,
-  darkElf,
-  bullDemon,
-  blazingDragon,
-  forestDragon,
-  ladyOfTheForest,
-  magmaSnail,
-  cloudDragon,
-  darkWitch,
-  giantKing,
-  angelicWarrior,
-  sabbaticGoat,
-  stoneGiant,
-  enchantress,
-  clawface,
-  tigerDragon,
-  elvenArcher,
-  swampGiant,
-  stalkers,
-  hauntedTree,
-  hauntedStallion,
-];
-
-let enemyDeck = [
-  colossalDragon,
-  elderWizard,
-  sorceress,
-  dragonSorcerer,
-  demonPriest,
-  elvenSorcerer,
-  shamanicArcher,
-  undeadDragon,
-  aquatarion,
-  dragula,
-  empressOfTheDeep,
-  griffin,
-  darkElf,
-  bullDemon,
-  blazingDragon,
-  forestDragon,
-  ladyOfTheForest,
-  magmaSnail,
-  cloudDragon,
-  darkWitch,
-  giantKing,
-  angelicWarrior,
-  sabbaticGoat,
-  stoneGiant,
-  enchantress,
-  clawface,
-  tigerDragon,
-  elvenArcher,
-  swampGiant,
-  stalkers,
-  hauntedTree,
-  hauntedStallion,
-];
-
 let player = {
   name: "",
   class: "",
   power: 0,
   health: 30,
-  deck: starterDeck,
+  deck: null,
   hand: [],
 };
 
@@ -402,23 +109,9 @@ let enemy = {
   name: "testBot",
   power: 0,
   health: 30,
-  deck: enemyDeck,
+  deck: "bloodfury-dominion",
   hand: [],
 };
-
-function getDeck(deck) {
-  const apiUrl =
-    "https://getpantry.cloud/apiv1/pantry/e7259b55-e424-4352-b9d4-af473fc7431a/basket/" +
-    deck;
-
-  fetch(apiUrl).then(function (response) {
-    if (response.ok) {
-      response.json().then(function (data) {
-        player.deck = data.cards;
-      });
-    }
-  });
-}
 
 let discardPile = [];
 
@@ -825,7 +518,18 @@ function enemyThinking() {
 }
 
 function enemyTurn() {
-  enemy.power = turnCounter;
+  if (settings.difficulty === "easy") {
+    enemy.power = turnCounter;
+  }
+  else if (settings.difficulty === "medium") {
+    enemy.power = turnCounter + 2;
+  }
+  else if (settings.difficulty === "hard") {
+    enemy.power = turnCounter + 4;
+  }
+  else {
+    enemy.power = turnCounter + 6;
+  }
   enemyPower.max = enemy.power * 100;
   enemyPower.value = enemy.power * 100;
 
@@ -928,6 +632,8 @@ function displayFelt() {
   playerPower.max = player.power * 100;
   playerPower.value = player.power * 100;
 
+  console.log(player.deck);
+
   playerCard1.addEventListener("click", playCard);
   setCardProps(playerCard1, player.deck);
   player.hand.push(playerCard1);
@@ -1020,16 +726,22 @@ function startGame(event) {
       settings.difficulty = difficultyInput[i].value;
     }
   }
+
+  getDeck(enemy, "bloodfury-dominion");
+
   if (settings.difficulty === "easy") {
     enemyAvatar.style.backgroundImage =
       "url(./assets/images/snake_witch_by_lucy_lisett_deecsrr-pre.jpeg)";
   } else if (settings.difficulty === "medium") {
+    enemy.power = 2;
     enemyAvatar.style.backgroundImage =
       "url(./assets/images/black_demon_by_lucy_lisett_deiolkq-pre.jpeg)";
   } else if (settings.difficulty === "hard") {
+    enemy.power = 4;
     enemyAvatar.style.backgroundImage =
       "url(./assets/images/dark_priest_by_lucy_lisett_deftk3k-pre.jpeg)";
   } else {
+    enemy.power = 6;
     enemyAvatar.style.backgroundImage =
       "url(./assets/images/demonic_wizard_by_lucy_lisett_degm84n-pre.jpeg)";
   }
@@ -1070,6 +782,21 @@ function createAccount(event) {
   // Welcome, username!;
 }
 
+
+function getDeck(user, deck) {
+  const apiUrl =
+    "https://getpantry.cloud/apiv1/pantry/e7259b55-e424-4352-b9d4-af473fc7431a/basket/" +
+    deck;
+
+  fetch(apiUrl).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        user.deck = data.cards;
+      });
+    }
+  });
+}
+
 accountForm.addEventListener("submit", createAccount);
 newGameForm.addEventListener("submit", startGame);
 deleteAccountBtn.addEventListener("click", function() {
@@ -1082,7 +809,7 @@ if (!localStorageData) {
 } else {
   accountEl.dataset.target = "settings-modal";
   accountEl.children[0].textContent = `Welcome ${localStorageData.username}!`;
-  getDeck(localStorageData.startingDeck);
+  getDeck(player, localStorageData.startingDeck);
 }
 // BULMA CODE
 /* When a user clicks on a button, an element with the `.modal` class is opened. */

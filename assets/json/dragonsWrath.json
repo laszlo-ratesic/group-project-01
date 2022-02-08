@@ -1,0 +1,168 @@
+{
+  "key": "value",
+  "name": "dragons-wrath",
+  "cards": [
+    {
+      "name": "Colossal Dragon",
+      "cost": 10,
+      "atk": 10,
+      "def": 8
+    },
+    {
+      "name": "Elder Wizard",
+      "cost": 9,
+      "atk": 9,
+      "def": 7
+    },
+    {
+      "name": "Sorceress",
+      "cost": 7,
+      "atk": 6,
+      "def": 3
+    },
+    {
+      "name": "Dragon Sorcerer",
+      "cost": 7,
+      "atk": 7,
+      "def": 5
+    },
+    {
+      "name": "Demon Priest",
+      "cost": 5,
+      "atk": 8,
+      "def": 6
+    },
+    {
+      "name": "Undead Dragon",
+      "cost": 5,
+      "atk": 4,
+      "def": 4
+    },
+    {
+      "name": "Dragula",
+      "cost": 4,
+      "atk": 4,
+      "def": 5
+    },
+    {
+      "name": "Blazing Dragon",
+      "cost": 5,
+      "atk": 7,
+      "def": 3
+    },
+    {
+      "name": "Forest Dragon",
+      "cost": 3,
+      "atk": 3,
+      "def": 7
+    },
+    {
+      "name": "Cloud Dragon",
+      "cost": 3,
+      "atk": 3,
+      "def": 7
+    },
+    {
+      "name": "Tiger Dragon",
+      "cost": 3,
+      "atk": 7,
+      "def": 3
+    },
+    {
+      "name": "Elven Sorcerer",
+      "cost": 2,
+      "atk": 3,
+      "def": 1
+    },
+    {
+      "name": "Elven Sorcerer",
+      "cost": 2,
+      "atk": 3,
+      "def": 1
+    },
+    {
+      "name": "Aquatarion",
+      "cost": 5,
+      "atk": 4,
+      "def": 4
+    },
+    {
+      "name": "Aquatarion",
+      "cost": 5,
+      "atk": 4,
+      "def": 4
+    },
+    {
+      "name": "Swamp Giant",
+      "cost": 2,
+      "atk": 2,
+      "def": 4
+    },
+    {
+      "name": "Swamp Giant",
+      "cost": 2,
+      "atk": 2,
+      "def": 4
+    },
+    {
+      "name": "Swamp Giant",
+      "cost": 2,
+      "atk": 2,
+      "def": 4
+    },
+    {
+      "name": "Giant King",
+      "cost": 3,
+      "atk": 1,
+      "def": 6
+    },
+    {
+      "name": "Giant King",
+      "cost": 3,
+      "atk": 1,
+      "def": 6
+    },
+    {
+      "name": "Giant King",
+      "cost": 3,
+      "atk": 1,
+      "def": 6
+    },
+    {
+      "name": "Empress of the Deep",
+      "cost": 4,
+      "atk": 5,
+      "def": 3
+    },
+    {
+      "name": "Empress of the Deep",
+      "cost": 4,
+      "atk": 5,
+      "def": 3
+    },
+    {
+      "name": "Empress of the Deep",
+      "cost": 4,
+      "atk": 5,
+      "def": 3
+    },
+    {
+      "name": "Griffin",
+      "cost": 2,
+      "atk": 3,
+      "def": 1
+    },
+    {
+      "name": "Griffin",
+      "cost": 2,
+      "atk": 3,
+      "def": 1
+    },
+    {
+      "name": "Griffin",
+      "cost": 2,
+      "atk": 3,
+      "def": 1
+    }
+  ]
+}
