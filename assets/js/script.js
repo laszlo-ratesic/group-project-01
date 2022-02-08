@@ -585,6 +585,8 @@ function playCard(event) {
     const w = window.innerWidth/4;
     const h = window.innerHeight/8;
     gsap.from(chosenCard, {
+      duration: 2,
+      ease: "power4",
       scale:1.5,
       xPercent: -w,
       yPercent: -h});
