@@ -14,7 +14,6 @@ const usernameInput = document.getElementById("username-input");
 const startingDeck = document.getElementById("deck-select");
 const experienceLevel = document.getElementsByName("experience");
 
-
 const newGameForm = document.getElementById("new-game-form");
 const nameInput = document.getElementById("name-input");
 const classSelect = document.getElementById("class-select");
@@ -208,47 +207,56 @@ let angelicWarrior = {
   cost: 5,
   atk: 6,
   def: 4,
-};let sabbaticGoat = {
+};
+let sabbaticGoat = {
   name: "Sabbatic Goat",
   cost: 5,
   atk: 4,
   def: 6,
-};let stoneGiant = {
+};
+let stoneGiant = {
   name: "Stone Giant",
   cost: 4,
   atk: 3,
   def: 6,
-};let enchantress = {
+};
+let enchantress = {
   name: "Enchantress",
   cost: 4,
   atk: 4,
   def: 5,
-};let clawface = {
+};
+let clawface = {
   name: "Clawface",
   cost: 4,
   atk: 6,
   def: 3,
-};let tigerDragon = {
+};
+let tigerDragon = {
   name: "Tiger Dragon",
   cost: 4,
   atk: 3,
   def: 6,
-};let elvenArcher = {
+};
+let elvenArcher = {
   name: "Elven Archer",
   cost: 4,
   atk: 6,
   def: 3,
-};let swampGiant = {
+};
+let swampGiant = {
   name: "Swamp Giant",
   cost: 3,
   atk: 3,
   def: 5,
-};let stalkers = {
+};
+let stalkers = {
   name: "Stalkers",
   cost: 3,
   atk: 4,
   def: 4,
-};let hauntedTree = {
+};
+let hauntedTree = {
   name: "Haunted Tree",
   cost: 2,
   atk: 4,
@@ -264,112 +272,33 @@ let hauntedStallion = {
 let turnCounter = 0;
 
 let wildwoodUser = {
-  username: '',
-  experience: '',
-  startingDeck: '',
-}
+  username: "",
+  experience: "",
+  startingDeck: "",
+};
 
 function getDeck(deck) {
   const apiUrl =
     "https://getpantry.cloud/apiv1/pantry/e7259b55-e424-4352-b9d4-af473fc7431a/basket/" +
     deck;
 
-  fetch(apiUrl)
-  .then(function (response) {
+  fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
         console.log(data);
-      })
+      });
     }
-  })
+  });
 }
 
 getDeck("DragonsWrath");
 
 let starterDeck = [
-  angel,
-  demon,
-  knight,
-  inferno,
-  angel,
-  inferno,
-  demon,
-  warlock,
-  centurion,
-  dragon,
-  angel,
-  demon,
-  knight,
-  inferno,
-  angel,
-  inferno,
-  demon,
-  warlock,
-  centurion,
-  dragon,
-  angel,
-  demon,
-  knight,
-  inferno,
-  angel,
-  inferno,
-  demon,
-  warlock,
-  centurion,
-  dragon,
-  angel,
-  demon,
-  knight,
-  inferno,
-  angel,
-  inferno,
-  demon,
-  warlock,
-  centurion,
-  dragon,
+
 ];
 
 let enemyDeck = [
-  angel,
-  demon,
-  knight,
-  inferno,
-  angel,
-  inferno,
-  demon,
-  warlock,
-  centurion,
-  dragon,
-  angel,
-  demon,
-  knight,
-  inferno,
-  angel,
-  inferno,
-  demon,
-  warlock,
-  centurion,
-  dragon,
-  angel,
-  demon,
-  knight,
-  inferno,
-  angel,
-  inferno,
-  demon,
-  warlock,
-  centurion,
-  dragon,
-  angel,
-  demon,
-  knight,
-  inferno,
-  angel,
-  inferno,
-  demon,
-  warlock,
-  centurion,
-  dragon,
+
 ];
 
 let player = {
@@ -405,7 +334,7 @@ let enemyCards = enemyField.children;
 const asshole = "asshole";
 const back = "back";
 const bag = "bag";
-const blackadder = "blackadder"
+const blackadder = "blackadder";
 let insult = [
   // anyway/:company/:from,
   asshole,
@@ -836,14 +765,19 @@ function enemyTurn() {
   enemyThinking();
 }
 
+const apiUrlTwo = "https://foaas.com/";
+
 function endPlayerTurn() {
   endTurnBtn.removeEventListener("click", endPlayerTurn);
   playerCard1.removeEventListener("click", playCard);
   playerCard2.removeEventListener("click", playCard);
   playerCard3.removeEventListener("click", playCard);
   playerCard4.removeEventListener("click", playCard);
-  // ENEMY INSULT MESSAGES GO HERE
-  
+  setTimeout(enemyTurn(), 2000);
+  setTimeout(fuckOff(apiUrlTwo), 1000);
+}
+// ENEMY INSULT MESSAGES GO HERE
+
 //   let from = enemy.name;
 //   const randomIndex = Math.floor(Math.random() * insult.length)
 //   const apiUrlTwo = "https://foaas.com/" + insult[randomIndex] + "/" + from;
@@ -870,38 +804,27 @@ function endPlayerTurn() {
 //     console.log(data); // JSON data parsed by `data.json()` call
 //   });
 
+fuckOff(apiUrlTwo);
 
- function fuckOff() {
-   // These variables are for the insult array
-   let from = enemy.name;
-   let name = player.name;
-  
-     const randomIndex = Math.floor(Math.random() * insult.length)
+async function fuckOff(url) {
+  // These variables are for the insult array
+  let from = enemy.name;
+  let name = player.name;
+  const randomIndex = Math.floor(Math.random() * insult.length);
+  const result = url + insult[randomIndex] + "/" + from;
 
-     const apiUrlTwo = "https://foaas.com/" + insult[randomIndex] + "/" + from;
-        
-    
-     fetch(apiUrlTwo, {
-          headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));  
-     })
-     .then(function (response) {
-       if (response.ok) {
-         response.json().then(function (data) {
-           console.log(data);
-         })
-       }
-       else (console.log("error"));
-     })
-   }
-    // const randomI =
-    // Use math random to pick the insult
-    // insult = above
-    // CODE HERE
-    // call the API
-    // output an insult
-  
-  setTimeout(fuckOff(), 1000);
-  setTimeout(enemyTurn(), 2000);
+  const response = await fetch(result, {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+    }
+  }).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        console.log(data);
+      });
+    }
+  });
 }
 
 function playCard(event) {
@@ -1083,11 +1006,11 @@ function createAccount(event) {
   // event.preventDefault();
   wildwoodUser.username = usernameInput.value.trim();
   wildwoodUser.experience = experienceLevel.value;
-    for (let i = 0; i < experienceLevel.length; i++) {
-      if (experienceLevel[i].checked) {
-        wildwoodUser.experience = experienceLevel[i].value
-      }
+  for (let i = 0; i < experienceLevel.length; i++) {
+    if (experienceLevel[i].checked) {
+      wildwoodUser.experience = experienceLevel[i].value;
     }
+  }
   wildwoodUser.startingDeck = startingDeck.value;
   localStorage.setItem("wildwoodUser", JSON.stringify(wildwoodUser));
   newGameBtn.dataset.target = "new-game-modal";
@@ -1102,9 +1025,7 @@ const localStorageData = JSON.parse(localStorage.getItem("wildwoodUser"));
 
 if (!localStorageData) {
   newGameBtn.dataset.target = "create-account-modal";
-
-}
-else {
+} else {
   accountEl.dataset.target = null;
   console.log(localStorageData);
   accountEl.children[0].textContent = `Welcome ${localStorageData.username}!`;
