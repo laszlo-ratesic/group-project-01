@@ -1,5 +1,6 @@
 const pantryID = "e7259b55-e424-4352-b9d4-af473fc7431a";
-const apiurl = "https://getpantry.cloud/apiv1/pantry/e7259b55-e424-4352-b9d4-af473fc7431a/basket/dragons-wrath";
+const apiurl =
+  "https://getpantry.cloud/apiv1/pantry/e7259b55-e424-4352-b9d4-af473fc7431a/basket/dragons-wrath";
 
 const accountEl = document.getElementById("account-el");
 const navBarBrand = document.querySelector(".navbar-brand");
@@ -77,13 +78,9 @@ $insetGoldGlow =
 $insetRedGlow =
   "inset red 15px 15px 10px, inset red 15px -15px 10px, inset red -15px -15px 10px, inset red -15px 15px 10px";
 
-$redGlow =
-  "0 0 50px 25px rgb(255,0,0)";
-$blueGlow =
-  "0 0 50px 25px rgb(0,0,255)";
-$goldGlow =
-  "0 0 50px 25px rgb(255,215,0)";
-
+$redGlow = "0 0 50px 25px rgb(255,0,0)";
+$blueGlow = "0 0 50px 25px rgb(0,0,255)";
+$goldGlow = "0 0 50px 25px rgb(255,215,0)";
 
 let turnCounter = 0;
 
@@ -302,7 +299,7 @@ function removeAtkMsg() {
       playerCards[i].dataset.state = "on-guard";
       playerCards[i].addEventListener("click", AtkMsg);
       playerCards[i].addEventListener("mouseenter", hover);
-      playerCards[i].addEventListener("mouseleave", unhover)
+      playerCards[i].addEventListener("mouseleave", unhover);
     }
   }
   readyToAttack.classList.remove("ready-to-attack");
@@ -527,14 +524,11 @@ function enemyThinking() {
 function enemyTurn() {
   if (settings.difficulty === "easy") {
     enemy.power = turnCounter;
-  }
-  else if (settings.difficulty === "medium") {
+  } else if (settings.difficulty === "medium") {
     enemy.power = turnCounter + 2;
-  }
-  else if (settings.difficulty === "hard") {
+  } else if (settings.difficulty === "hard") {
     enemy.power = turnCounter + 4;
-  }
-  else {
+  } else {
     enemy.power = turnCounter + 6;
   }
   enemyPower.max = enemy.power * 100;
@@ -579,7 +573,6 @@ function endPlayerTurn() {
   setTimeout(enemyTurn(), 2000);
 }
 
-
 function playCard(event) {
   const chosenCard = event.currentTarget;
   if (player.power >= chosenCard.dataset.cost) {
@@ -623,7 +616,8 @@ function setCardProps(cardEl, fromDeck) {
 function displayFelt() {
   loadingBar.remove();
   msg.remove();
-  heroEl.style = "background-image:url(./assets/images/red-felt.jpeg); cursor:url('./assets/images/custom-cursor.png'), auto;";
+  heroEl.style =
+    "background-image:url(./assets/images/red-felt.jpeg); cursor:url('./assets/images/custom-cursor.png'), auto;";
   heroBody.style.width = "100%";
   heroBody.classList.add("p0");
   heroBody.style.flexDirection = "column";
@@ -694,7 +688,11 @@ function loadScreen() {
   navBarMenu.classList.add("is-hidden");
   console.log(`Welcome ${player.name}!`);
   heroBody.style.width = "75%";
-  heroBody.classList.add("is-align-self-center", "is-flex", "is-flex-direction-column");
+  heroBody.classList.add(
+    "is-align-self-center",
+    "is-flex",
+    "is-flex-direction-column"
+  );
   loadingBar.classList.add("progress", "is-large", "is-medium-dark");
   loadingBar.max = "100";
   loadingBar.textContent = "60%";
@@ -789,7 +787,6 @@ function createAccount(event) {
   // Welcome, username!;
 }
 
-
 function getDeck(user, deck) {
   const apiUrl =
     "https://getpantry.cloud/apiv1/pantry/e7259b55-e424-4352-b9d4-af473fc7431a/basket/" +
@@ -806,10 +803,10 @@ function getDeck(user, deck) {
 
 accountForm.addEventListener("submit", createAccount);
 newGameForm.addEventListener("submit", startGame);
-deleteAccountBtn.addEventListener("click", function() {
+deleteAccountBtn.addEventListener("click", function () {
   localStorage.removeItem("bloodgateUser");
   location.reload(true);
-})
+});
 
 if (!localStorageData) {
   newGameBtn.dataset.target = "create-account-modal";
@@ -897,7 +894,8 @@ document.addEventListener("DOMContentLoaded", () => {
   click event listener to the delete element that will remove the parent notification element from
   the DOM. */
   (document.querySelectorAll(".notification .delete") || []).forEach(
-    ($delete) => {git
+    ($delete) => {
+      git;
       const $notification = $delete.parentNode;
 
       $delete.addEventListener("click", () => {

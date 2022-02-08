@@ -10,13 +10,13 @@
     },
     {
       "name": "Elder Wizard",
-      "cost": 9,
+      "cost": 3,
       "atk": 9,
       "def": 7
     },
     {
       "name": "Sorceress",
-      "cost": 7,
+      "cost": 5,
       "atk": 6,
       "def": 3
     },
@@ -82,13 +82,13 @@
     },
     {
       "name": "Aquatarion",
-      "cost": 5,
+      "cost": 3,
       "atk": 4,
       "def": 4
     },
     {
       "name": "Aquatarion",
-      "cost": 5,
+      "cost": 3,
       "atk": 4,
       "def": 4
     },
@@ -130,19 +130,19 @@
     },
     {
       "name": "Empress of the Deep",
-      "cost": 4,
+      "cost": 3,
       "atk": 5,
       "def": 3
     },
     {
       "name": "Empress of the Deep",
-      "cost": 4,
+      "cost": 3,
       "atk": 5,
       "def": 3
     },
     {
       "name": "Empress of the Deep",
-      "cost": 4,
+      "cost": 3,
       "atk": 5,
       "def": 3
     },

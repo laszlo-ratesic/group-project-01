@@ -10,7 +10,7 @@
     },
     {
       "name": "Sorceress",
-      "cost": 7,
+      "cost": 5,
       "atk": 6,
       "def": 3
     },
@@ -46,19 +46,19 @@
     },
     {
       "name": "Dark Elf",
-      "cost": 6,
-      "atk": 4,
-      "def": 7
+      "cost": 1,
+      "atk": 5,
+      "def": 2
     },
     {
       "name": "Bull Demon",
-      "cost": 6,
+      "cost": 4,
       "atk": 4,
       "def": 7
     },
     {
       "name": "Magma Snail",
-      "cost": 6,
+      "cost": 4,
       "atk": 2,
       "def": 9
     },
@@ -94,9 +94,9 @@
     },
     {
       "name": "Haunted Tree",
-      "cost": 2,
-      "atk": 4,
-      "def": 2
+      "cost": 1,
+      "atk": 1,
+      "def": 4
     },
     {
       "name": "Haunted Stallion",
@@ -124,153 +124,15 @@
     },
     {
       "name": "Haunted Tree",
-      "cost": 2,
-      "atk": 4,
-      "def": 2
-    },
-    {
-      "name": "Haunted Tree",
-      "cost": 2,
-      "atk": 4,
-      "def": 2
-    },
-    {
-      "name": "Haunted Stallion",
       "cost": 1,
-      "atk": 2,
-      "def": 1
-    },
-    {
-      "name": "Colossal Dragon",
-      "cost": 10,
-      "atk": 10,
-      "def": 8
-    },
-    {
-      "name": "Sorceress",
-      "cost": 7,
-      "atk": 6,
-      "def": 3
-    },
-    {
-      "name": "Dragon Sorcerer",
-      "cost": 7,
-      "atk": 7,
-      "def": 5
-    },
-    {
-      "name": "Demon Priest",
-      "cost": 5,
-      "atk": 8,
-      "def": 6
-    },
-    {
-      "name": "Elven Sorcerer",
-      "cost": 2,
-      "atk": 3,
-      "def": 1
-    },
-    {
-      "name": "Undead Dragon",
-      "cost": 5,
-      "atk": 4,
-      "def": 4
-    },
-    {
-      "name": "Dragula",
-      "cost": 4,
-      "atk": 4,
-      "def": 5
-    },
-    {
-      "name": "Dark Elf",
-      "cost": 6,
-      "atk": 4,
-      "def": 7
-    },
-    {
-      "name": "Bull Demon",
-      "cost": 6,
-      "atk": 4,
-      "def": 7
-    },
-    {
-      "name": "Magma Snail",
-      "cost": 6,
-      "atk": 2,
-      "def": 9
-    },
-    {
-      "name": "Dark Witch",
-      "cost": 5,
-      "atk": 6,
-      "def": 4
-    },
-    {
-      "name": "Sabbatic Goat",
-      "cost": 5,
-      "atk": 4,
-      "def": 6
-    },
-    {
-      "name": "Enchantress",
-      "cost": 4,
-      "atk": 4,
-      "def": 5
-    },
-    {
-      "name": "Clawface",
-      "cost": 4,
-      "atk": 6,
-      "def": 3
-    },
-    {
-      "name": "Swamp Giant",
-      "cost": 2,
-      "atk": 2,
+      "atk": 1,
       "def": 4
     },
     {
       "name": "Haunted Tree",
-      "cost": 2,
-      "atk": 4,
-      "def": 2
-    },
-    {
-      "name": "Haunted Stallion",
       "cost": 1,
-      "atk": 2,
-      "def": 1
-    },
-    {
-      "name": "Stalkers",
-      "cost": 3,
-      "atk": 4,
+      "atk": 1,
       "def": 4
-    },
-    {
-      "name": "Stalkers",
-      "cost": 3,
-      "atk": 4,
-      "def": 4
-    },
-    {
-      "name": "Stalkers",
-      "cost": 3,
-      "atk": 4,
-      "def": 4
-    },
-    {
-      "name": "Haunted Tree",
-      "cost": 2,
-      "atk": 4,
-      "def": 2
-    },
-    {
-      "name": "Haunted Tree",
-      "cost": 2,
-      "atk": 4,
-      "def": 2
     },
     {
       "name": "Haunted Stallion",
