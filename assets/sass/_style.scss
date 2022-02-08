@@ -181,8 +181,7 @@ progress:after {
 }
 
 #player-hand {
-  transform: translateY(7rem);
-  transform: translateX(10rem);
+  transform: translateX(10rem) translateY(7rem);
 }
 
 .player-card {
@@ -309,6 +308,7 @@ progress:after {
   position: relative;
   cursor: url('../images/custom-cursor.png'), auto;
   max-width: 18%;
+  margin-left: 175px;
 }
 
 .img-top {
