@@ -307,15 +307,12 @@ let dragon = {
 
 let turnCounter = 0;
 
-<<<<<<< HEAD
-=======
 let wildwoodUser = {
   username: "",
   experience: "",
   startingDeck: "",
 };
 
->>>>>>> f20740197fb239427ae8f4312c57839300f02c9c
 function getDeck(deck) {
   const apiUrl =
     "https://getpantry.cloud/apiv1/pantry/e7259b55-e424-4352-b9d4-af473fc7431a/basket/" +
@@ -1045,12 +1042,6 @@ let user = {
 };
 
 function createAccount(event) {
-<<<<<<< HEAD
-  event.preventDefault();
-  // SAVE FORM ELEMENT
-  user.username = usernameInput.value.trim();
-  localStorage.setItem("user", JSON.stringify(user));
-=======
   // event.preventDefault();
   wildwoodUser.username = usernameInput.value.trim();
   wildwoodUser.experience = experienceLevel.value;
@@ -1064,15 +1055,12 @@ function createAccount(event) {
   newGameBtn.dataset.target = "new-game-modal";
   accountEl.children[0].textContent = `Welcome ${wildwoodUser.username}`;
   // Welcome, username!;
->>>>>>> f20740197fb239427ae8f4312c57839300f02c9c
 }
 
 accountForm.addEventListener("submit", createAccount);
 
 newGameForm.addEventListener("submit", startGame);
 
-<<<<<<< HEAD
-=======
 const localStorageData = JSON.parse(localStorage.getItem("wildwoodUser"));
 
 if (!localStorageData) {
@@ -1083,7 +1071,6 @@ if (!localStorageData) {
   accountEl.children[0].textContent = `Welcome ${localStorageData.username}!`;
 }
 
->>>>>>> f20740197fb239427ae8f4312c57839300f02c9c
 // BULMA CODE
 /* When a user clicks on a button, an element with the `.modal` class is opened. */
 document.addEventListener("DOMContentLoaded", () => {
