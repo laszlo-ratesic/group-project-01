@@ -381,14 +381,19 @@ function startPlayerTurn() {
     newCard.appendChild(cardImg);
     gsap.fromTo(newCard, {
       onStart: function() {
-        playerHand.after(newCard);
+        playerHand.append(newCard);
       },
       x: 700,
       onComplete: function() {
         playerHand.appendChild(newCard);
       }
     }, {
-      x: 0
+      x: 0,
+      onComplete: function() {
+        gsap.set(newCard, {
+          clearProps: "all"
+        })
+      }
     })
     setCardProps(newCard, player.deck);
     player.hand.push(newCard);
