@@ -854,20 +854,32 @@ function endPlayerTurn() {
       playerHand.children[i].removeEventListener("click", playCard);
     }
   }
-  // ENEMY INSULT MESSAGES GO HERE
-  let insult;
-  function fuckOff() {
-    // const randomI =
-    // Use math random to pick the insult
-    // insult = above
-    // CODE HERE
-    // call the API
-    // output an insult
-  }
+ 
+  
   setTimeout(notification("That all you got?"), 1000);
   setTimeout(enemyTurn(), 2000);
 }
 
+async function fuckOff(url) {
+  // These variables are for the insult array
+  let from = enemy.name;
+  let name = player.name;
+  const randomIndex = Math.floor(Math.random() * insult.length);
+  const result = url + insult[randomIndex] + "/" + from;
+
+  const response = await fetch(result, {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+    }
+  }).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        console.log(data);
+      });
+    }
+  });
+};
 
 function playCard(event) {
   const chosenCard = event.currentTarget;
