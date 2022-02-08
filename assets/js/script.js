@@ -203,7 +203,7 @@ function endGame() {
 
 function gBCR(elem) {
   return elem.getBoundingClientRect();
-};
+}
 
 function attackTarget(event) {
   const readyToAttack = document.querySelector(".ready-to-attack");
@@ -380,22 +380,26 @@ function startPlayerTurn() {
     cardImg.src = newCard.dataset.img;
     cardImg.style.transform = "scale(1.2)";
     newCard.appendChild(cardImg);
-    gsap.fromTo(newCard, {
-      onStart: function() {
-        playerHand.append(newCard);
+    gsap.fromTo(
+      newCard,
+      {
+        onStart: function () {
+          playerHand.append(newCard);
+        },
+        x: 700,
+        onComplete: function () {
+          playerHand.appendChild(newCard);
+        },
       },
-      x: 700,
-      onComplete: function() {
-        playerHand.appendChild(newCard);
+      {
+        x: 0,
+        onComplete: function () {
+          gsap.set(newCard, {
+            clearProps: "all",
+          });
+        },
       }
-    }, {
-      x: 0,
-      onComplete: function() {
-        gsap.set(newCard, {
-          clearProps: "all"
-        })
-      }
-    })
+    );
     player.hand.push(newCard);
   }
   console.log(displayHand(player.hand));
@@ -497,14 +501,23 @@ function enemyPlayCard() {
       const card = enemyHand.children[i];
       // Play a card from the hand that has <= cost than power
       if (card.dataset.cost <= enemy.power) {
-        card.classList.add("played-enemy-card");
-        card.dataset.state = "in-play";
-        enemyField.appendChild(card);
         const cardFace = document.createElement("img");
         cardFace.src = card.dataset.img;
         cardFace.style.transform = "scale(1.2)";
         card.appendChild(cardFace);
+        card.classList.add("played-enemy-card");
+        card.dataset.state = "in-play";
         console.log(`${enemy.name} played ${card.dataset.name}`);
+        const w = window.innerWidth / 4;
+        const h = window.innerHeight / 8;
+        gsap.from(card, {
+          duration: 2,
+          ease: "power4",
+          scale: 1.5,
+          xPercent: w,
+          yPercent: -h,
+        });
+        enemyField.appendChild(card);
         enemy.power -= card.dataset.cost;
         enemyPower.value = enemy.power * 100;
         console.log(`${enemy.name} now has ${enemy.power} power`);
@@ -561,17 +574,21 @@ function enemyTurn() {
   if (enemy.deck.length > 0) {
     const newCard = document.createElement("div");
     newCard.classList.add("enemy-card");
-    gsap.fromTo(newCard, {
-      onStart: function() {
-        enemyHand.after(newCard);
+    gsap.fromTo(
+      newCard,
+      {
+        onStart: function () {
+          enemyHand.after(newCard);
+        },
+        x: 700,
+        onComplete: function () {
+          enemyHand.appendChild(newCard);
+        },
       },
-      x: 700,
-      onComplete: function() {
-        enemyHand.appendChild(newCard);
+      {
+        x: 0,
       }
-    }, {
-      x: 0
-    })
+    );
     setCardProps(newCard, enemy.deck);
     enemy.hand.push(newCard);
   }
@@ -609,14 +626,15 @@ function playCard(event) {
     chosenCard.classList.add("played-card");
     chosenCard.setAttribute("data-state", "in-play");
     chosenCard.removeEventListener("click", playCard);
-    const w = window.innerWidth/4;
-    const h = window.innerHeight/8;
+    const w = window.innerWidth / 4;
+    const h = window.innerHeight / 8;
     gsap.from(chosenCard, {
       duration: 2,
       ease: "power4",
-      scale:1.5,
+      scale: 1.5,
       xPercent: -w,
-      yPercent: -h});
+      yPercent: -h,
+    });
     playerField.appendChild(chosenCard);
     console.log(`You played ${chosenCard.dataset.name}!`);
     player.power -= chosenCard.dataset.cost;
@@ -710,7 +728,6 @@ function displayFelt() {
   endTurnBtn.addEventListener("mousedown", buttonPressed);
   endTurnBtn.addEventListener("mouseup", buttonReleased);
 }
-
 
 function loadScreen() {
   navBarBrand.classList.add("is-hidden");
