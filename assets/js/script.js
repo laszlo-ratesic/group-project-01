@@ -375,8 +375,9 @@ function startPlayerTurn() {
   if (player.deck.length > 0) {
     const newCard = document.createElement("div");
     newCard.classList.add("player-card", "is-size-1");
+    setCardProps(newCard, player.deck);
     const cardImg = document.createElement("img");
-    cardImg.src = "./assets/images/placeholder-card.png";
+    cardImg.src = newCard.dataset.img;
     cardImg.style.transform = "scale(1.2)";
     newCard.appendChild(cardImg);
     gsap.fromTo(newCard, {
@@ -395,7 +396,6 @@ function startPlayerTurn() {
         })
       }
     })
-    setCardProps(newCard, player.deck);
     player.hand.push(newCard);
   }
   console.log(displayHand(player.hand));
@@ -500,10 +500,10 @@ function enemyPlayCard() {
         card.classList.add("played-enemy-card");
         card.dataset.state = "in-play";
         enemyField.appendChild(card);
-        const placeholder = document.createElement("img");
-        placeholder.src = "./assets/images/placeholder-card.png";
-        placeholder.style.transform = "scale(1.2)";
-        card.appendChild(placeholder);
+        const cardFace = document.createElement("img");
+        cardFace.src = card.dataset.img;
+        cardFace.style.transform = "scale(1.2)";
+        card.appendChild(cardFace);
         console.log(`${enemy.name} played ${card.dataset.name}`);
         enemy.power -= card.dataset.cost;
         enemyPower.value = enemy.power * 100;
@@ -642,8 +642,10 @@ function setCardProps(cardEl, fromDeck) {
       cardEl.setAttribute("data-cost", cardProps[i][1]);
     } else if (i === 2) {
       cardEl.setAttribute("data-atk", cardProps[i][1]);
-    } else {
+    } else if (i === 3) {
       cardEl.setAttribute("data-def", cardProps[i][1]);
+    } else {
+      cardEl.setAttribute("data-img", cardProps[i][1]);
     }
   }
 }
@@ -672,18 +674,22 @@ function displayFelt() {
 
   playerCard1.addEventListener("click", playCard);
   setCardProps(playerCard1, player.deck);
+  playerCard1.children[0].src = playerCard1.dataset.img;
   player.hand.push(playerCard1);
 
   playerCard2.addEventListener("click", playCard);
   setCardProps(playerCard2, player.deck);
+  playerCard2.children[0].src = playerCard2.dataset.img;
   player.hand.push(playerCard2);
 
   playerCard3.addEventListener("click", playCard);
   setCardProps(playerCard3, player.deck);
+  playerCard3.children[0].src = playerCard3.dataset.img;
   player.hand.push(playerCard3);
 
   playerCard4.addEventListener("click", playCard);
   setCardProps(playerCard4, player.deck);
+  playerCard4.children[0].src = playerCard4.dataset.img;
   player.hand.push(playerCard4);
 
   console.log(`You have ${displayHand(player.hand)}`);
@@ -705,18 +711,6 @@ function displayFelt() {
   endTurnBtn.addEventListener("mouseup", buttonReleased);
 }
 
-function createCard(cardId) {
-  const cardEl = document.createElement("img");
-  cardEl.style.position = "relative";
-  cardEl.src = "./assets/images/placeholder-card.png";
-  cardEl.id = cardId;
-  cardEl.style.borderRadius = "15px";
-  cardEl.style.height = "auto";
-  cardEl.style.width = "10rem";
-  cardEl.addEventListener("mouseenter", hover);
-  cardEl.addEventListener("mouseleave", unhover);
-  return cardEl;
-}
 
 function loadScreen() {
   navBarBrand.classList.add("is-hidden");

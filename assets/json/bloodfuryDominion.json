@@ -6,139 +6,162 @@
       "name": "Colossal Dragon",
       "cost": 10,
       "atk": 10,
-      "def": 8
+      "def": 8,
+      "img": "./assets/images/CardPngs/ColossalDragon.png"
     },
     {
       "name": "Sorceress",
       "cost": 5,
       "atk": 6,
-      "def": 3
+      "def": 3,
+      "img": "./assets/images/CardPngs/Sorceress.png"
     },
     {
       "name": "Dragon Sorcerer",
       "cost": 7,
       "atk": 7,
-      "def": 5
+      "def": 5,
+      "img": "./assets/images/CardPngs/DragonSorcerer.png"
     },
     {
       "name": "Demon Priest",
       "cost": 5,
       "atk": 8,
-      "def": 6
+      "def": 6,
+      "img": "./assets/images/CardPngs/DemonPriest.png"
     },
     {
       "name": "Elven Sorcerer",
       "cost": 2,
       "atk": 3,
-      "def": 1
+      "def": 1,
+      "img": "./assets/images/CardPngs/ElvenSorcerer.png"
     },
     {
       "name": "Undead Dragon",
       "cost": 5,
       "atk": 4,
-      "def": 4
+      "def": 4,
+      "img": "./assets/images/CardPngs/UndeadDragon.png"
     },
     {
       "name": "Dragula",
       "cost": 4,
       "atk": 4,
-      "def": 5
+      "def": 5,
+      "img": "./assets/images/CardPngs/Dragula.png"
     },
     {
       "name": "Dark Elf",
       "cost": 1,
       "atk": 5,
-      "def": 2
+      "def": 2,
+      "img": "./assets/images/CardPngs/DarkElf.png"
     },
     {
       "name": "Bull Demon",
       "cost": 4,
       "atk": 4,
-      "def": 7
+      "def": 7,
+      "img": "./assets/images/CardPngs/BullDemon.png"
     },
     {
       "name": "Magma Snail",
       "cost": 4,
       "atk": 2,
-      "def": 9
+      "def": 9,
+      "img": "./assets/images/CardPngs/MagmaSnail.png"
     },
     {
       "name": "Dark Witch",
       "cost": 5,
       "atk": 6,
-      "def": 4
+      "def": 4,
+      "img": "./assets/images/CardPngs/DarkWitch.png"
     },
     {
       "name": "Sabbatic Goat",
       "cost": 5,
       "atk": 4,
-      "def": 6
+      "def": 6,
+      "img": "./assets/images/CardPngs/SabbaticGoat.png"
     },
     {
       "name": "Enchantress",
       "cost": 4,
       "atk": 4,
-      "def": 5
+      "def": 5,
+      "img": "./assets/images/CardPngs/Enchantress.png"
     },
     {
       "name": "Clawface",
       "cost": 4,
       "atk": 6,
-      "def": 3
+      "def": 3,
+      "img": "./assets/images/CardPngs/Clawface.png"
     },
     {
       "name": "Swamp Giant",
       "cost": 2,
       "atk": 2,
-      "def": 4
+      "def": 4,
+      "img": "./assets/images/CardPngs/SwampGiant.png"
     },
     {
       "name": "Haunted Tree",
       "cost": 1,
       "atk": 1,
-      "def": 4
+      "def": 4,
+      "img": "./assets/images/CardPngs/HauntedTree.png"
     },
     {
       "name": "Haunted Stallion",
       "cost": 1,
       "atk": 2,
-      "def": 1
+      "def": 1,
+      "img": "./assets/images/CardPngs/HauntedStallion.png"
     },
     {
       "name": "Stalkers",
       "cost": 3,
       "atk": 4,
-      "def": 4
+      "def": 4,
+      "img": "./assets/images/CardPngs/Stalkers.png"
     },
     {
       "name": "Stalkers",
       "cost": 3,
       "atk": 4,
-      "def": 4
+      "def": 4,
+      "img": "./assets/images/CardPngs/Stalkers.png"
     },
     {
       "name": "Stalkers",
       "cost": 3,
       "atk": 4,
-      "def": 4
+      "def": 4,
+      "img": "./assets/images/CardPngs/Stalkers.png"
     },
     {
       "name": "Haunted Tree",
       "cost": 1,
       "atk": 1,
-      "def": 4
+      "def": 4,
+      "img": "./assets/images/CardPngs/HauntedTree.png"
     },
     {
       "name": "Haunted Tree",
       "cost": 1,
       "atk": 1,
-      "def": 4
+      "def": 4,
+      "img": "./assets/images/CardPngs/HauntedTree.png"
     },
     {
       "name": "Haunted Stallion",
       "cost": 1,
       "atk": 2,
-      "def": 1
+      "def": 1,
+      "img": "./assets/images/CardPngs/HauntedStallion.png"
     }
   ]
 }
