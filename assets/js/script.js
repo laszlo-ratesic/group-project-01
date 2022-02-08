@@ -469,7 +469,7 @@ function notification(message) {
 // {Player's} card floats with red shadow
 // *We use this to show which cards are in play on player's turn
 function cardReady(cardEl) {
-  cardEl.style.transition = "all 1200ms";
+  cardEl.style.transition = "all 400ms";
   cardEl.style.transform = "translateY(-15px)";
   cardEl.style.boxShadow = $blueGlow;
   cardEl.style.animation = "3s ease 1200ms infinite alternate bounce";
@@ -872,7 +872,6 @@ function playCard(event) {
   if (player.power >= chosenCard.dataset.cost) {
     const index = player.hand.indexOf(chosenCard);
     player.hand.splice(index, 1);
-    console.log(player.hand);
     chosenCard.classList.remove("player-card");
     chosenCard.classList.add("played-card");
     chosenCard.setAttribute("data-state", "in-play");
