@@ -7,6 +7,8 @@ const navBarMenu = document.querySelector(".navbar-menu");
 const modal = document.querySelector(".modal");
 const landingMsg = document.getElementById("landing-msg");
 
+const deleteAccountBtn = document.getElementById("delete-account-btn");
+
 const accountForm = document.getElementById("account-form");
 const usernameInput = document.getElementById("username-input");
 const startingDeck = document.getElementById("deck-select");
@@ -65,6 +67,8 @@ const youLost = document.getElementById("you-lost");
 
 const loadingBar = document.createElement("progress");
 const msg = document.createElement("img");
+
+const localStorageData = JSON.parse(localStorage.getItem("wildwoodUser"));
 
 $insetGoldGlow =
   "inset gold -15px -15px 10px, inset gold 15px -15px 10px, inset gold 15px 15px 10px, inset gold -15px 15px 10px";
@@ -1067,10 +1071,11 @@ function createAccount(event) {
 }
 
 accountForm.addEventListener("submit", createAccount);
-
 newGameForm.addEventListener("submit", startGame);
-
-const localStorageData = JSON.parse(localStorage.getItem("wildwoodUser"));
+deleteAccountBtn.addEventListener("click", function() {
+  localStorage.removeItem("wildwoodUser");
+  location.reload(true);
+})
 
 if (!localStorageData) {
   newGameBtn.dataset.target = "create-account-modal";
