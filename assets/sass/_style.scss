@@ -168,6 +168,7 @@ progress:after {
   position: relative;
   bottom: 3rem;
   margin-bottom: 0;
+  color: gold;
 }
 
 #player-deck {
@@ -193,7 +194,7 @@ progress:after {
   position: relative;
   transition: transform 400ms;
   touch-action: pan-x;
-  margin-left: -100px;
+  margin-left: -5rem;
 }
 
 .played-card {
@@ -203,23 +204,6 @@ progress:after {
   width: 10rem;
   position: relative;
   touch-action: pan-x;
-}
-
-.played-card::before {
-  content: '';
-  position:absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  box-shadow: gold 15px 15px 15px, gold 15px -15px 15px, gold -15px -15px 15px, gold -15px 15px 15px;
-  opacity: 0;
-  transition: opacity 500ms;
-  animation: 3s ease 1200ms infinite alternate shadowBounce;
-}
-
-.played-card:hover::before {
-  opacity: 1;
 }
 
 @keyframes bounce {
@@ -245,7 +229,6 @@ progress:after {
 
 .player-card:hover {
   transform: translateY(-14rem);
-  box-shadow: gold -15px -15px 10px, gold 15px -15px 10px, gold 15px 15px 10px, gold -15px 15px 10px;
 }
 
 .player-card:hover::before {

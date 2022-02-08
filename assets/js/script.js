@@ -1,6 +1,7 @@
 const pantryID = "e7259b55-e424-4352-b9d4-af473fc7431a";
 const apiurl = "https://getpantry.cloud/apiv1/pantry/e7259b55-e424-4352-b9d4-af473fc7431a/basket/dragons-wrath";
 
+const accountEl = document.getElementById("account-el");
 const navBarBrand = document.querySelector(".navbar-brand");
 const navBarMenu = document.querySelector(".navbar-menu");
 const modal = document.querySelector(".modal");
@@ -50,18 +51,14 @@ const enemyCard2 = document.getElementById("enemy-card-2");
 const enemyCard3 = document.getElementById("enemy-card-3");
 const enemyCard4 = document.getElementById("enemy-card-4");
 
-function displayTarget(event) {
-  const target = event.target;
-  console.log(target);
-}
-document.addEventListener("click", displayTarget);
-
 const endTurnBtn = document.getElementById("end-turn-btn");
 
 const enemyHealth = document.getElementById("enemy-health");
 const enemyPower = document.getElementById("enemy-power");
 const playerHealth = document.getElementById("player-health");
 const playerPower = document.getElementById("player-power");
+
+const newGameBtn = document.getElementById("new-game-btn");
 
 const youWon = document.getElementById("you-won");
 const youLost = document.getElementById("you-lost");
@@ -75,11 +72,11 @@ $insetRedGlow =
   "inset red 15px 15px 10px, inset red 15px -15px 10px, inset red -15px -15px 10px, inset red -15px 15px 10px";
 
 $redGlow =
-  "red 15px 15px 10px, red 15px -15px 10px, red -15px -15px 10px, red -15px 15px 10px";
+  "0 0 50px 25px rgb(255,0,0)";
 $blueGlow =
-  "blue 15px 15px 10px, blue 15px -15px 10px, blue -15px -15px 10px, blue -15px 15px 10px";
+  "0 0 50px 25px rgb(0,0,255)";
 $goldGlow =
-  "gold -15px -15px 10px, gold 15px -15px 10px, gold 15px 15px 10px, gold -15px 15px 10px";
+  "0 0 50px 25px rgb(255,215,0)";
 
 // TEST CARD OBJECTS
 let colossalDragon = {
@@ -321,13 +318,13 @@ function getDeck(deck) {
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        console.log(data);
+        return data.cards;
       });
     }
   });
 }
 
-getDeck("DragonsWrath");
+console.log(getDeck("dragons-wrath"));
 
 let starterDeck = [
   colossalDragon,
@@ -441,11 +438,11 @@ function buttonReleased(event) {
 }
 
 function hover(event) {
-  event.target.style.transform = "scale(1.3)";
+  event.target.style.boxShadow = $goldGlow;
 }
 
 function unhover(event) {
-  event.target.style.transform = "scale(1)";
+  event.target.style.boxShadow = $blueGlow;
 }
 
 function attackTargetHover(event) {
@@ -472,9 +469,9 @@ function notification(message) {
 // {Player's} card floats with red shadow
 // *We use this to show which cards are in play on player's turn
 function cardReady(cardEl) {
-  cardEl.style.transition = "all 1200ms";
+  cardEl.style.transition = "all 400ms";
   cardEl.style.transform = "translateY(-15px)";
-  cardEl.style.boxShadow = $redGlow;
+  cardEl.style.boxShadow = $blueGlow;
   cardEl.style.animation = "3s ease 1200ms infinite alternate bounce";
 }
 
@@ -602,6 +599,8 @@ function removeAtkMsg() {
       cardReady(playerCards[i]);
       playerCards[i].dataset.state = "on-guard";
       playerCards[i].addEventListener("click", AtkMsg);
+      playerCards[i].addEventListener("mouseenter", hover);
+      playerCards[i].addEventListener("mouseleave", unhover)
     }
   }
   readyToAttack.classList.remove("ready-to-attack");
@@ -620,6 +619,8 @@ function removeAtkMsg() {
 function AtkMsg() {
   // debugger;
   const attacker = this;
+  attacker.removeEventListener("mouseenter", hover);
+  attacker.removeEventListener("mouseleave", unhover);
   if (attacker.dataset.state === "ready-to-attack") {
     removeAtkMsg();
     return;
@@ -629,6 +630,8 @@ function AtkMsg() {
   play, set its state to on-guard. */
   for (let i = 0; i < playerCards.length; i++) {
     if (playerCards[i] !== attacker) {
+      playerCards[i].removeEventListener("mouseenter", hover);
+      playerCards[i].removeEventListener("mouseleave", unhover);
       playerCards[i].style.animation = null;
       playerCards[i].style.boxShadow = "none";
       playerCards[i].style.transform = "translateY(15px)";
@@ -641,7 +644,7 @@ function AtkMsg() {
     }
   }
   attacker.style.animation = null;
-  attacker.style.boxShadow = $blueGlow;
+  attacker.style.boxShadow = $redGlow;
   attacker.classList.remove("played-card");
   attacker.classList.add("ready-to-attack");
   attacker.dataset.state = "ready-to-attack";
@@ -677,6 +680,7 @@ function startPlayerTurn() {
     newCard.appendChild(cardImg);
     playerHand.appendChild(newCard);
     setCardProps(newCard, player.deck);
+    player.hand.push(newCard);
   }
   console.log(displayHand(player.hand));
 
@@ -691,6 +695,8 @@ function startPlayerTurn() {
       cardReady(playerCards[i]);
       playerCards[i].dataset.state = "on-guard";
       playerCards[i].addEventListener("click", AtkMsg);
+      playerCards[i].addEventListener("mouseenter", hover);
+      playerCards[i].addEventListener("mouseleave", unhover);
     }
   }
   endTurnBtn.addEventListener("click", endPlayerTurn);
@@ -841,10 +847,11 @@ function enemyTurn() {
 
 function endPlayerTurn() {
   endTurnBtn.removeEventListener("click", endPlayerTurn);
-  playerCard1.removeEventListener("click", playCard);
-  playerCard2.removeEventListener("click", playCard);
-  playerCard3.removeEventListener("click", playCard);
-  playerCard4.removeEventListener("click", playCard);
+  for (let i = 0; i < playerHand.children.length; i++) {
+    if (playerHand.children[i].dataset.state === "in-hand") {
+      playerHand.children[i].removeEventListener("click", playCard);
+    }
+  }
   // ENEMY INSULT MESSAGES GO HERE
   let insult;
   function fuckOff() {
@@ -859,9 +866,12 @@ function endPlayerTurn() {
   setTimeout(enemyTurn(), 2000);
 }
 
+
 function playCard(event) {
   const chosenCard = event.currentTarget;
   if (player.power >= chosenCard.dataset.cost) {
+    const index = player.hand.indexOf(chosenCard);
+    player.hand.splice(index, 1);
     chosenCard.classList.remove("player-card");
     chosenCard.classList.add("played-card");
     chosenCard.setAttribute("data-state", "in-play");
@@ -979,7 +989,7 @@ function loadScreen() {
   heroBody.appendChild(msg);
   heroBody.appendChild(loadingBar);
   heroBody.style.justifyContent = "center";
-  setTimeout(displayFelt, 5000);
+  setTimeout(displayFelt, 2000);
 }
 
 /**
@@ -1026,7 +1036,7 @@ function startGame(event) {
   heroEl.style.backgroundSize = "cover";
   heroEl.style.backgroundPosition = "top";
   heroEl.style.backgroundColor = "black";
-  heroEl.style.boxShadow = "inset 0 0 28vmin 0 rgba(0, 0, 0, 0.9";
+  heroEl.style.boxShadow = "inset 0 0 28vmin 0 rgba(0, 0, 0, 0.9)";
 
   modal.classList.remove("is-active");
   landingMsg.classList.add("is-hidden");
