@@ -855,10 +855,48 @@ function endPlayerTurn() {
     }
   }
  
-  
   setTimeout(notification("That all you got?"), 1000);
   setTimeout(enemyTurn(), 2000);
 }
+
+// This array holds API call commands for foaas API
+const asshole = "asshole";
+const back = "back";
+const bag = "bag";
+const blackadder = "blackadder"
+let insult = [
+  // anyway/:company/:from,
+  asshole,
+  back,
+  bag,
+  blackadder,
+  // bus/name/from,
+  // bye/from,
+  // caniuse/:tool/:from,
+  // cocksplat/name/from,
+  // dosomething/:do/:something/:from,
+  // dumbledore/from,
+  // everyone/from,
+  // everything/from,
+  // fascinating/from,
+  // field/:name/:from/:reference,
+  // give/from,
+  // holygrail/from,
+  // horse/from,
+  // legend/name/from,
+  // // life/from,
+  // linus/name/from,
+  // mornin/from,
+  // nugget/name/from,
+  // problem/name/from,
+  // ridiculous/from,
+  // sake/from,
+  // shakespeare/name/from,
+  // shit/from,
+  // thinking/name/from,
+  // waste/name/from,
+];
+
 
 async function fuckOff(url) {
   // These variables are for the insult array
