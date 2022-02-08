@@ -410,7 +410,7 @@ function getDeck(deck) {
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        console.log(data.cards);
+        player.deck = data.cards;
       });
     }
   });
@@ -996,8 +996,6 @@ function loadScreen() {
  */
 function startGame(event) {
   event.preventDefault();
-  player.deck = localStorageData.startingDeck;
-  getDeck(player.deck);
   console.log(player);
   player.name = nameInput.value.trim();
   player.class = classSelect.value;
@@ -1079,6 +1077,7 @@ if (!localStorageData) {
 } else {
   accountEl.dataset.target = "settings-modal";
   accountEl.children[0].textContent = `Welcome ${localStorageData.username}!`;
+  getDeck(localStorageData.startingDeck);
 }
 // BULMA CODE
 /* When a user clicks on a button, an element with the `.modal` class is opened. */
