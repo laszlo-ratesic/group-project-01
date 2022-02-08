@@ -68,7 +68,7 @@ const youLost = document.getElementById("you-lost");
 const loadingBar = document.createElement("progress");
 const msg = document.createElement("img");
 
-const localStorageData = JSON.parse(localStorage.getItem("wildwoodUser"));
+const localStorageData = JSON.parse(localStorage.getItem("bloodgateUser"));
 
 $insetGoldGlow =
   "inset gold -15px -15px 10px, inset gold 15px -15px 10px, inset gold 15px 15px 10px, inset gold -15px 15px 10px";
@@ -308,7 +308,7 @@ let dragon = {
 
 let turnCounter = 0;
 
-let wildwoodUser = {
+let bloodgateUser = {
   username: "",
   experience: "",
   startingDeck: "",
@@ -1056,24 +1056,24 @@ let user = {
 
 function createAccount(event) {
   // event.preventDefault();
-  wildwoodUser.username = usernameInput.value.trim();
-  wildwoodUser.experience = experienceLevel.value;
+  bloodgateUser.username = usernameInput.value.trim();
+  bloodgateUser.experience = experienceLevel.value;
   for (let i = 0; i < experienceLevel.length; i++) {
     if (experienceLevel[i].checked) {
-      wildwoodUser.experience = experienceLevel[i].value;
+      bloodgateUser.experience = experienceLevel[i].value;
     }
   }
-  wildwoodUser.startingDeck = startingDeck.value;
-  localStorage.setItem("wildwoodUser", JSON.stringify(wildwoodUser));
+  bloodgateUser.startingDeck = startingDeck.value;
+  localStorage.setItem("bloodgateUser", JSON.stringify(bloodgateUser));
   newGameBtn.dataset.target = "new-game-modal";
-  accountEl.children[0].textContent = `Welcome ${wildwoodUser.username}`;
+  accountEl.children[0].textContent = `Welcome ${bloodgateUser.username}`;
   // Welcome, username!;
 }
 
 accountForm.addEventListener("submit", createAccount);
 newGameForm.addEventListener("submit", startGame);
 deleteAccountBtn.addEventListener("click", function() {
-  localStorage.removeItem("wildwoodUser");
+  localStorage.removeItem("bloodgateUser");
   location.reload(true);
 })
 
