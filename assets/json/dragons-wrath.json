@@ -1,0 +1,187 @@
+{
+  "name": "dragons-wrath",
+  "cards": [
+    {
+      "name": "Colossal Dragon",
+      "cost": 9,
+      "atk": 9,
+      "def": 8,
+      "img": "./assets/images/CardPngs/ColossalDragon.png"
+    },
+    {
+      "name": "Elder Wizard",
+      "cost": 3,
+      "atk": 9,
+      "def": 7,
+      "img": "./assets/images/CardPngs/ElderWizard.png"
+    },
+    {
+      "name": "Sorceress",
+      "cost": 5,
+      "atk": 6,
+      "def": 3,
+      "img": "./assets/images/CardPngs/Sorceress.png"
+    },
+    {
+      "name": "Dragon Sorcerer",
+      "cost": 7,
+      "atk": 7,
+      "def": 5,
+      "img": "./assets/images/CardPngs/DragonSorcerer.png"
+    },
+    {
+      "name": "Demon Priest",
+      "cost": 5,
+      "atk": 8,
+      "def": 6,
+      "img": "./assets/images/CardPngs/DemonPriest.png"
+    },
+    {
+      "name": "Undead Dragon",
+      "cost": 5,
+      "atk": 4,
+      "def": 4,
+      "img": "./assets/images/CardPngs/UndeadDragon.png"
+    },
+    {
+      "name": "Dragula",
+      "cost": 4,
+      "atk": 4,
+      "def": 5,
+      "img": "./assets/images/CardPngs/Dragula.png"
+    },
+    {
+      "name": "Forest Dragon",
+      "cost": 3,
+      "atk": 3,
+      "def": 7,
+      "img": "./assets/images/CardPngs/ForestDragon.png"
+    },
+    {
+      "name": "Cloud Dragon",
+      "cost": 3,
+      "atk": 3,
+      "def": 7,
+      "img": "./assets/images/CardPngs/CloudDragon.png"
+    },
+    {
+      "name": "Tiger Dragon",
+      "cost": 3,
+      "atk": 7,
+      "def": 3,
+      "img": "./assets/images/CardPngs/TigerDragon.png"
+    },
+    {
+      "name": "Elven Sorcerer",
+      "cost": 2,
+      "atk": 3,
+      "def": 1,
+      "img": "./assets/images/CardPngs/ElvenSorcerer.png"
+    },
+    {
+      "name": "Elven Sorcerer",
+      "cost": 2,
+      "atk": 3,
+      "def": 1,
+      "img": "./assets/images/CardPngs/ElvenSorcerer.png"
+    },
+    {
+      "name": "Aquatarion",
+      "cost": 3,
+      "atk": 4,
+      "def": 4,
+      "img": "./assets/images/CardPngs/Aquatarion.png"
+    },
+    {
+      "name": "Aquatarion",
+      "cost": 3,
+      "atk": 4,
+      "def": 4,
+      "img": "./assets/images/CardPngs/Aquatarion.png"
+    },
+    {
+      "name": "Swamp Giant",
+      "cost": 2,
+      "atk": 2,
+      "def": 4,
+      "img": "./assets/images/CardPngs/SwampGiant.png"
+    },
+    {
+      "name": "Swamp Giant",
+      "cost": 2,
+      "atk": 2,
+      "def": 4,
+      "img": "./assets/images/CardPngs/SwampGiant.png"
+    },
+    {
+      "name": "Swamp Giant",
+      "cost": 2,
+      "atk": 2,
+      "def": 4,
+      "img": "./assets/images/CardPngs/SwampGiant.png"
+    },
+    {
+      "name": "Giant King",
+      "cost": 3,
+      "atk": 1,
+      "def": 6,
+      "img": "./assets/images/CardPngs/GiantKing.png"
+    },
+    {
+      "name": "Giant King",
+      "cost": 3,
+      "atk": 1,
+      "def": 6,
+      "img": "./assets/images/CardPngs/GiantKing.png"
+    },
+    {
+      "name": "Giant King",
+      "cost": 3,
+      "atk": 1,
+      "def": 6,
+      "img": "./assets/images/CardPngs/GiantKing.png"
+    },
+    {
+      "name": "Empress of the Deep",
+      "cost": 3,
+      "atk": 5,
+      "def": 3,
+      "img": "./assets/images/CardPngs/EmpressOfTheDeep.png"
+    },
+    {
+      "name": "Empress of the Deep",
+      "cost": 3,
+      "atk": 5,
+      "def": 3,
+      "img": "./assets/images/CardPngs/EmpressOfTheDeep.png"
+    },
+    {
+      "name": "Empress of the Deep",
+      "cost": 3,
+      "atk": 5,
+      "def": 3,
+      "img": "./assets/images/CardPngs/EmpressOfTheDeep.png"
+    },
+    {
+      "name": "Griffin",
+      "cost": 2,
+      "atk": 3,
+      "def": 1,
+      "img": "./assets/images/CardPngs/Griffin.png"
+    },
+    {
+      "name": "Griffin",
+      "cost": 2,
+      "atk": 3,
+      "def": 1,
+      "img": "./assets/images/CardPngs/Griffin.png"
+    },
+    {
+      "name": "Griffin",
+      "cost": 2,
+      "atk": 3,
+      "def": 1,
+      "img": "./assets/images/CardPngs/Griffin.png"
+    }
+  ]
+}

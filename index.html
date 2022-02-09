@@ -8,8 +8,11 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/sass/combined.css" />
-    <title>Group Project 01</title>
+    <title>Bloodgate</title>
   </head>
   <body>
     <section class="hero is-dark is-fullheight">
@@ -18,8 +21,8 @@
         <header class="navbar">
           <div class="container is-fluid">
             <div class="navbar-brand">
-              <a class="navbar-item is-size-1 is-size-5-mobile js-modal-trigger" data-target="create-account-modal">
-                <h1>Create Account</h1>
+              <a id="account-el" class="navbar-item is-size-1 is-size-5-mobile js-modal-trigger" data-target="create-account-modal">
+                <h1">Create Account</h1>
               </a>
               <span class="navbar-burger" data-target="navbarMenuHeroC">
                 <span></span>
@@ -70,7 +73,6 @@
                 </span>
               </div>
             </div>
-
           </div>
         </header>
       </div>
@@ -79,10 +81,12 @@
       <div class="hero-body">
         <!-- HOME SCREEN -->
         <div id="landing-msg" class="container has-text-centered">
-          <p class="title">
-            Epic Card Game
+          <p class="title is-size-1">
+            Bloodgate
           </p>
-          <button class="button is-large is-success is-outlined js-modal-trigger" data-target="new-game-modal">
+          <br>
+          <p class="subtitle is-size-2">The Wildwood Deception</p>
+          <button id="new-game-btn" class="button is-large is-success is-outlined js-modal-trigger" data-target="new-game-modal">
             New Game
           </button>
         </div>
@@ -91,6 +95,7 @@
         <div id="felt-view" class="container is-fluid is-flex is-flex-direction-column is-justify-content-space-between is-hidden mx-0">
           <div id="enemy-row">
             <div id="enemy-avatar" class="is-flex is-flex-direction-column is-justify-content-flex-end">
+              <!-- <img id="enemy-avatar-border" src="./assets/images/enemy-avatar-frame.png" alt=""> -->
               <progress id="enemy-health" class="progress is-small is-danger" value="30" max="30">15%</progress>
               <progress id="enemy-power" class="progress is-small is-link" value="100" max="100">15%</progress>
             </div>
@@ -112,38 +117,45 @@
 
           <div id="player-row">
             <div id="player-avatar" class="is-flex is-flex-direction-column is-justify-content-flex-start">
+              <img id="player-avatar-border" alt="">
               <progress id="player-health" class="progress is-small is-danger" value="30" max="30">15%</progress>
               <progress id="player-power" class="progress is-small is-link" value="100" max="100">15%</progress>
             </div>
             <div id="player-hand" class="is-flex">
-              <div id="player-card-1" class="player-card is-size-1" style="text-align: center;">
-                <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
+              <div id="player-card-1" class="player-card is-size-1 item" style="text-align: center;">
+                <img draggable="false" src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
               </div>
-              <div id="player-card-2" class="player-card is-size-1" style="text-align: center;">
-                <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
+              <div id="player-card-2" class="player-card is-size-1 item" style="text-align: center;">
+                <img draggable="false" src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
               </div>
-              <div id="player-card-3" class="player-card is-size-1" style="text-align: center;">
-                <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
+              <div id="player-card-3" class="player-card is-size-1 item" style="text-align: center;">
+                <img draggable="false" src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
               </div>
-              <div id="player-card-4" class="player-card is-size-1" style="text-align: center;">
-                <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
+              <div id="player-card-4" class="player-card is-size-1 item" style="text-align: center;">
+                <img draggable="false" src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
               </div>
             </div>
-            <div id="end-turn-btn" class="button is-danger">End Turn</div>
-            <div id="player-deck""></div>
+            <div id="end-turn-btn" class="is-clickable end-turn has-text-centered" style="width:18%;">
+              <img class="img-bottom" src="./assets/images/buttonNormal.png" alt="">
+              <img class="img-top" src="./assets/images/buttonHighLight.png" alt="">
+              <h1 class="is-size-4 is-unselectable is-overlay has-text-grey-lighter" style="font-family: 'MedievalSharp', serif; z-index:1002; top:25%; letter-spacing: .2em; pointer-events: none;">End Turn</h1>
+            </div>
+            <div id="player-deck"></div>
           </div>
         </div>
 
-        <div id="game-over" class="container is-hidden">
-          <article id="game-over-msg" class="message is-success is-large">
-            <div class="message-header">
-              <p class="is-size-1">Game Over</p>
-              <button class="delete is-large" aria-label="delete"></button>
-            </div>
-            <div id="you-won" class="is-hidden message-body">
+        <div id="game-over" class="container is-hidden" style="font-family:'MedievalSharp', serif;">
+          <article id="game-over-msg" class="message is-large" style="background-color: darkslategray;">
+            <div id="you-won" class="title is-size-1 is-hidden message-body" style="color:white;">
+              <button id="restart-btn" class="delete is-large" aria-label="delete"></button>
+              Game Over
+              <br>
               You won the war!
             </div>
-            <div id="you-lost" class="is-hidden message-body">
+            <div id="you-lost" class="title is-size-1 is-hidden message-body" style="color:white;">
+              Game Over
+              <button id="restart-btn" class="delete is-large" aria-label="delete"></button>
+              <br>
               You lost the war!
             </div>
           </article>
@@ -217,7 +229,7 @@
                 <div class="select">
                   <select name="class-select" id="class-select" required="required">
                     <option value="">--Please choose a class--</option>
-                    <option value="warrior">Warrior</option>
+                    <option value="barbarian">Barbarian</option>
                     <option value="mage">Mage</option>
                     <option value="rogue">Rogue</option>
                   </select>
@@ -234,15 +246,15 @@
                   Easy
                 </label>
                 <label for="medium" class="radio">
-                  <input id="medium" value="medium" type="radio" name="difficulty" disabled>
+                  <input id="medium" value="medium" type="radio" name="difficulty">
                   Medium
                 </label>
                 <label for="hard" class="radio">
-                  <input id="hard" value="hard" type="radio" name="difficulty" disabled>
+                  <input id="hard" value="hard" type="radio" name="difficulty">
                   Hard
                 </label>
                 <label for="diabolical" class="radio">
-                  <input id="diabolical" value="diabolical" type="radio" name="difficulty" disabled>
+                  <input id="diabolical" value="diabolical" type="radio" name="difficulty">
                   Diabolical
                 </label>
               </div>
@@ -304,9 +316,9 @@
                 <div class="select">
                   <select name="deck-select" id="deck-select" required="required">
                     <option value="">--Please choose a starting deck--</option>
-                    <option value="warrior">Dragon's wrath</option>
-                    <option value="mage">Bloodfury Dominion</option>
-                    <option value="rogue">Legion of the Forest</option>
+                    <option value="dragons-wrath">Dragon's wrath</option>
+                    <option value="bloodfury-dominion">Bloodfury Dominion</option>
+                    <option value="legion-of-the-forest">Legion of the Forest</option>
                   </select>
                 </div>
               </div>
@@ -350,7 +362,7 @@
               <!-- SUBMIT/CANCEL -->
               <div class="field is-grouped">
                 <div class="control">
-                  <input id="submit-btn" type="submit" value="Submit" class="button is-success"></input>
+                  <button type="submit" value="Submit" class="button is-success">Huzzah!</button>
                 </div>
                 <div class="control">
                   <input type="reset" value="Cancel" class="button is-success is-light"></input>
@@ -414,7 +426,6 @@
           <!-- Leaderboard Modal -->
           <div id="leaderboard-modal" class="modal">
             <div class="modal-background"></div>
-
             <div class="modal-content">
               <div class="box">
               <h3>Leaderboard</h3>
@@ -434,18 +445,23 @@
               </br></br></br></br></br></br></br></br></br></br></br> So we fight!</p>
                 </div>
               </section>
-
             </div>
           </div>
           <!-- Settings Modal -->
           <div id="settings-modal" class="modal">
             <div class="modal-background"></div>
-
-            <div class="modal-content">
-              <div class="box">
-              <h3>Settings</h3>
-              <p>filler</p>
-              </div>
+            <div class="modal-card">
+              <header class="modal-card-head">
+                <p class="modal-card-title">Settings</p>
+                <button class="delete" aria-label="close"></button>
+              </header>
+              <section class="modal-card-body">
+                <h1 id="delete-account-btn" class="button is-danger">Delete Account</h1>
+              </section>
+              <footer class="modal-card-foot">
+                <button class="button is-success">Save Changes</button>
+                <button class="button">Cancel</button>
+              </footer>
             </div>
           </div>
           <!-- End of Modal Content -->

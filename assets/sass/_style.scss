@@ -4,7 +4,7 @@
   --third-color: #3f6c51ff;
   --fourth-color: #d7263dff;
   --fifth-color: #f26419ff;
-  --sixth-color: #f9e900ff;
+  --sixth-color: rgba(102, 102, 102, 0.63);
 }
 
 .hero {
@@ -50,35 +50,56 @@
 }
 
 #enemy-avatar {
-  background-color: red;
+  position: relative;
+  background-size: 150%;
+  background-position: top;
   width: 10rem;
   height: 10rem;
   border-radius: 50%;
   border: solid 3px black;
 }
 
+#enemy-avatar-border {
+  position: absolute;
+  height: 10rem;
+  transform: scale(2);
+  overflow: hidden;
+}
+
 #enemy-health {
   width: 100%;
-  border: solid 3px black;
+  border: solid 1px black;
   border-radius: 0px;
   position: relative;
   top: 3rem;
   margin-bottom: 1rem;
 }
+
 #enemy-power {
   width: 100%;
-  border: solid 3px black;
+  border: solid 1px black;
   border-radius: 0px;
   position: relative;
   top: 2.5rem;
   margin-bottom: 0;
 }
 
+progress {
+  text-align: center;
+}
+
+progress:after {
+  content:attr(value)'%';
+}
+
 #enemy-deck {
+  background-image: url(../images/CardPNGs/Deck_Back.png);
+  background-size: cover;
+  background-position: center;
   border: solid 3px black;
-  border-radius: 15px;
+  border-radius: 10px;
   height: 15rem;
-  width: 10rem;
+  width: 11rem;
 }
 
 #enemy-hand {
@@ -86,12 +107,15 @@
 }
 
 .enemy-card {
-  background-color: red;
+  background-image: url(../images/CardPNGs/Card_Back.png);
+  background-size: cover;
+  background-position: center;
   border: solid 3px black;
   border-radius: 10px;
   height: 14rem;
   width: 10rem;
   transition: transform 200ms;
+  margin-right: -100px;
 }
 
 .played-enemy-card {
@@ -112,16 +136,25 @@
 }
 
 #player-avatar {
-  background-color: blue;
+  background-size: cover;
+  background-position: top;
   width: 10rem;
   height: 10rem;
   border-radius: 50%;
   border: solid 3px black;
 }
 
+#player-avatar-border {
+  position: absolute;
+  left: 1.55rem;
+  height: 10rem;
+  transform: scale(1.1);
+  overflow: hidden;
+}
+
 #player-health {
   width: 100%;
-  border: solid 3px black;
+  border: solid 1px black;
   border-radius: 0px;
   position: relative;
   bottom: 2.5rem;
@@ -130,22 +163,26 @@
 
 #player-power {
   width: 100%;
-  border: solid 3px black;
+  border: solid 1px black;
   border-radius: 0px;
   position: relative;
   bottom: 3rem;
   margin-bottom: 0;
+  color: gold;
 }
 
 #player-deck {
+  background-image: url(../images/CardPNGs/Deck_Back.png);
+  background-size: cover;
+  background-position: center;
   border: solid 3px black;
-  border-radius: 15px;
+  border-radius: 10px;
   height: 15rem;
-  width: 10rem;
+  width: 11rem;
 }
 
 #player-hand {
-  transform: translateY(7rem);
+  transform: translateX(10rem) translateY(7rem);
 }
 
 .player-card {
@@ -157,6 +194,7 @@
   position: relative;
   transition: transform 400ms;
   touch-action: pan-x;
+  margin-left: -5rem;
 }
 
 .played-card {
@@ -166,23 +204,6 @@
   width: 10rem;
   position: relative;
   touch-action: pan-x;
-}
-
-.played-card::before {
-  content: '';
-  position:absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  box-shadow: gold 15px 15px 15px, gold 15px -15px 15px, gold -15px -15px 15px, gold -15px 15px 15px;
-  opacity: 0;
-  transition: opacity 500ms;
-  animation: 3s ease 1200ms infinite alternate shadowBounce;
-}
-
-.played-card:hover::before {
-  opacity: 1;
 }
 
 @keyframes bounce {
@@ -208,7 +229,6 @@
 
 .player-card:hover {
   transform: translateY(-14rem);
-  box-shadow: gold -15px -15px 10px, gold 15px -15px 10px, gold 15px 15px 10px, gold -15px 15px 10px;
 }
 
 .player-card:hover::before {
@@ -244,16 +264,6 @@
   margin: 0 15vw;
 }
 
-@keyframes wobble {
-  0% { transform: translateX(0%) scale(1.2); }
-  15% { transform: translateX(-25%) rotate(-5deg); }
-  30% { transform: translateX(20%) rotate(3deg); }
-  45% { transform: translateX(-15%) rotate(-3deg); }
-  60% { transform: translateX(10%) rotate(2deg); }
-  75% { transform: translateX(-5%) rotate(-1deg); }
-  100% { transform: translateX(0%) scale(1.2)
-    ; }
-}
 
 .card-inactive {
   border-radius: 15px;
@@ -266,13 +276,33 @@
   animation: none;
 }
 
+.end-turn {
+  display: inline-block;
+  position: relative;
+  max-width: 18%;
+  margin-left: 175px;
+}
+
+.img-top {
+  display: none;
+  position: absolute;
+  top: -3px;
+  left: 0;
+  z-index: 1000;
+}
+
+.end-turn:hover .img-top {
+  display: inline;
+}
+
+
 @media screen and (max-width: 980px) {
   #player-row {
     padding-top: 15em;
   }
   #enemy-avatar {
-    width: 7rem;
-    height: 7rem;
+    min-width: 5rem;
+    height: 5rem;
   }
   #enemy-health {
     height: 0.5rem;
@@ -281,8 +311,8 @@
     height: 0.5rem;
   }
   #player-avatar {
-    width: 7rem;
-    height: 7rem;
+    min-width: 5rem;
+    height: 5rem;
   }
   #player-health {
     height: 0.5rem;
@@ -291,8 +321,8 @@
     height: 0.5rem;
   }
   #enemy-deck {
-    height: 8.5rem;
-    width: 6.5rem;
+    height: 6rem;
+    min-width: 4rem;
   }
   #enemy-hand {
     transform: translateY(-7rem);
@@ -307,8 +337,8 @@
   }
 
   #player-deck {
-    height: 8.5rem;
-    width: 6.5rem;
+    height: 6rem;
+    min-width: 4rem;
   }
   #player-hand {
     transform: translateY(3rem);

@@ -1,0 +1,341 @@
+{
+  "name": "legion-of-the-forest",
+  "cards": [
+    {
+      "name": "Elder Wizard",
+      "cost": 9,
+      "atk": 9,
+      "def": 7,
+      "img": "./assets/images/CardPngs/ElderWizard.png"
+    },
+    {
+      "name": "Sorceress",
+      "cost": 7,
+      "atk": 6,
+      "def": 3,
+      "img": "./assets/images/CardPngs/Sorceress.png"
+    },
+    {
+      "name": "Elven Sorcerer",
+      "cost": 2,
+      "atk": 3,
+      "def": 1,
+      "img": "./assets/images/CardPngs/ElvenSorcerer.png"
+    },
+    {
+      "name": "Shamanic Archer",
+      "cost": 7,
+      "atk": 7,
+      "def": 6,
+      "img": "./assets/images/CardPngs/ShamanicArcher.png"
+    },
+    {
+      "name": "Aquatarion",
+      "cost": 5,
+      "atk": 4,
+      "def": 4,
+      "img": "./assets/images/CardPngs/Aquatarion.png"
+    },
+    {
+      "name": "Empress of the Deep",
+      "cost": 4,
+      "atk": 5,
+      "def": 3,
+      "img": "./assets/images/CardPngs/EmpressOfTheDeep.png"
+    },
+    {
+      "name": "Griffin",
+      "cost": 2,
+      "atk": 3,
+      "def": 1,
+      "img": "./assets/images/CardPngs/Griffin.png"
+    },
+    {
+      "name": "Dark Elf",
+      "cost": 6,
+      "atk": 4,
+      "def": 7,
+      "img": "./assets/images/CardPngs/DarkElf.png"
+    },
+    {
+      "name": "Forest Dragon",
+      "cost": 3,
+      "atk": 3,
+      "def": 7,
+      "img": "./assets/images/CardPngs/ForestDragon.png"
+    },
+    {
+      "name": "Lady of the Forest",
+      "cost": 6,
+      "atk": 3,
+      "def": 8,
+      "img": "./assets/images/CardPngs/LadyOfTheForest.png"
+    },
+    {
+      "name": "Cloud Dragon",
+      "cost": 3,
+      "atk": 3,
+      "def": 7,
+      "img": "./assets/images/CardPngs/CloudDragon.png"
+    },
+    {
+      "name": "Giant King",
+      "cost": 3,
+      "atk": 1,
+      "def": 6,
+      "img": "./assets/images/CardPngs/GiantKing.png"
+    },
+    {
+      "name": "Giant King",
+      "cost": 3,
+      "atk": 1,
+      "def": 6,
+      "img": "./assets/images/CardPngs/GiantKing.png"
+    },
+    {
+      "name": "Angelic Warrior",
+      "cost": 5,
+      "atk": 6,
+      "def": 4,
+      "img": "./assets/images/CardPngs/AngelicWarrior.png"
+    },
+    {
+      "name": "Angelic Warrior",
+      "cost": 5,
+      "atk": 6,
+      "def": 4,
+      "img": "./assets/images/CardPngs/AngelicWarrior.png"
+    },
+    {
+      "name": "Stone Giant",
+      "cost": 4,
+      "atk": 3,
+      "def": 6,
+      "img": "./assets/images/CardPngs/StoneGiant.png"
+    },
+    {
+      "name": "Stone Giant",
+      "cost": 4,
+      "atk": 3,
+      "def": 6,
+      "img": "./assets/images/CardPngs/StoneGiant.png"
+    },
+    {
+      "name": "Stone Giant",
+      "cost": 4,
+      "atk": 3,
+      "def": 6,
+      "img": "./assets/images/CardPngs/StoneGiant.png"
+    },
+    {
+      "name": "Elven Archer",
+      "cost": 4,
+      "atk": 6,
+      "def": 3,
+      "img": "./assets/images/CardPngs/ElvenArcher.png"
+    },
+    {
+      "name": "Elven Archer",
+      "cost": 4,
+      "atk": 6,
+      "def": 3,
+      "img": "./assets/images/CardPngs/ElvenArcher.png"
+    },
+    {
+      "name": "Elven Archer",
+      "cost": 4,
+      "atk": 6,
+      "def": 3,
+      "img": "./assets/images/CardPngs/ElvenArcher.png"
+    },
+    {
+      "name": "Elven Archer",
+      "cost": 4,
+      "atk": 6,
+      "def": 3,
+      "img": "./assets/images/CardPngs/ElvenArcher.png"
+    },
+    {
+      "name": "Swamp Giant",
+      "cost": 2,
+      "atk": 2,
+      "def": 4,
+      "img": "./assets/images/CardPngs/SwampGiant.png"
+    },
+    {
+      "name": "Haunted Tree",
+      "cost": 2,
+      "atk": 4,
+      "def": 2,
+      "img": "./assets/images/CardPngs/HauntedTree.png"
+    },
+    {
+      "name": "Elder Wizard",
+      "cost": 9,
+      "atk": 9,
+      "def": 7,
+      "img": "./assets/images/CardPngs/ElderWizard.png"
+    },
+    {
+      "name": "Sorceress",
+      "cost": 7,
+      "atk": 6,
+      "def": 3,
+      "img": "./assets/images/CardPngs/Sorceress.png"
+    },
+    {
+      "name": "Elven Sorcerer",
+      "cost": 2,
+      "atk": 3,
+      "def": 1,
+      "img": "./assets/images/CardPngs/ElvenSorcerer.png"
+    },
+    {
+      "name": "Shamanic Archer",
+      "cost": 7,
+      "atk": 7,
+      "def": 6,
+      "img": "./assets/images/CardPngs/ShamanicArcher.png"
+    },
+    {
+      "name": "Aquatarion",
+      "cost": 5,
+      "atk": 4,
+      "def": 4,
+      "img": "./assets/images/CardPngs/Aquatarion.png"
+    },
+    {
+      "name": "Empress of the Deep",
+      "cost": 4,
+      "atk": 5,
+      "def": 3,
+      "img": "./assets/images/CardPngs/EmpressOfTheDeep.png"
+    },
+    {
+      "name": "Griffin",
+      "cost": 2,
+      "atk": 3,
+      "def": 1,
+      "img": "./assets/images/CardPngs/Griffin.png"
+    },
+    {
+      "name": "Dark Elf",
+      "cost": 6,
+      "atk": 4,
+      "def": 7,
+      "img": "./assets/images/CardPngs/DarkElf.png"
+    },
+    {
+      "name": "Forest Dragon",
+      "cost": 3,
+      "atk": 3,
+      "def": 7,
+      "img": "./assets/images/CardPngs/ForestDragon.png"
+    },
+    {
+      "name": "Lady of the Forest",
+      "cost": 6,
+      "atk": 3,
+      "def": 8,
+      "img": "./assets/images/CardPngs/LadyOfTheForest.png"
+    },
+    {
+      "name": "Cloud Dragon",
+      "cost": 3,
+      "atk": 3,
+      "def": 7,
+      "img": "./assets/images/CardPngs/CloudDragon.png"
+    },
+    {
+      "name": "Giant King",
+      "cost": 3,
+      "atk": 1,
+      "def": 6,
+      "img": "./assets/images/CardPngs/GiantKing.png"
+    },
+    {
+      "name": "Giant King",
+      "cost": 3,
+      "atk": 1,
+      "def": 6,
+      "img": "./assets/images/CardPngs/GiantKing.png"
+    },
+    {
+      "name": "Angelic Warrior",
+      "cost": 5,
+      "atk": 6,
+      "def": 4,
+      "img": "./assets/images/CardPngs/AngelicWarrior.png"
+    },
+    {
+      "name": "Angelic Warrior",
+      "cost": 5,
+      "atk": 6,
+      "def": 4,
+      "img": "./assets/images/CardPngs/AngelicWarrior.png"
+    },
+    {
+      "name": "Stone Giant",
+      "cost": 4,
+      "atk": 3,
+      "def": 6,
+      "img": "./assets/images/CardPngs/StoneGiant.png"
+    },
+    {
+      "name": "Stone Giant",
+      "cost": 4,
+      "atk": 3,
+      "def": 6,
+      "img": "./assets/images/CardPngs/StoneGiant.png"
+    },
+    {
+      "name": "Stone Giant",
+      "cost": 4,
+      "atk": 3,
+      "def": 6,
+      "img": "./assets/images/CardPngs/StoneGiant.png"
+    },
+    {
+      "name": "Elven Archer",
+      "cost": 4,
+      "atk": 6,
+      "def": 3,
+      "img": "./assets/images/CardPngs/ElvenArcher.png"
+    },
+    {
+      "name": "Elven Archer",
+      "cost": 4,
+      "atk": 6,
+      "def": 3,
+      "img": "./assets/images/CardPngs/ElvenArcher.png"
+    },
+    {
+      "name": "Elven Archer",
+      "cost": 4,
+      "atk": 6,
+      "def": 3,
+      "img": "./assets/images/CardPngs/ElvenArcher.png"
+    },
+    {
+      "name": "Elven Archer",
+      "cost": 4,
+      "atk": 6,
+      "def": 3,
+      "img": "./assets/images/CardPngs/ElvenArcher.png"
+    },
+    {
+      "name": "Swamp Giant",
+      "cost": 2,
+      "atk": 2,
+      "def": 4,
+      "img": "./assets/images/CardPngs/SwampGiant.png"
+    },
+    {
+      "name": "Haunted Tree",
+      "cost": 2,
+      "atk": 4,
+      "def": 2,
+      "img": "./assets/images/CardPngs/HauntedTree.png"
+    }
+  ]
+}
