@@ -920,7 +920,7 @@ function startGame(event) {
   console.log(player);
   player.name = nameInput.value.trim();
   player.class = classSelect.value;
-  if (player.class === "warrior") {
+  if (player.class === "barbarian") {
     playerAvatar.style.backgroundImage =
       "url(./assets/images/aliks_the_barbarian_by_lucy_lisett_da3v8lm-fullview.jpeg)";
   } else if (player.class === "mage") {
