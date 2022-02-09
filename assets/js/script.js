@@ -206,8 +206,10 @@ function endGame() {
   gameOver.classList.remove("is-hidden");
   if (enemy.health <= 0) {
     youWon.classList.remove("is-hidden");
+    heroEl.style.backgroundImage = "url(./assets/images/victory.jpg)";
   } else {
     youLost.classList.remove("is-hidden");
+    heroEl.style.backgroundImage = "url(./assets/images/defeat.jpg)";
   }
   restartBtn.addEventListener("click", reloadPage);
   return;
@@ -536,6 +538,16 @@ function enemyAttack() {
       if (coinToss() === 0 || playerCards.length === 0) {
         player.health -= enemyCards[i].dataset.atk;
         playerHealth.value = player.health;
+        gsap.to(".hero", {
+          duration: 1,
+          boxShadow: "inset 0 0 100vmin 0 red",
+          onComplete: function() {
+            gsap.to(".hero", {
+              duration: 1,
+              boxShadow: "none"
+            })
+          }
+        })
         console.log(`${enemy.name} attacked ${player.name} directly!`);
         if (player.health <= 0) {
           endGame();
@@ -547,7 +559,16 @@ function enemyAttack() {
         console.log(
           `${enemyCards[i].dataset.name} attacked ${playerCards[randomIndex].dataset.name}!`
         );
-
+        gsap.to(".hero", {
+          duration: 1,
+          boxShadow: "inset 0 0 100vmin 0 red",
+          onComplete: function() {
+            gsap.to(".hero", {
+              duration: 1,
+              boxShadow: "none"
+            })
+          }
+        })
         playerCards[randomIndex].dataset.def -= enemyCards[i].dataset.atk;
         playerCards[randomIndex].children[3].textContent = playerCards[randomIndex].dataset.def;
         playerCards[randomIndex].children[3].style.color = "red";

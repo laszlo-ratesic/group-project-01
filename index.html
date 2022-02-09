@@ -123,16 +123,16 @@
             </div>
             <div id="player-hand" class="is-flex">
               <div id="player-card-1" class="player-card is-size-1 item" style="text-align: center;">
-                <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
+                <img draggable="false" src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
               </div>
               <div id="player-card-2" class="player-card is-size-1 item" style="text-align: center;">
-                <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
+                <img draggable="false" src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
               </div>
               <div id="player-card-3" class="player-card is-size-1 item" style="text-align: center;">
-                <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
+                <img draggable="false" src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
               </div>
               <div id="player-card-4" class="player-card is-size-1 item" style="text-align: center;">
-                <img src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
+                <img draggable="false" src="./assets/images/placeholder-card.png" alt=""style="transform:scale(1.2);">
               </div>
             </div>
             <div id="end-turn-btn" class="is-clickable end-turn has-text-centered" style="width:18%;">
@@ -144,16 +144,18 @@
           </div>
         </div>
 
-        <div id="game-over" class="container is-hidden">
-          <article id="game-over-msg" class="message is-success is-large">
-            <div class="message-header">
-              <p class="is-size-1">Game Over</p>
+        <div id="game-over" class="container is-hidden" style="font-family:'MedievalSharp', serif;">
+          <article id="game-over-msg" class="message is-large" style="background-color: darkslategray;">
+            <div id="you-won" class="title is-size-1 is-hidden message-body" style="color:white;">
               <button id="restart-btn" class="delete is-large" aria-label="delete"></button>
-            </div>
-            <div id="you-won" class="is-hidden message-body">
+              Game Over
+              <br>
               You won the war!
             </div>
-            <div id="you-lost" class="is-hidden message-body">
+            <div id="you-lost" class="title is-size-1 is-hidden message-body" style="color:white;">
+              Game Over
+              <button id="restart-btn" class="delete is-large" aria-label="delete"></button>
+              <br>
               You lost the war!
             </div>
           </article>
