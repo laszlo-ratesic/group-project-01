@@ -51,13 +51,6 @@
       "img": "./assets/images/CardPngs/Dragula.png"
     },
     {
-      "name": "Blazing Dragon",
-      "cost": 5,
-      "atk": 7,
-      "def": 3,
-      "img": "./assets/images/CardPngs/BlazingDragon.png"
-    },
-    {
       "name": "Forest Dragon",
       "cost": 3,
       "atk": 3,

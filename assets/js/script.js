@@ -1006,6 +1006,7 @@ if (!localStorageData) {
   accountEl.children[0].textContent = `Welcome ${localStorageData.username}!`;
   getDeck(player, localStorageData.startingDeck);
 }
+
 // BULMA CODE
 /* When a user clicks on a button, an element with the `.modal` class is opened. */
 document.addEventListener("DOMContentLoaded", () => {
