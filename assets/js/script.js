@@ -648,7 +648,7 @@ function endPlayerTurn() {
     }
   }
 
-  setTimeout(notification("That all you got?"), 1000);
+  setTimeout(notification(trashTalk), 1000);
   setTimeout(enemyTurn(), 2000);
 }
 
@@ -690,6 +690,8 @@ let insult = [
   // waste/name/from,
 ];
 
+let trashTalk = "";
+
 
 async function fuckOff(url) {
   // These variables are for the insult array
@@ -706,11 +708,15 @@ async function fuckOff(url) {
   }).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        console.log(data);
+        trashTalk = data.message;
       });
+    } else {
+      console.log("error");
     }
   });
 };
+
+fuckOff("https://cors-anywhere.herokuapp.com/http://foaas.com/");
 
 function playCard(event) {
   const chosenCard = event.currentTarget;
