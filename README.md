@@ -1,6 +1,10 @@
 # Bloodgate: The Wildwood Deception 🗡️
 
-Quick blurb about the game.
+Fight for an autonomous nation of elder dragons or defend the forest from an undead invasion? Or will you join forces with the demonic necromancers and wreak havoc from the Bloodgate. The choice is yours in the official first release of Bloodgate: The Wildwood Deception.
+
+Highrealm has been almost completely overtaken by the demonic Bloodfury faction. The only place left unconquered is a broad stretch of land known as Wildwood. This magical place, protected by the Elder Wizard and his Legion of Forest creatures is the realm's only hope to return to its beautiful state.
+
+After the dark elves of the neighboring Witchwood Cult made a deal with the Warlock's guild of Highrealm to make the nation of Dragons an independent state, the evil necromancers and dark wizards of Underrealm revealed the trickery of their plan. With the once-sealed portal holding back the dark forces for centuries now left unguarded, the evil dark priest summoned his deadly creatures into Highrealm. With the bloodgate now open, our heroes must defend this last stand or Highrealm may be destroyed, enslaving its creatures for all eternity.
 
 ## 📚 Table of Contents
 - [Bloodgate: The Wildwood Deception 🗡️](#bloodgate-the-wildwood-deception-️)
