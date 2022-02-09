@@ -811,6 +811,13 @@ function playCard(event) {
     chosenCard.classList.remove("player-card");
     chosenCard.classList.add("played-card");
     chosenCard.setAttribute("data-state", "in-play");
+    if (player.class === "rogue") {
+      cardReady(chosenCard);
+      chosenCard.dataset.state = "on-guard";
+      chosenCard.addEventListener("click", AtkMsg);
+      chosenCard.addEventListener("mouseenter", hover);
+      chosenCard.addEventListener("mouseleave", unhover);
+    }
     chosenCard.removeEventListener("click", playCard);
     const w = window.innerWidth / 4;
     const h = window.innerHeight / 8;
