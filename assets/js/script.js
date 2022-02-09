@@ -183,6 +183,7 @@ function cardReady(cardEl) {
 // {Enemy's} card is highlighted by a gold shadow
 // *Use this to show which enemy card the player is targeting for attack
 function targetCard(cardEl) {
+  cardEl.dataset.state = "in-play";
   cardEl.style.transition = "all 300ms";
   cardEl.style.boxShadow = $goldGlow;
   cardEl.addEventListener("mouseenter", attackTargetHover);
