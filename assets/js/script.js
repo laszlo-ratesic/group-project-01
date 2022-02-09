@@ -252,6 +252,8 @@ function attackTarget(event) {
     tween2.play();
     // Subtract the player card's atk score from the enemy card's def score
     target.dataset.def -= readyToAttack.dataset.atk;
+    target.children[3].textContent = target.dataset.def;
+    target.children[3].style.color = "red";
 
     // If the enemy card survives the attack
     if (target.dataset.def > 0) {
@@ -271,6 +273,9 @@ function attackTarget(event) {
       `Your ${readyToAttack.dataset.name} card had ${readyToAttack.dataset.def} def points`
     );
     readyToAttack.dataset.def -= target.dataset.atk;
+    readyToAttack.children[3].textContent = readyToAttack.dataset.def;
+    readyToAttack.children[3].style.color = "red";
+
     if (readyToAttack.dataset.def > 0) {
       console.log(
         `Your ${readyToAttack.dataset.name} card now has ${readyToAttack.dataset.def} def points`
