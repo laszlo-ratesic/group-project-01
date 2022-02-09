@@ -511,7 +511,12 @@ function enemyAttack() {
         );
 
         playerCards[randomIndex].dataset.def -= enemyCards[i].dataset.atk;
+        playerCards[randomIndex].children[3].textContent = playerCards[randomIndex].dataset.def;
+        playerCards[randomIndex].children[3].style.color = "red";
+
         enemyCards[i].dataset.def -= playerCards[randomIndex].dataset.atk;
+        enemyCards[i].children[3].textContent = enemyCards[i].dataset.def;
+        enemyCards[i].children[3].style.color = "red";
         if (playerCards[randomIndex].dataset.def > 0) {
           console.log(
             `${playerCards[randomIndex].dataset.name} survived and now has ${playerCards[randomIndex].dataset.def} def`
@@ -678,6 +683,15 @@ function compliment() {
 
 function endPlayerTurn() {
   endTurnBtn.removeEventListener("click", endPlayerTurn);
+  for (let i = 0; i < playerField.children.length; i++) {
+    if (playerField.children[i].dataset.state === "ready-to-attack") {
+      removeAtkMsg();
+    }
+    playerField.children[i].removeEventListener("click", AtkMsg);
+    playerField.children[i].removeEventListener("mouseenter", hover);
+    playerField.children[i].removeEventListener("mouseleave", unhover);
+    playerField.children[i].style = "transition: all 400ms; box-shadow:none; transform: translateY(15px); animation:none;";
+  }
   for (let i = 0; i < playerHand.children.length; i++) {
     if (playerHand.children[i].dataset.state === "in-hand") {
       playerHand.children[i].removeEventListener("click", playCard);
