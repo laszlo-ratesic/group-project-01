@@ -374,7 +374,7 @@ function startPlayerTurn() {
   // draws a card
   if (player.deck.length > 0) {
     const newCard = document.createElement("div");
-    newCard.classList.add("player-card", "is-size-1");
+    newCard.classList.add("player-card", "is-size-1", "has-text-black");
     setCardProps(newCard, player.deck);
     const cardImg = document.createElement("img");
     cardImg.src = newCard.dataset.img;
@@ -382,14 +382,23 @@ function startPlayerTurn() {
     newCard.appendChild(cardImg);
 
     const costStat = document.createElement("div");
-    costStat.style = "position:absolute;top:-1rem;left:0;";
+    costStat.style =
+      "position:absolute;top:-1.45rem;left:-.18rem;font-size:.5em;font-weight:bold;-webkit-text-stroke:1px black;";
     costStat.textContent = newCard.dataset.cost;
     newCard.appendChild(costStat);
 
     const atkStat = document.createElement("div");
-    atkStat.style = "position:absolute;top:1rem;left:0;";
+    atkStat.style =
+      "position:absolute;top:5.5rem;left:-.55rem;font-size:.55em;font-weight:bold;color:white;-webkit-text-stroke:1px black;";
     atkStat.textContent = newCard.dataset.atk;
     newCard.appendChild(atkStat);
+
+    const defStat = document.createElement("div");
+    defStat.style =
+      "position:absolute;top:5.5rem;left:9.53rem;font-size:.55em;font-weight:bold;color:white;-webkit-text-stroke:1px black;";
+    defStat.textContent = newCard.dataset.def;
+    newCard.appendChild(defStat);
+
     gsap.fromTo(
       newCard,
       {
@@ -517,6 +526,25 @@ function enemyPlayCard() {
         card.appendChild(cardFace);
         card.classList.add("played-enemy-card");
         card.dataset.state = "in-play";
+
+        const costStat = document.createElement("div");
+        costStat.style =
+          "position:absolute;top:-1.45rem;left:-.3rem;font-size:1.5em;font-weight:bold; color:black;-webkit-text-stroke:1px black;";
+        costStat.textContent = card.dataset.cost;
+        card.appendChild(costStat);
+
+        const atkStat = document.createElement("div");
+        atkStat.style =
+          "position:absolute;top:5.65rem;left:-.45rem;font-size:1.5em;font-weight:bold;color:white;-webkit-text-stroke:1px black;";
+        atkStat.textContent = card.dataset.atk;
+        card.appendChild(atkStat);
+
+        const defStat = document.createElement("div");
+        defStat.style =
+          "position:absolute;top:5.65rem;left:9.53rem;font-size:1.5em;font-weight:bold;color:white;-webkit-text-stroke:1px black;";
+        defStat.textContent = card.dataset.def;
+        card.appendChild(defStat);
+
         console.log(`${enemy.name} played ${card.dataset.name}`);
         const w = window.innerWidth / 4;
         const h = window.innerHeight / 8;
@@ -678,6 +706,23 @@ function setCardProps(cardEl, fromDeck) {
   }
 }
 
+function createStats(cardEl) {
+  const costStat = document.createElement("div");
+  costStat.style = "position:absolute; top:-1.45rem; left:-.18rem; font-size:.5em; font-weight:bold; color:black; -webkit-text-stroke:1px black;";
+  costStat.textContent = cardEl.dataset.cost;
+  cardEl.appendChild(costStat);
+
+  const atkStat = document.createElement("div");
+  atkStat.style = "position:absolute;top:5.5rem;left:-.55rem;font-size:.55em;font-weight:bold;color:white;-webkit-text-stroke:1px black;";
+  atkStat.textContent = cardEl.dataset.atk;
+  cardEl.appendChild(atkStat);
+
+  const defStat = document.createElement("div");
+  defStat.style = "position:absolute;top:5.5rem;left:9.53rem;font-size:.55em;font-weight:bold;color:white;-webkit-text-stroke:1px black;";
+  defStat.textContent = cardEl.dataset.def;
+  cardEl.appendChild(defStat);
+}
+
 function displayFelt() {
   loadingBar.remove();
   msg.remove();
@@ -703,21 +748,25 @@ function displayFelt() {
   playerCard1.addEventListener("click", playCard);
   setCardProps(playerCard1, player.deck);
   playerCard1.children[0].src = playerCard1.dataset.img;
+  createStats(playerCard1);
   player.hand.push(playerCard1);
 
   playerCard2.addEventListener("click", playCard);
   setCardProps(playerCard2, player.deck);
   playerCard2.children[0].src = playerCard2.dataset.img;
+  createStats(playerCard2);
   player.hand.push(playerCard2);
 
   playerCard3.addEventListener("click", playCard);
   setCardProps(playerCard3, player.deck);
   playerCard3.children[0].src = playerCard3.dataset.img;
+  createStats(playerCard3);
   player.hand.push(playerCard3);
 
   playerCard4.addEventListener("click", playCard);
   setCardProps(playerCard4, player.deck);
   playerCard4.children[0].src = playerCard4.dataset.img;
+  createStats(playerCard4);
   player.hand.push(playerCard4);
 
   console.log(`You have ${displayHand(player.hand)}`);
