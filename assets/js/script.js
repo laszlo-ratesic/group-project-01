@@ -159,7 +159,7 @@ function notification(message) {
     opacity: 0,
   },{
     opacity: 1,
-    y: 225
+    y: 270
     })
   enemyAvatar.prepend(notification);
   setTimeout(function () {
@@ -666,11 +666,10 @@ function endPlayerTurn() {
   }
   if (settings.profanity) {
     fuckOff("https://cors-anywhere.herokuapp.com/http://foaas.com/");
-  }
-  else {
+  } else {
     compliment();
   }
-  setTimeout(notification(trashTalk), 1000);
+  setTimeout(notification(trashTalk), 2000);
   setTimeout(enemyTurn(), 2000);
 }
 
@@ -884,6 +883,11 @@ function loadScreen() {
   msg.style.width = "25vw";
   heroBody.appendChild(msg);
   heroBody.appendChild(loadingBar);
+  if (settings.profanity) {
+    fuckOff("https://cors-anywhere.herokuapp.com/http://foaas.com/");
+  } else {
+    compliment();
+  }
   heroBody.style.justifyContent = "center";
   setTimeout(displayFelt, 2000);
 }
