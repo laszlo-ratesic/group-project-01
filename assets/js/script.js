@@ -222,6 +222,13 @@ function attackTarget(event) {
   if (target.id === "enemy-avatar") {
     enemy.health -= readyToAttack.dataset.atk;
     enemyHealth.value = enemy.health;
+    var tween = gsap.fromTo(target, {
+      boxShadow: "inset 0 0 25px 25px red",
+    }, {
+      boxShadow: "inset 0 0 25px 0 red",
+      ease: "elastic.out(1, 0.3)",
+    });
+    tween.play();
     if (enemy.health <= 0) {
       console.log("Game Over. You Win!");
       endGame();
@@ -235,6 +242,14 @@ function attackTarget(event) {
     console.log(
       `The enemy's ${target.dataset.name} card had ${target.dataset.def} def.`
     );
+    var tween2 = gsap.fromTo(target.children[0], {
+      boxShadow: "inset 0 0 100px 25px red, 0 0 25px 25px red",
+      duration: 1
+    }, {
+      clearProps: "box-shadow",
+      ease: "elastic.out(1, 0.3)"
+    });
+    tween2.play();
     // Subtract the player card's atk score from the enemy card's def score
     target.dataset.def -= readyToAttack.dataset.atk;
 
@@ -268,7 +283,6 @@ function attackTarget(event) {
       readyToAttack.remove();
     }
   }
-  target.style.animation = "wobble 1s";
   enemyAvatar.style.boxShadow = "none";
   enemyAvatar.removeEventListener("mouseenter", attackTargetHover);
   enemyAvatar.removeEventListener("mouseleave", attackTargetUnhover);
