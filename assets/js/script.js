@@ -479,12 +479,26 @@ function yourTurnMsg() {
   msgText.textContent = "Your Turn";
   enemyField.after(msg);
   msg.after(msgText);
-  setTimeout(function() {
-    msg.style = "opacity:0; transition: opacity 600ms;"
-    msgText.style = "opacity:0; transition: opacity 600ms;"
-    msg.remove();
-    msgText.remove();
-  }, 2000);
+  gsap.to(msg, {
+    duration: 1,
+    opacity: 1,
+    onComplete: function() {
+      gsap.to(msg, {
+        duration: 1,
+        opacity: 0
+      })
+    }
+  })
+  gsap.to(msgText, {
+    duration: 1,
+    opacity: 1,
+    onComplete: function() {
+      gsap.to(msgText, {
+        duration: 1,
+        opacity: 0
+      })
+    }
+  })
 }
 
 function endEnemyTurn() {
