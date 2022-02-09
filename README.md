@@ -19,21 +19,22 @@ After the dark elves of the neighboring Witchwood Cult made a deal with the Warl
   - [👋 How to Contribute](#-how-to-contribute)
 
 ## 🧾 Features
-- A bulleted
-- List of
-- Features
-- Of
-- Our
-- App
+- Implements the Bulma CSS Framework
+- Live deployment to GitHub Pages
+- Interactive functionality that responds to user input
+- Utilizes several third-party and server-side APIs including Pantry API, GSAP3, and FOAAS (F*ck Off As A Service)
+- Uses modals in place of browser-default alerts, confirms, and prompts
+- Accesses client-side local storage to preserve user-persistent data between page visits
 
 ## 💯 Additional Features
-- More bullet points
-- About additional features
-- These are the things
-- We did
-- But didn't
-- Necessarily
-- Need to do
+- Features multiple decks to choose from
+- Dynamic card/player/enemy stat data updated in realtime
+- Smart logic coded in straight-up no-frills JS to provide varying difficulty levels
+- Class options for users with specific special attributes for each
+- Barbarian class gets 'breakthrough' allowing leftover ATK damage to bleed over from attacked cards to enemy health
+- Mage class starts with extra power to play higher-cost cards at game start
+- Rogue class receives initiative and can attack with cards the same turn they are played
+- Interactive UI provides a fun, enjoyable user experience as they fight to take control of Highrealm's last stronghold
 
 ## 📖 Developer Journey
 
