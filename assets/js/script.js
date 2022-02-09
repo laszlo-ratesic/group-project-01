@@ -154,7 +154,13 @@ function notification(message) {
   deleteBtn.classList.add("delete");
   notification.appendChild(deleteBtn);
   notification.textContent = message;
-  enemyAvatar.appendChild(notification);
+  gsap.fromTo(notification, {
+    opacity: 0,
+  },{
+    opacity: 1,
+    y: 225
+    })
+  enemyAvatar.prepend(notification);
   setTimeout(function () {
     enemyAvatar.removeChild(notification);
   }, 3000);
