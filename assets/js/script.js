@@ -641,6 +641,22 @@ function enemyTurn() {
   enemyThinking();
 }
 
+function compliment() {
+  const apiUrl = "https://complimentr.com/api";
+
+  fetch(apiUrl, {
+    method: 'GET'
+  }).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        trashTalk = data.compliment;
+      })
+    } else {
+      console.log("error")
+    }
+  })
+}
+
 function endPlayerTurn() {
   endTurnBtn.removeEventListener("click", endPlayerTurn);
   for (let i = 0; i < playerHand.children.length; i++) {
@@ -650,6 +666,9 @@ function endPlayerTurn() {
   }
   if (settings.profanity) {
     fuckOff("https://cors-anywhere.herokuapp.com/http://foaas.com/");
+  }
+  else {
+    compliment();
   }
   setTimeout(notification(trashTalk), 1000);
   setTimeout(enemyTurn(), 2000);
@@ -957,11 +976,18 @@ function getDeck(user, deck) {
     "https://getpantry.cloud/apiv1/pantry/e7259b55-e424-4352-b9d4-af473fc7431a/basket/" +
     deck;
 
-  fetch(apiUrl).then(function (response) {
+  fetch(apiUrl, {
+    method: 'GET',
+    headers: {
+      accept: "application/json"
+    }
+  }).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
         user.deck = data.cards;
       });
+    } else {
+      console.log("error");
     }
   });
 }
