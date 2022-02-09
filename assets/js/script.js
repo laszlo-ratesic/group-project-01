@@ -55,6 +55,8 @@ const enemyCard3 = document.getElementById("enemy-card-3");
 const enemyCard4 = document.getElementById("enemy-card-4");
 
 const endTurnBtn = document.getElementById("end-turn-btn");
+const imgTop = document.querySelector(".img-top");
+
 
 const enemyHealth = document.getElementById("enemy-health");
 const enemyPower = document.getElementById("enemy-power");
@@ -119,7 +121,6 @@ let thinkingInterval;
 let playerCards = playerField.children;
 let enemyCards = enemyField.children;
 
-const imgTop = document.querySelector(".img-top");
 
 function buttonPressed(event) {
   event.target.src = "./assets/images/buttonPressed.png";
@@ -647,56 +648,53 @@ function endPlayerTurn() {
       playerHand.children[i].removeEventListener("click", playCard);
     }
   }
-
+  if (settings.profanity) {
+    fuckOff("https://cors-anywhere.herokuapp.com/http://foaas.com/");
+  }
   setTimeout(notification(trashTalk), 1000);
   setTimeout(enemyTurn(), 2000);
 }
 
 // This array holds API call commands for foaas API
-const asshole = "asshole";
-const back = "back";
-const bag = "bag";
-const blackadder = "blackadder"
-let insult = [
-  // anyway/:company/:from,
-  asshole,
-  back,
-  bag,
-  blackadder,
-  // bus/name/from,
-  // bye/from,
-  // caniuse/:tool/:from,
-  // cocksplat/name/from,
-  // dosomething/:do/:something/:from,
-  // dumbledore/from,
-  // everyone/from,
-  // everything/from,
-  // fascinating/from,
-  // field/:name/:from/:reference,
-  // give/from,
-  // holygrail/from,
-  // horse/from,
-  // legend/name/from,
-  // // life/from,
-  // linus/name/from,
-  // mornin/from,
-  // nugget/name/from,
-  // problem/name/from,
-  // ridiculous/from,
-  // sake/from,
-  // shakespeare/name/from,
-  // shit/from,
-  // thinking/name/from,
-  // waste/name/from,
-];
 
 let trashTalk = "";
 
 
 async function fuckOff(url) {
   // These variables are for the insult array
+  let insult = [
+    `anyway/${player.name}`,
+    `asshole`,
+    `back`,
+    `bag`,
+    `blackadder`,
+    `bus/${player.name}`,
+    `bye`,
+    `caniuse/shears`,
+    `cocksplat/${player.name}`,
+    `dosomething/waste/time`,
+    `dumbledore`,
+    `everyone`,
+    `everything`,
+    `fascinating`,
+    `field/${player.name}`,
+    `give`,
+    `holygrail`,
+    `horse`,
+    `legend/${player.name}`,
+    `life`,
+    `linus/${player.name}`,
+    `mornin`,
+    `nugget/${player.name}`,
+    `problem/${player.name}`,
+    `ridiculous`,
+    `sake`,
+    `shakespeare/${player.name}`,
+    `shit`,
+    `thinking/${player.name}`,
+    `waste/${player.name}`,
+  ];
   let from = enemy.name;
-  let name = player.name;
   const randomIndex = Math.floor(Math.random() * insult.length);
   const result = url + insult[randomIndex] + "/" + from;
 
@@ -715,8 +713,6 @@ async function fuckOff(url) {
     }
   });
 };
-
-fuckOff("https://cors-anywhere.herokuapp.com/http://foaas.com/");
 
 function playCard(event) {
   const chosenCard = event.currentTarget;
@@ -920,6 +916,7 @@ function startGame(event) {
   }
 
   settings.profanity = profanityInput.checked;
+
   heroEl.style.backgroundImage = "url(./assets/images/hero2.jpg)";
   heroEl.style.backgroundSize = "cover";
   heroEl.style.backgroundPosition = "top";
