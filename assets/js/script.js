@@ -271,6 +271,10 @@ function attackTarget(event) {
       console.log(
         `The enemy's ${target.dataset.name} card did not survive the attack`
       );
+      if (player.class === "barbarian") {
+        enemy.health -= -target.dataset.def;
+        enemyHealth.value = enemy.health;
+      }
       discardPile.push(target);
       target.remove();
     }
