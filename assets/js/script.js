@@ -380,6 +380,16 @@ function startPlayerTurn() {
     cardImg.src = newCard.dataset.img;
     cardImg.style.transform = "scale(1.2)";
     newCard.appendChild(cardImg);
+
+    const costStat = document.createElement("div");
+    costStat.style = "position:absolute;top:-1rem;left:0;";
+    costStat.textContent = newCard.dataset.cost;
+    newCard.appendChild(costStat);
+
+    const atkStat = document.createElement("div");
+    atkStat.style = "position:absolute;top:1rem;left:0;";
+    atkStat.textContent = newCard.dataset.atk;
+    newCard.appendChild(atkStat);
     gsap.fromTo(
       newCard,
       {
