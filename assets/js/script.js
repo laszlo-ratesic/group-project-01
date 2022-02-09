@@ -70,6 +70,10 @@ const youLost = document.getElementById("you-lost");
 
 const loadingBar = document.createElement("progress");
 const msg = document.createElement("img");
+msg.src = "./assets/images/box1.png";
+msg.style.width = "25vw";
+const msgText = document.createElement("div");
+
 
 const localStorageData = JSON.parse(localStorage.getItem("bloodgateUser"));
 
@@ -469,6 +473,20 @@ function startPlayerTurn() {
   endTurnBtn.addEventListener("mouseup", buttonReleased);
 }
 
+function yourTurnMsg() {
+  msg.style = "position:relative; top:0; left:0; margin: 0 auto;";
+  msgText.style = "position:relative; top:-5rem; left:0; margin: 0 auto; font-family:'MedievalSharp',serif; font-size: 3em; font-weight:bolder; color:black;";
+  msgText.textContent = "Your Turn";
+  enemyField.after(msg);
+  msg.after(msgText);
+  setTimeout(function() {
+    msg.style = "opacity:0; transition: opacity 600ms;"
+    msgText.style = "opacity:0; transition: opacity 600ms;"
+    msg.remove();
+    msgText.remove();
+  }, 2000);
+}
+
 function endEnemyTurn() {
   turnCounter++;
   if (player.class === "mage") {
@@ -479,6 +497,7 @@ function endEnemyTurn() {
   playerPower.max = player.power * 100;
   playerPower.value = player.power * 100;
   console.log(`You have ${player.power} power.`);
+  yourTurnMsg();
   startPlayerTurn();
 }
 
@@ -912,8 +931,6 @@ function loadScreen() {
   loadingBar.max = "100";
   loadingBar.textContent = "60%";
   loadingBar.style.marginTop = "5rem";
-  msg.src = "./assets/images/box1.png";
-  msg.style.width = "25vw";
   heroBody.appendChild(msg);
   heroBody.appendChild(loadingBar);
   if (settings.profanity) {
