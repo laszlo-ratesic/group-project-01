@@ -25,6 +25,12 @@
   color: black;
 }
 
+#rotate {
+  position:absolute;
+  top:40%;
+  left: 40%;
+}
+
 #rules-background {
   background-image: url(../images/fantasy-art-by-Millikodea.jpeg);
   background-size: cover;
@@ -193,6 +199,10 @@ progress:after {
   margin-left: -5rem;
 }
 
+.player-card-img {
+  transform: scale(1.2);
+}
+
 .played-card {
   margin: 0 1.8rem;
   border-radius: 15px;
@@ -279,6 +289,14 @@ progress:after {
   margin-left: 175px;
 }
 
+#end-turn-text {
+  font-family: 'MedievalSharp', serif;
+  z-index: 1002;
+  top: 25%;
+  letter-spacing: .2em;
+  pointer-events: none;
+}
+
 .img-top {
   display: none;
   position: absolute;
@@ -289,6 +307,22 @@ progress:after {
 
 .end-turn:hover .img-top {
   display: inline;
+}
+
+#game-over {
+  font-family:'MedievalSharp', serif;
+}
+
+#game-over-msg {
+  background-color: darkslategray;
+}
+
+#you-won {
+  color:white;
+}
+
+#you-lost {
+  color:white;
 }
 
 #rotate {
