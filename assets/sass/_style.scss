@@ -477,7 +477,10 @@ progress:after {
     height: 7rem;
     width: 5rem;
   }
-
+  .enemy-cost-stat {
+    font-size: 1em;
+    top: -1rem;
+  }
   #player-row {
     padding-top: 3em;
   }
@@ -497,7 +500,20 @@ progress:after {
     width: 5rem;
   }
   .cost-stat {
+    top: -0.8rem;
     font-size: 0.3em;
+    font-weight: normal;
+    -webkit-text-stroke: none;
+  }
+  .atk-stat {
+    top: 2.6rem;
+    left: -0.4rem;
+    font-size:.35em;
+  }
+  .def-stat {
+    top: 2.6rem;
+    left: 4.7rem;
+    font-size:.35em;
   }
   .played-card {
     height: 7rem;
