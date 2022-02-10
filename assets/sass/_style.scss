@@ -478,8 +478,21 @@ progress:after {
     width: 5rem;
   }
   .enemy-cost-stat {
+    font-size: .9em;
+    top: -.8rem;
+    left: -.18rem;
+    font-weight: normal;
+    -webkit-text-stroke: none;
+  }
+  .enemy-atk-stat {
     font-size: 1em;
-    top: -1rem;
+    top: 2.6rem;
+    left: -0.35rem;
+  }
+  .enemy-def-stat {
+    font-size: 1em;
+    top: 2.6rem;
+    left: 4.7rem;
   }
   #player-row {
     padding-top: 3em;
