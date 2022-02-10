@@ -163,11 +163,12 @@ function notification(message) {
   deleteBtn.classList.add("delete");
   notification.appendChild(deleteBtn);
   notification.textContent = message;
+  const h = window.innerHeight/1.5;
   gsap.fromTo(notification, {
     opacity: 0,
   },{
     opacity: 1,
-    y: 270
+    yPercent: h
     })
   enemyAvatar.prepend(notification);
   setTimeout(function () {
@@ -301,6 +302,12 @@ function attackTarget(event) {
       );
       discardPile.push(readyToAttack);
       readyToAttack.remove();
+    }
+    if (playerCards.length < 4) {
+      for (let i = 0; i < playerHand.children.length; i++) {
+        playerHand.children[i].removeEventListener("click", playCard);
+        playerHand.children[i].addEventListener("click", playCard);
+      }
     }
   }
   enemyAvatar.style.boxShadow = "none";
@@ -460,8 +467,11 @@ function startPlayerTurn() {
   console.log(displayHand(player.hand));
 
   // Make cards in hand clickable to play
-  for (let i = 0; i < playerHand.children.length; i++) {
-    playerHand.children[i].addEventListener("click", playCard);
+  if (playerCards.length < 4) {
+    for (let i = 0; i < playerHand.children.length; i++) {
+      playerHand.children[i].removeEventListener("click", playCard);
+      playerHand.children[i].addEventListener("click", playCard);
+    }
   }
 
   // Initiates cards for attack
@@ -576,14 +586,7 @@ function enemyAttack() {
         enemyCards[i].dataset.def -= playerCards[randomIndex].dataset.atk;
         enemyCards[i].children[3].textContent = enemyCards[i].dataset.def;
         enemyCards[i].children[3].style.color = "red";
-        if (playerCards[randomIndex].dataset.def > 0) {
-          console.log(
-            `${playerCards[randomIndex].dataset.name} survived and now has ${playerCards[randomIndex].dataset.def} def`
-          );
-        } else {
-          console.log(
-            `${playerCards[randomIndex].dataset.name} didn't make it`
-          );
+        if (playerCards[randomIndex].dataset.def <= 0) {
           discardPile.push(playerCards[randomIndex]);
           playerCards[randomIndex].remove();
         }
@@ -645,7 +648,6 @@ function enemyPlayCard() {
         enemyField.appendChild(card);
         enemy.power -= card.dataset.cost;
         enemyPower.value = enemy.power * 100;
-        console.log(`${enemy.name} now has ${enemy.power} power`);
       }
     }
     enemyAttack();
@@ -717,7 +719,6 @@ function enemyTurn() {
     setCardProps(newCard, enemy.deck);
     enemy.hand.push(newCard);
   }
-  console.log(`${enemy.name} has ${displayHand(enemy.hand)}`);
   enemyThinking();
 }
 
@@ -847,11 +848,9 @@ function playCard(event) {
       yPercent: -h,
     });
     playerField.appendChild(chosenCard);
-    console.log(`You played ${chosenCard.dataset.name}!`);
     player.power -= chosenCard.dataset.cost;
     powerCounter.textContent = player.power;
     playerPower.value = player.power * 100;
-    console.log(`You have ${player.power} power left`);
   }
 }
 
