@@ -59,7 +59,6 @@ const enemyCard4 = document.getElementById("enemy-card-4");
 const endTurnBtn = document.getElementById("end-turn-btn");
 const imgTop = document.querySelector(".img-top");
 
-
 const enemyHealth = document.getElementById("enemy-health");
 const enemyPower = document.getElementById("enemy-power");
 const playerHealth = document.getElementById("player-health");
@@ -75,7 +74,6 @@ const msg = document.createElement("img");
 msg.src = "./assets/images/box1.png";
 msg.style.width = "25vw";
 const msgText = document.createElement("div");
-
 
 const localStorageData = JSON.parse(localStorage.getItem("bloodgateUser"));
 
@@ -127,7 +125,6 @@ let thinkingInterval;
 let playerCards = playerField.children;
 let enemyCards = enemyField.children;
 
-
 function buttonPressed(event) {
   event.target.src = "./assets/images/buttonPressed.png";
   event.target.style.top = "0";
@@ -163,13 +160,17 @@ function notification(message) {
   deleteBtn.classList.add("delete");
   notification.appendChild(deleteBtn);
   notification.textContent = message;
-  const h = window.innerHeight/1.5;
-  gsap.fromTo(notification, {
-    opacity: 0,
-  },{
-    opacity: 1,
-    yPercent: h
-    })
+  const h = window.innerHeight / 1.5;
+  gsap.fromTo(
+    notification,
+    {
+      opacity: 0,
+    },
+    {
+      opacity: 1,
+      yPercent: h,
+    }
+  );
   enemyAvatar.prepend(notification);
   setTimeout(function () {
     enemyAvatar.removeChild(notification);
@@ -234,12 +235,16 @@ function attackTarget(event) {
   if (target.id === "enemy-avatar") {
     enemy.health -= readyToAttack.dataset.atk;
     enemyHealth.value = enemy.health;
-    var tween = gsap.fromTo(target, {
-      boxShadow: "inset 0 0 25px 25px red",
-    }, {
-      boxShadow: "inset 0 0 25px 0 red",
-      ease: "elastic.out(1, 0.3)",
-    });
+    var tween = gsap.fromTo(
+      target,
+      {
+        boxShadow: "inset 0 0 25px 25px red",
+      },
+      {
+        boxShadow: "inset 0 0 25px 0 red",
+        ease: "elastic.out(1, 0.3)",
+      }
+    );
     tween.play();
     if (enemy.health <= 0) {
       console.log("Game Over. You Win!");
@@ -254,13 +259,17 @@ function attackTarget(event) {
     console.log(
       `The enemy's ${target.dataset.name} card had ${target.dataset.def} def.`
     );
-    var tween2 = gsap.fromTo(target.children[0], {
-      boxShadow: "inset 0 0 100px 25px red, 0 0 25px 25px red",
-      duration: 1
-    }, {
-      clearProps: "box-shadow",
-      ease: "elastic.out(1, 0.3)"
-    });
+    var tween2 = gsap.fromTo(
+      target.children[0],
+      {
+        boxShadow: "inset 0 0 100px 25px red, 0 0 25px 25px red",
+        duration: 1,
+      },
+      {
+        clearProps: "box-shadow",
+        ease: "elastic.out(1, 0.3)",
+      }
+    );
     tween2.play();
     // Subtract the player card's atk score from the enemy card's def score
     target.dataset.def -= readyToAttack.dataset.atk;
@@ -491,30 +500,31 @@ function startPlayerTurn() {
 
 function yourTurnMsg() {
   msg.style = "position:relative; top:0; left:0; margin: 0 auto;";
-  msgText.style = "position:relative; top:-5rem; left:0; margin: 0 auto; font-family:'MedievalSharp',serif; font-size: 3em; font-weight:bolder; color:black;";
+  msgText.style =
+    "position:relative; top:-5rem; left:0; margin: 0 auto; font-family:'MedievalSharp',serif; font-size: 3em; font-weight:bolder; color:black;";
   msgText.textContent = "Your Turn";
   enemyField.after(msg);
   msg.after(msgText);
   gsap.to(msg, {
     duration: 1,
     opacity: 1,
-    onComplete: function() {
+    onComplete: function () {
       gsap.to(msg, {
         duration: 1,
-        opacity: 0
-      })
-    }
-  })
+        opacity: 0,
+      });
+    },
+  });
   gsap.to(msgText, {
     duration: 1,
     opacity: 1,
-    onComplete: function() {
+    onComplete: function () {
       gsap.to(msgText, {
         duration: 1,
-        opacity: 0
-      })
-    }
-  })
+        opacity: 0,
+      });
+    },
+  });
 }
 
 function endEnemyTurn() {
@@ -551,13 +561,13 @@ function enemyAttack() {
         gsap.to(".hero", {
           duration: 1,
           boxShadow: "inset 0 0 100vmin 0 red",
-          onComplete: function() {
+          onComplete: function () {
             gsap.to(".hero", {
               duration: 1,
-              boxShadow: "none"
-            })
-          }
-        })
+              boxShadow: "none",
+            });
+          },
+        });
         console.log(`${enemy.name} attacked ${player.name} directly!`);
         if (player.health <= 0) {
           endGame();
@@ -572,15 +582,16 @@ function enemyAttack() {
         gsap.to(".hero", {
           duration: 1,
           boxShadow: "inset 0 0 100vmin 0 red",
-          onComplete: function() {
+          onComplete: function () {
             gsap.to(".hero", {
               duration: 1,
-              boxShadow: "none"
-            })
-          }
-        })
+              boxShadow: "none",
+            });
+          },
+        });
         playerCards[randomIndex].dataset.def -= enemyCards[i].dataset.atk;
-        playerCards[randomIndex].children[3].textContent = playerCards[randomIndex].dataset.def;
+        playerCards[randomIndex].children[3].textContent =
+          playerCards[randomIndex].dataset.def;
         playerCards[randomIndex].children[3].style.color = "red";
 
         enemyCards[i].dataset.def -= playerCards[randomIndex].dataset.atk;
@@ -603,51 +614,53 @@ function enemyAttack() {
       }
     }
   }
-  endEnemyTurn();
+    endEnemyTurn();
 }
 
 function enemyPlayCard() {
   setTimeout(function () {
     // loop through hand
-    for (let i = 0; i < enemyHand.children.length; i++) {
-      const card = enemyHand.children[i];
-      // Play a card from the hand that has <= cost than power
-      if (card.dataset.cost <= enemy.power) {
-        const cardFace = document.createElement("img");
-        cardFace.src = card.dataset.img;
-        cardFace.style.transform = "scale(1.2)";
-        card.appendChild(cardFace);
-        card.classList.add("played-enemy-card");
-        card.dataset.state = "in-play";
+    if (enemyCards.length < 4) {
+      for (let i = 0; i < enemyHand.children.length; i++) {
+        const card = enemyHand.children[i];
+        // Play a card from the hand that has <= cost than power
+        if (card.dataset.cost <= enemy.power && enemyCards.length < 4) {
+          const cardFace = document.createElement("img");
+          cardFace.src = card.dataset.img;
+          cardFace.style.transform = "scale(1.2)";
+          card.appendChild(cardFace);
+          card.classList.add("played-enemy-card");
+          card.dataset.state = "in-play";
 
-        const enemyCostStat = document.createElement("div");
-        enemyCostStat.classList.add("enemy-cost-stat");
-        enemyCostStat.textContent = card.dataset.cost;
-        card.appendChild(enemyCostStat);
+          const enemyCostStat = document.createElement("div");
+          enemyCostStat.classList.add("enemy-cost-stat");
+          enemyCostStat.textContent = card.dataset.cost;
+          card.appendChild(enemyCostStat);
 
-        const enemyAtkStat = document.createElement("div");
-        enemyAtkStat.classList.add("enemy-atk-stat");
-        enemyAtkStat.textContent = card.dataset.atk;
-        card.appendChild(enemyAtkStat);
+          const enemyAtkStat = document.createElement("div");
+          enemyAtkStat.classList.add("enemy-atk-stat");
+          enemyAtkStat.textContent = card.dataset.atk;
+          card.appendChild(enemyAtkStat);
 
-        const enemyDefStat = document.createElement("div");
-        enemyDefStat.classList.add("enemy-def-stat");
-        enemyDefStat.textContent = card.dataset.def;
-        card.appendChild(enemyDefStat);
+          const enemyDefStat = document.createElement("div");
+          enemyDefStat.classList.add("enemy-def-stat");
+          enemyDefStat.textContent = card.dataset.def;
+          card.appendChild(enemyDefStat);
 
-        console.log(`${enemy.name} played ${card.dataset.name}`);
-        const w = window.innerWidth / 4;
-        const h = window.innerHeight / 8;
-        gsap.from(card, {
-          duration: 2,
-          ease: "power4",
-          scale: 1.5,
-          xPercent: w,
-          yPercent: -h,
-        });
-        enemyField.appendChild(card);
-        enemy.power -= card.dataset.cost;
-        enemyPower.value = enemy.power * 100;
+          console.log(`${enemy.name} played ${card.dataset.name}`);
+          const w = window.innerWidth / 4;
+          const h = window.innerHeight / 8;
+          gsap.from(card, {
+            duration: 2,
+            ease: "power4",
+            scale: 1.5,
+            xPercent: w,
+            yPercent: -h,
+          });
+          enemyField.appendChild(card);
+          enemy.power -= card.dataset.cost;
+          enemyPower.value = enemy.power * 100;
+        }
       }
     }
     enemyAttack();
@@ -726,16 +739,16 @@ function compliment() {
   const apiUrl = "https://complimentr.com/api";
 
   fetch(apiUrl, {
-    method: 'GET'
+    method: "GET",
   }).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
         trashTalk = data.compliment;
-      })
+      });
     } else {
-      console.log("error")
+      console.log("error");
     }
-  })
+  });
 }
 
 function endPlayerTurn() {
@@ -747,7 +760,8 @@ function endPlayerTurn() {
     playerField.children[i].removeEventListener("click", AtkMsg);
     playerField.children[i].removeEventListener("mouseenter", hover);
     playerField.children[i].removeEventListener("mouseleave", unhover);
-    playerField.children[i].style = "transition: all 400ms; box-shadow:none; transform: translateY(15px); animation:none;";
+    playerField.children[i].style =
+      "transition: all 400ms; box-shadow:none; transform: translateY(15px); animation:none;";
   }
   for (let i = 0; i < playerHand.children.length; i++) {
     if (playerHand.children[i].dataset.state === "in-hand") {
@@ -766,7 +780,6 @@ function endPlayerTurn() {
 // This array holds API call commands for foaas API
 
 let trashTalk = "";
-
 
 async function fuckOff(url) {
   // These variables are for the insult array
@@ -810,7 +823,7 @@ async function fuckOff(url) {
     method: "GET",
     headers: {
       accept: "application/json",
-    }
+    },
   }).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
@@ -820,7 +833,7 @@ async function fuckOff(url) {
       console.log("error");
     }
   });
-};
+}
 
 function playCard(event) {
   const chosenCard = event.currentTarget;
@@ -1075,10 +1088,10 @@ function getDeck(user, deck) {
     deck;
 
   fetch(apiUrl, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      accept: "application/json"
-    }
+      accept: "application/json",
+    },
   }).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
