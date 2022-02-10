@@ -33,6 +33,8 @@ const gameOver = document.getElementById("game-over");
 const enemyAvatar = document.getElementById("enemy-avatar");
 const playerAvatar = document.getElementById("player-avatar");
 
+const powerCounter = document.getElementById("power-counter");
+
 // const enemyDeck = document.querySelector("#enemy-deck");
 // const playerDeck = document.querySelector("#player-deck");
 
@@ -154,7 +156,9 @@ function attackTargetUnhover(event) {
 // Opponent Trash Talk Window
 function notification(message) {
   const notification = document.createElement("div");
-  notification.classList.add("notification", "is-warning");
+  notification.classList.add("notification", "is-warning", "is-full");
+  notification.style.whiteSpace = "nowrap";
+  notification.style.width = "fit-content";
   const deleteBtn = document.createElement("button");
   deleteBtn.classList.add("delete");
   notification.appendChild(deleteBtn);
@@ -324,7 +328,6 @@ function attackTarget(event) {
 }
 
 function removeAtkMsg() {
-  // debugger;
   const readyToAttack = document.querySelector(".ready-to-attack");
   readyToAttack.style.boxShadow = "none";
   readyToAttack.style.transform = "translateY(15px)";
@@ -355,7 +358,6 @@ function removeAtkMsg() {
 }
 
 function AtkMsg() {
-  // debugger;
   const attacker = this;
   attacker.removeEventListener("mouseenter", hover);
   attacker.removeEventListener("mouseleave", unhover);
@@ -515,6 +517,7 @@ function endEnemyTurn() {
   } else {
     player.power = turnCounter;
   }
+  powerCounter.textContent = player.power;
   playerPower.max = player.power * 100;
   playerPower.value = player.power * 100;
   console.log(`You have ${player.power} power.`);
@@ -852,6 +855,7 @@ function playCard(event) {
     playerField.appendChild(chosenCard);
     console.log(`You played ${chosenCard.dataset.name}!`);
     player.power -= chosenCard.dataset.cost;
+    powerCounter.textContent = player.power;
     playerPower.value = player.power * 100;
     console.log(`You have ${player.power} power left`);
   }
@@ -914,6 +918,7 @@ function displayFelt() {
   turnCounter++;
   player.power++;
   enemy.power++;
+  powerCounter.textContent = player.power;
 
   playerHealth.value = player.health;
   playerPower.max = player.power * 100;
@@ -978,7 +983,6 @@ function loadScreen() {
   loadingBar.max = "100";
   loadingBar.textContent = "60%";
   loadingBar.style.marginTop = "5rem";
-  heroBody.appendChild(msg);
   heroBody.appendChild(loadingBar);
   if (settings.profanity) {
     fuckOff("https://cors-anywhere.herokuapp.com/http://foaas.com/");
