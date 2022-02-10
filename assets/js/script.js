@@ -421,20 +421,17 @@ function startPlayerTurn() {
     newCard.appendChild(cardImg);
 
     const costStat = document.createElement("div");
-    costStat.style =
-      "position:absolute;top:-1.45rem;left:-.18rem;font-size:.5em;font-weight:bold;-webkit-text-stroke:1px black;";
+    costStat.classList.add("cost-stat");
     costStat.textContent = newCard.dataset.cost;
     newCard.appendChild(costStat);
 
     const atkStat = document.createElement("div");
-    atkStat.style =
-      "position:absolute;top:5.5rem;left:-.55rem;font-size:.55em;font-weight:bold;color:white;-webkit-text-stroke:1px black;";
+    atkStat.classList.add("atk-stat");
     atkStat.textContent = newCard.dataset.atk;
     newCard.appendChild(atkStat);
 
     const defStat = document.createElement("div");
-    defStat.style =
-      "position:absolute;top:5.5rem;left:9.53rem;font-size:.55em;font-weight:bold;color:white;-webkit-text-stroke:1px black;";
+    defStat.classList.add("def-stat");
     defStat.textContent = newCard.dataset.def;
     newCard.appendChild(defStat);
 
@@ -620,23 +617,20 @@ function enemyPlayCard() {
         card.classList.add("played-enemy-card");
         card.dataset.state = "in-play";
 
-        const costStat = document.createElement("div");
-        costStat.style =
-          "position:absolute;top:-1.45rem;left:-.3rem;font-size:1.5em;font-weight:bold; color:black;-webkit-text-stroke:1px black;";
-        costStat.textContent = card.dataset.cost;
-        card.appendChild(costStat);
+        const enemyCostStat = document.createElement("div");
+        enemyCostStat.classList.add("enemy-cost-stat");
+        enemyCostStat.textContent = card.dataset.cost;
+        card.appendChild(enemyCostStat);
 
-        const atkStat = document.createElement("div");
-        atkStat.style =
-          "position:absolute;top:5.65rem;left:-.45rem;font-size:1.5em;font-weight:bold;color:white;-webkit-text-stroke:1px black;";
-        atkStat.textContent = card.dataset.atk;
-        card.appendChild(atkStat);
+        const enemyAtkStat = document.createElement("div");
+        enemyAtkStat.classList.add("enemy-atk-stat");
+        enemyAtkStat.textContent = card.dataset.atk;
+        card.appendChild(enemyAtkStat);
 
-        const defStat = document.createElement("div");
-        defStat.style =
-          "position:absolute;top:5.65rem;left:9.53rem;font-size:1.5em;font-weight:bold;color:white;-webkit-text-stroke:1px black;";
-        defStat.textContent = card.dataset.def;
-        card.appendChild(defStat);
+        const enemyDefStat = document.createElement("div");
+        enemyDefStat.classList.add("enemy-def-stat");
+        enemyDefStat.textContent = card.dataset.def;
+        card.appendChild(enemyDefStat);
 
         console.log(`${enemy.name} played ${card.dataset.name}`);
         const w = window.innerWidth / 4;
@@ -888,17 +882,17 @@ function setCardProps(cardEl, fromDeck) {
 
 function createStats(cardEl) {
   const costStat = document.createElement("div");
-  costStat.style = "position:absolute; top:-1.45rem; left:-.18rem; font-size:.5em; font-weight:bold; color:black; -webkit-text-stroke:1px black;";
+  costStat.classList.add("cost-stat");
   costStat.textContent = cardEl.dataset.cost;
   cardEl.appendChild(costStat);
 
   const atkStat = document.createElement("div");
-  atkStat.style = "position:absolute;top:5.5rem;left:-.55rem;font-size:.55em;font-weight:bold;color:white;-webkit-text-stroke:1px black;";
+  atkStat.classList.add("atk-stat");
   atkStat.textContent = cardEl.dataset.atk;
   cardEl.appendChild(atkStat);
 
   const defStat = document.createElement("div");
-  defStat.style = "position:absolute;top:5.5rem;left:9.53rem;font-size:.55em;font-weight:bold;color:white;-webkit-text-stroke:1px black;";
+  defStat.classList.add("def-stat");
   defStat.textContent = cardEl.dataset.def;
   cardEl.appendChild(defStat);
 }
