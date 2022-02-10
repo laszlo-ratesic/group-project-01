@@ -291,6 +291,22 @@ progress:after {
   display: inline;
 }
 
+#rotate {
+  display: none;
+}
+
+@media screen and (orientation:portrait) {
+  #rotate {
+    background-color: rgba(0,0,0,0.5);
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+}
+
 
 @media screen and (max-width: 980px) {
   #player-row {
