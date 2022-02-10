@@ -174,7 +174,7 @@ function notification(message) {
   enemyAvatar.prepend(notification);
   setTimeout(function () {
     enemyAvatar.removeChild(notification);
-  }, 3000);
+  }, 6000);
 }
 
 // {Player's} card floats with red shadow
