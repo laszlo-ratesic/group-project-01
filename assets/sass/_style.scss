@@ -512,12 +512,19 @@ progress:after {
     left: 3.5rem;
     top: -.5rem;
   }
+  #player-hand {
+    display: flex;
+    justify-content: flex-end;
+    flex-basis: 25%;
+    width: 100%;
+  }
   #player-deck {
     transform: translateX(-.5rem);
     height: 7rem;
     width: 5rem;
   }
   .player-card {
+    margin-left:-3rem;
     height: 7rem;
     width: 5rem;
   }
@@ -543,5 +550,8 @@ progress:after {
   }
   .player-card:hover {
     transform: translateY(-6rem);
+  }
+  #end-turn-btn {
+    margin-left:0;
   }
 }
