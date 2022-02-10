@@ -465,11 +465,17 @@ progress:after {
   .hero {
     background-position: 63%;
   }
+  #felt-view {
+    padding-left: 0;
+    padding-right: 0;
+  }
   #enemy-avatar {
+    transform: translateY(-2.5rem) translateX(.5rem);
     width: 5rem;
     height: 5rem;
   }
   #enemy-deck {
+    transform: translateY(-2.5rem) translateX(-.5rem);
     height: 7rem;
     width: 5rem;
   }
@@ -498,13 +504,16 @@ progress:after {
     padding-top: 3em;
   }
   #player-avatar {
+    transform: translateX(.5rem);
     width: 5rem;
     height: 5rem;
   }
   #power-counter {
-    left: 1rem;
+    left: 3.5rem;
+    top: -.5rem;
   }
   #player-deck {
+    transform: translateX(-.5rem);
     height: 7rem;
     width: 5rem;
   }
