@@ -142,12 +142,12 @@ progress:after {
   border: solid 3px black;
 }
 
-#player-avatar-border {
-  position: absolute;
-  left: 1.55rem;
-  height: 10rem;
-  transform: scale(1.1);
-  overflow: hidden;
+#power-counter {
+  position:absolute;
+  left:10rem;
+  background-color:blue;
+  padding:0 0.5em;
+  border-radius:50%;
 }
 
 #player-health {
@@ -391,6 +391,12 @@ progress:after {
   #player-avatar {
     width: 5rem;
     height: 5rem;
+  }
+  #power-counter {
+    left: 1rem;
+  }
+  .player-card > div {
+    font-size: 0.3em;
   }
   #player-deck {
     height: 7rem;
