@@ -25,12 +25,6 @@
   color: black;
 }
 
-#rotate {
-  position:absolute;
-  top:40%;
-  left: 40%;
-}
-
 #rules-background {
   background-image: url(../images/fantasy-art-by-Millikodea.jpeg);
   background-size: cover;
@@ -391,13 +385,27 @@ progress:after {
 
 @media screen and (orientation:portrait) {
   #rotate {
-    background-color: rgba(0,0,0,0.5);
-    display: block;
+    background-color: rgba(0,0,0,0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100%;
     position: absolute;
     top: 0;
     width: 100%;
     z-index: 1000;
+
+    span {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      h1 {
+        text-align: center;
+        width: 50%;
+      }
+    }
   }
 }
 
