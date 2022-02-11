@@ -169,7 +169,6 @@ function notification(message) {
     {
       opacity: 1,
       yPercent: h,
-      clearProps: "all"
     }
   );
   enemyAvatar.prepend(notification);
